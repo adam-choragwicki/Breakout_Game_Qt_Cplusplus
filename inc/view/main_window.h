@@ -3,6 +3,7 @@
 #include "model.h"
 #include "brick.h"
 #include "common.h"
+#include "paddle.h"
 
 #include <QMainWindow>
 
@@ -19,4 +20,5 @@ private:
     Model* model_;
 
     Brick* bricks_[GameParameters::BRICKS_COUNT];
+    Paddle* paddle_;
 };

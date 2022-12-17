@@ -12,10 +12,12 @@ MainWindow::MainWindow(Model* model) : model_(model)
     {
         for(int column = 0; column < GameParameters::COLUMNS_COUNT; column++)
         {
-            bricks_[bricksCounter] = new Brick(column * GameParameters::BRICK_WIDTH, row * GameParameters::BRICK_HEIGHT);
+            bricks_[bricksCounter] = new Brick(column * GameParameters::Brick::WIDTH, row * GameParameters::Brick::HEIGHT);
             ++bricksCounter;
         }
     }
+
+    paddle_ = new Paddle(90, 250);
 }
 
 void MainWindow::closeEvent(QCloseEvent*)
@@ -34,6 +36,10 @@ void MainWindow::paintEvent(QPaintEvent* e)
     {
         painter.drawRect(brick->getRect());
     }
+
+    painter.setPen(Qt::black);
+    painter.setBrush(Qt::blue);
+    painter.drawRect(paddle_->getRect());
 }
 
 MainWindow::~MainWindow()
@@ -42,4 +48,6 @@ MainWindow::~MainWindow()
     {
         delete brick;
     }
+
+    delete paddle_;
 }

@@ -3,7 +3,7 @@
 
 Brick::Brick(int x, int y)
 {
-    rect.setSize(QSize(GameParameters::BRICK_WIDTH, GameParameters::BRICK_HEIGHT));
+    rect.setSize(QSize(GameParameters::Brick::WIDTH, GameParameters::Brick::HEIGHT));
     rect.translate(x, y);
 }
 
