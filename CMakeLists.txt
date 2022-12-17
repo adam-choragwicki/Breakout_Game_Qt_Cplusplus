@@ -21,7 +21,9 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS ${UI_FORMS_DIR})
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(SOURCE_FILES
-        ${INCLUDES_DIR}/breakout.h ${SOURCES_DIR}/breakout.cpp src/view/main_window.cpp inc/view/main_window.h src/controller.cpp inc/controller.h src/model.cpp inc/model.h)
+        ${INCLUDES_DIR}/breakout.h ${SOURCES_DIR}/breakout.cpp
+        src/view/main_window.cpp inc/view/main_window.h src/controller.cpp inc/controller.h src/model.cpp inc/model.h
+        ${INCLUDES_DIR}/brick.h ${SOURCES_DIR}/brick.cpp inc/common.h)
 
 add_library(libBreakout ${SOURCE_FILES})
 target_include_directories(libBreakout PUBLIC ${INCLUDES_DIR})
