@@ -18,6 +18,7 @@ MainWindow::MainWindow(Model* model) : model_(model)
     }
 
     paddle_ = new Paddle(90, 250);
+    ball_ = new Ball(120, 245);
 }
 
 void MainWindow::closeEvent(QCloseEvent*)
@@ -40,6 +41,10 @@ void MainWindow::paintEvent(QPaintEvent* e)
     painter.setPen(Qt::black);
     painter.setBrush(Qt::blue);
     painter.drawRect(paddle_->getRect());
+
+    painter.setPen(Qt::black);
+    painter.setBrush(Qt::white);
+    painter.drawEllipse(ball_->getRect());
 }
 
 MainWindow::~MainWindow()

@@ -17,4 +17,9 @@ namespace GameParameters
         const int WIDTH = 60;
         const int HEIGHT = 5;
     }
+
+    namespace Ball
+    {
+        const int RADIUS = 5;
+    }
 }

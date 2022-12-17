@@ -4,6 +4,7 @@
 #include "brick.h"
 #include "common.h"
 #include "paddle.h"
+#include "ball.h"
 
 #include <QMainWindow>
 
@@ -21,4 +22,5 @@ private:
 
     Brick* bricks_[GameParameters::BRICKS_COUNT];
     Paddle* paddle_;
+    Ball* ball_;
 };
