@@ -7,6 +7,7 @@
 #include "ball.h"
 
 #include <QMainWindow>
+#include <QKeyEvent>
 
 class MainWindow : public QMainWindow
 {
@@ -17,6 +18,7 @@ public:
 private:
     void closeEvent(QCloseEvent*) override;
     void paintEvent(QPaintEvent*) override;
+    void keyPressEvent(QKeyEvent*) override;
 
     Model* model_;
 

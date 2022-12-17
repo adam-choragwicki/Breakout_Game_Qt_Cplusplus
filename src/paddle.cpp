@@ -11,3 +11,21 @@ QRect Paddle::getRect()
 {
     return rect;
 }
+
+void Paddle::moveLeft()
+{
+    //todo boundaries
+    if(rect.left() >= 5)
+    {
+        rect.moveLeft(rect.left() - 5);
+    }
+}
+
+void Paddle::moveRight()
+{
+    //todo boundaries
+    if(rect.right() <= 235)
+    {
+        rect.moveRight(rect.right() + 5);
+    }
+}

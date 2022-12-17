@@ -56,3 +56,21 @@ MainWindow::~MainWindow()
 
     delete paddle_;
 }
+
+void MainWindow::keyPressEvent(QKeyEvent* event)
+{
+    switch(event->key())
+    {
+        case Qt::Key_Left:
+        case Qt::Key_A:
+            paddle_->moveLeft();
+            break;
+
+        case Qt::Key_Right:
+        case Qt::Key_D:
+            paddle_->moveRight();
+            break;
+    }
+
+    update();
+}
