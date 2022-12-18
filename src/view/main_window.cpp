@@ -4,7 +4,7 @@
 
 MainWindow::MainWindow(Model* model) : model_(model)
 {
-    setFixedSize(240, 300);
+    setFixedSize(GameParameters::Arena::WIDTH, GameParameters::Arena::HEIGHT);
 
     int bricksCounter = 0;
 
@@ -19,6 +19,18 @@ MainWindow::MainWindow(Model* model) : model_(model)
 
     paddle_ = new Paddle(90, 250);
     ball_ = new Ball(120, 245);
+
+    timerId_ = startTimer(GameParameters::BALL_DELAY_MS);
+}
+
+MainWindow::~MainWindow()
+{
+    for(const auto& brick : bricks_)
+    {
+        delete brick;
+    }
+
+    delete paddle_;
 }
 
 void MainWindow::closeEvent(QCloseEvent*)
@@ -47,16 +59,6 @@ void MainWindow::paintEvent(QPaintEvent* e)
     painter.drawEllipse(ball_->getRect());
 }
 
-MainWindow::~MainWindow()
-{
-    for(const auto& brick : bricks_)
-    {
-        delete brick;
-    }
-
-    delete paddle_;
-}
-
 void MainWindow::keyPressEvent(QKeyEvent* event)
 {
     switch(event->key())
@@ -72,5 +74,11 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
             break;
     }
 
+    update();
+}
+
+void MainWindow::timerEvent(QTimerEvent* e)
+{
+    ball_->move();
     update();
 }
