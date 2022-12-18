@@ -19,7 +19,10 @@ private:
     void closeEvent(QCloseEvent*) override;
     void paintEvent(QPaintEvent*) override;
     void keyPressEvent(QKeyEvent*) override;
-    void timerEvent(QTimerEvent*);
+    void timerEvent(QTimerEvent*) override;
+    void checkAndProcessCollisions();
+    void checkAndProcessCollisionWithArenaEdges(const QRect& ballRect);
+    void checkAndProcessCollisionWithBrick(const QRect& ballRect);
 
     Model* model_;
 

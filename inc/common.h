@@ -18,17 +18,19 @@ namespace GameParameters
     {
         const int WIDTH = 60;
         const int HEIGHT = 5;
+        const int ELEVATION = 130;
     }
 
     namespace Ball
     {
         const int RADIUS = 5;
+        const int STARTING_ELEVATION = Paddle::ELEVATION - 5;
     }
 
     namespace Arena
     {
         constexpr int WIDTH = Brick::WIDTH * COLUMNS_COUNT;
-        const int HEIGHT = 300;
+        const int HEIGHT = 150;
 
         const int LEFT_EDGE = 0;
         constexpr int RIGHT_EDGE = Brick::WIDTH * COLUMNS_COUNT;

@@ -1,4 +1,5 @@
 #include "view/main_window.h"
+#include "log_manager.h"
 
 #include <QPainter>
 
@@ -17,8 +18,8 @@ MainWindow::MainWindow(Model* model) : model_(model)
         }
     }
 
-    paddle_ = new Paddle(90, 250);
-    ball_ = new Ball(120, 245);
+    paddle_ = new Paddle(90, GameParameters::Paddle::ELEVATION);
+    ball_ = new Ball(120, GameParameters::Ball::STARTING_ELEVATION);
 
     timerId_ = startTimer(GameParameters::BALL_DELAY_MS);
 }
@@ -47,7 +48,10 @@ void MainWindow::paintEvent(QPaintEvent* e)
 
     for(const auto& brick : bricks_)
     {
-        painter.drawRect(brick->getRect());
+        if(!brick->isDestroyed())
+        {
+            painter.drawRect(brick->getRect());
+        }
     }
 
     painter.setPen(Qt::black);
@@ -80,5 +84,78 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 void MainWindow::timerEvent(QTimerEvent* e)
 {
     ball_->move();
+    checkAndProcessCollisions();
     update();
+}
+
+void MainWindow::checkAndProcessCollisions()
+{
+    const QRect& ballRect = ball_->getRect();
+
+    checkAndProcessCollisionWithArenaEdges(ballRect);
+    checkAndProcessCollisionWithBrick(ballRect);
+}
+
+void MainWindow::checkAndProcessCollisionWithArenaEdges(const QRect& ballRect)
+{
+    if(ballRect.left() == GameParameters::Arena::LEFT_EDGE)
+    {
+        ball_->setHorizontalDirection(+1);
+    }
+
+    if(ballRect.right() == GameParameters::Arena::RIGHT_EDGE)
+    {
+        ball_->setHorizontalDirection(-1);
+    }
+
+    if(ballRect.top() == GameParameters::Arena::TOP_EDGE)
+    {
+        ball_->setVerticalDirection(+1);
+    }
+
+    if(ballRect.bottom() == GameParameters::Arena::BOTTOM_EDGE)
+    {
+        ball_->setVerticalDirection(-1);
+    }
+}
+
+void MainWindow::checkAndProcessCollisionWithBrick(const QRect& ballRect)
+{
+    const QPoint& ballRectCenter = ballRect.center();
+
+    for(Brick* brick : bricks_)
+    {
+        if(!brick->isDestroyed())
+        {
+            const QRect& brickRect = brick->getRect();
+            const QPoint& brickRectCenter = brickRect.center();
+            constexpr int halfBrickHeight = GameParameters::Brick::HEIGHT / 2;
+
+            if(ballRect.intersects(brickRect))
+            {
+                if(ballRectCenter.y() >= (brickRectCenter.y() + halfBrickHeight))
+                {
+                    LOG(INFO) << "Hit from below";
+                    ball_->setVerticalDirection(+1);
+                }
+                else if(ballRectCenter.y() <= (brickRectCenter.y() - halfBrickHeight))
+                {
+                    LOG(INFO) << "Hit from above";
+                    ball_->setVerticalDirection(-1);
+                }
+                else if(ballRectCenter.x() < brickRectCenter.x())
+                {
+                    LOG(INFO) << "Hit from left";
+                    ball_->setHorizontalDirection(-1);
+                }
+                else if(ballRectCenter.x() > brickRectCenter.x())
+                {
+                    LOG(INFO) << "Hit from right";
+                    ball_->setHorizontalDirection(+1);
+                }
+
+                brick->setDestroyed(true);
+            }
+        }
+    }
 }

@@ -3,39 +3,19 @@
 
 Ball::Ball(int x, int y)
 {
-    horizontalDirection = 1;
-    verticalDirection = -1;
+    horizontalDirection_ = 1;
+    verticalDirection_ = -1;
 
-    rect.setSize(QSize(GameParameters::Ball::RADIUS, GameParameters::Ball::RADIUS));
-    rect.translate(x, y);
+    rect_.setSize(QSize(GameParameters::Ball::RADIUS, GameParameters::Ball::RADIUS));
+    rect_.translate(x, y);
 }
 
 QRect Ball::getRect()
 {
-    return rect;
+    return rect_;
 }
 
 void Ball::move()
 {
-    rect.translate(horizontalDirection, verticalDirection);
-
-    if(rect.left() == GameParameters::Arena::LEFT_EDGE)
-    {
-        horizontalDirection = +1;
-    }
-
-    if(rect.right() == GameParameters::Arena::RIGHT_EDGE)
-    {
-        horizontalDirection = -1;
-    }
-
-    if(rect.top() == GameParameters::Arena::TOP_EDGE)
-    {
-        verticalDirection = +1;
-    }
-
-    if(rect.bottom() == GameParameters::Arena::BOTTOM_EDGE)
-    {
-        verticalDirection = -1;
-    }
+    rect_.translate(horizontalDirection_, verticalDirection_);
 }

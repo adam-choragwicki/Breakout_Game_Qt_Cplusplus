@@ -10,9 +10,21 @@ public:
 
     void move();
 
-private:
-    QRect rect;
+    void setHorizontalDirection(int horizontalDirection)
+    { horizontalDirection_ = horizontalDirection; }
 
-    int horizontalDirection;
-    int verticalDirection;
+    void setVerticalDirection(int verticalDirection)
+    { verticalDirection_ = verticalDirection; }
+
+    [[nodiscard]] int getHorizontalDirection() const
+    { return horizontalDirection_; }
+
+    [[nodiscard]] int getVerticalDirection() const
+    { return verticalDirection_; }
+
+private:
+    QRect rect_;
+
+    int horizontalDirection_;
+    int verticalDirection_;
 };
