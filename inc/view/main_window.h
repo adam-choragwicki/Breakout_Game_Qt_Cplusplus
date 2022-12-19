@@ -20,6 +20,7 @@ private:
     void paintEvent(QPaintEvent*) override;
     void keyPressEvent(QKeyEvent*) override;
     void timerEvent(QTimerEvent*) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
     void checkAndProcessCollisions();
     void checkAndProcessCollisionWithArenaEdges(const QRect& ballRect);
     void checkAndProcessCollisionWithBrick(const QRect& ballRect);

@@ -12,20 +12,7 @@ QRect Paddle::getRect()
     return rect;
 }
 
-void Paddle::moveLeft()
+void Paddle::setHorizontalPosition(int x)
 {
-    //todo boundaries
-    if(rect.left() >= GameParameters::Paddle::MOVE_INCREMENT)
-    {
-        rect.moveLeft(rect.left() - GameParameters::Paddle::MOVE_INCREMENT);
-    }
-}
-
-void Paddle::moveRight()
-{
-    //todo boundaries
-    if(rect.right() <= GameParameters::Arena::WIDTH - GameParameters::Paddle::MOVE_INCREMENT)
-    {
-        rect.moveRight(rect.right() + GameParameters::Paddle::MOVE_INCREMENT);
-    }
+    rect.moveCenter({x, GameParameters::Paddle::POSITION_Y});
 }

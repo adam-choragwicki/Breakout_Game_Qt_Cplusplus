@@ -21,6 +21,8 @@ MainWindow::MainWindow(Model* model) : model_(model)
     paddle_ = new Paddle(GameParameters::Paddle::POSITION_X, GameParameters::Paddle::POSITION_Y);
     ball_ = new Ball(GameParameters::Ball::POSITION_X, GameParameters::Ball::POSITION_Y);
 
+    setMouseTracking(true);
+    setCursor(QCursor{Qt::BlankCursor});
     startGame();
 }
 
@@ -79,15 +81,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 {
     switch(event->key())
     {
-        case Qt::Key_Left:
-        case Qt::Key_A:
-            paddle_->moveLeft();
-            break;
 
-        case Qt::Key_Right:
-        case Qt::Key_D:
-            paddle_->moveRight();
-            break;
     }
 
     update();
@@ -235,4 +229,14 @@ void MainWindow::endGame(GameResult gameResult)
 {
     killTimer(timerId_);
     gameResult_ = gameResult;
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent* event)
+{
+    int mousePositionX = event->pos().x();
+
+    if(mousePositionX > GameParameters::Paddle::WIDTH / 2 && mousePositionX < GameParameters::Arena::WIDTH - GameParameters::Paddle::WIDTH / 2)
+    {
+        paddle_->setHorizontalPosition(event->pos().x());
+    }
 }

@@ -32,7 +32,6 @@ namespace GameParameters
         const int HEIGHT = 3;
         const int POSITION_X = Arena::WIDTH / 2 - WIDTH / 2;
         const int POSITION_Y = Arena::HEIGHT * 0.95;
-        const int MOVE_INCREMENT = 5;
     }
 
     namespace Ball
