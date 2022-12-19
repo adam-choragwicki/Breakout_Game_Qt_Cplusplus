@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 #include <QRect>
 
 class Ball
@@ -10,21 +12,21 @@ public:
 
     void move();
 
-    void setHorizontalDirection(int horizontalDirection)
+    void setHorizontalDirection(HorizontalDirection horizontalDirection)
     { horizontalDirection_ = horizontalDirection; }
 
-    void setVerticalDirection(int verticalDirection)
+    void setVerticalDirection(VerticalDirection verticalDirection)
     { verticalDirection_ = verticalDirection; }
 
-    [[nodiscard]] int getHorizontalDirection() const
+    [[nodiscard]] HorizontalDirection getHorizontalDirection() const
     { return horizontalDirection_; }
 
-    [[nodiscard]] int getVerticalDirection() const
+    [[nodiscard]] VerticalDirection getVerticalDirection() const
     { return verticalDirection_; }
 
 private:
     QRect rect_;
 
-    int horizontalDirection_;
-    int verticalDirection_;
+    HorizontalDirection horizontalDirection_;
+    VerticalDirection verticalDirection_;
 };

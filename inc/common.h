@@ -17,7 +17,7 @@ namespace GameParameters
     namespace Paddle
     {
         const int WIDTH = 60;
-        const int HEIGHT = 5;
+        const int HEIGHT = 3;
         const int ELEVATION = 130;
     }
 
@@ -39,3 +39,13 @@ namespace GameParameters
         const int BOTTOM_EDGE = HEIGHT;
     }
 }
+
+enum class VerticalDirection
+{
+    NORTH = -1, SOUTH = +1
+};
+
+enum class HorizontalDirection
+{
+    WEST = -1, EAST = +1
+};

@@ -3,8 +3,8 @@
 
 Ball::Ball(int x, int y)
 {
-    horizontalDirection_ = 1;
-    verticalDirection_ = -1;
+    horizontalDirection_ = HorizontalDirection::EAST;
+    verticalDirection_ = VerticalDirection::NORTH;
 
     rect_.setSize(QSize(GameParameters::Ball::RADIUS, GameParameters::Ball::RADIUS));
     rect_.translate(x, y);
@@ -17,5 +17,5 @@ QRect Ball::getRect()
 
 void Ball::move()
 {
-    rect_.translate(horizontalDirection_, verticalDirection_);
+    rect_.translate(static_cast<int>(horizontalDirection_), static_cast<int>(verticalDirection_));
 }

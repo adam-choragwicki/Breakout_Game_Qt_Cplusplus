@@ -101,22 +101,22 @@ void MainWindow::checkAndProcessCollisionWithArenaEdges(const QRect& ballRect)
 {
     if(ballRect.left() == GameParameters::Arena::LEFT_EDGE)
     {
-        ball_->setHorizontalDirection(+1);
+        ball_->setHorizontalDirection(HorizontalDirection::EAST);
     }
 
     if(ballRect.right() == GameParameters::Arena::RIGHT_EDGE)
     {
-        ball_->setHorizontalDirection(-1);
+        ball_->setHorizontalDirection(HorizontalDirection::WEST);
     }
 
     if(ballRect.top() == GameParameters::Arena::TOP_EDGE)
     {
-        ball_->setVerticalDirection(+1);
+        ball_->setVerticalDirection(VerticalDirection::SOUTH);
     }
 
     if(ballRect.bottom() == GameParameters::Arena::BOTTOM_EDGE)
     {
-        ball_->setVerticalDirection(-1);
+        ball_->setVerticalDirection(VerticalDirection::NORTH);
     }
 }
 
@@ -137,22 +137,22 @@ void MainWindow::checkAndProcessCollisionWithBrick(const QRect& ballRect)
                 if(ballRectCenter.y() >= (brickRectCenter.y() + halfBrickHeight))
                 {
                     LOG(INFO) << "Hit from below";
-                    ball_->setVerticalDirection(+1);
+                    ball_->setVerticalDirection(VerticalDirection::SOUTH);
                 }
                 else if(ballRectCenter.y() <= (brickRectCenter.y() - halfBrickHeight))
                 {
                     LOG(INFO) << "Hit from above";
-                    ball_->setVerticalDirection(-1);
+                    ball_->setVerticalDirection(VerticalDirection::NORTH);
                 }
                 else if(ballRectCenter.x() < brickRectCenter.x())
                 {
                     LOG(INFO) << "Hit from left";
-                    ball_->setHorizontalDirection(-1);
+                    ball_->setHorizontalDirection(HorizontalDirection::WEST);
                 }
                 else if(ballRectCenter.x() > brickRectCenter.x())
                 {
                     LOG(INFO) << "Hit from right";
-                    ball_->setHorizontalDirection(+1);
+                    ball_->setHorizontalDirection(HorizontalDirection::EAST);
                 }
 
                 brick->setDestroyed(true);
@@ -170,7 +170,7 @@ void MainWindow::checkAndProcessCollisionWithPaddle(const QRect& ballRect)
         if(ballRect.center().y() <= paddleRect.center().y())
         {
             LOG(INFO) << "Paddle hit from above";
-            ball_->setVerticalDirection(-1);
+            ball_->setVerticalDirection(VerticalDirection::NORTH);
         }
     }
 }
