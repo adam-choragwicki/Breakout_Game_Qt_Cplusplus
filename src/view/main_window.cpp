@@ -94,6 +94,7 @@ void MainWindow::checkAndProcessCollisions()
 
     checkAndProcessCollisionWithArenaEdges(ballRect);
     checkAndProcessCollisionWithBrick(ballRect);
+    checkAndProcessCollisionWithPaddle(ballRect);
 }
 
 void MainWindow::checkAndProcessCollisionWithArenaEdges(const QRect& ballRect)
@@ -156,6 +157,20 @@ void MainWindow::checkAndProcessCollisionWithBrick(const QRect& ballRect)
 
                 brick->setDestroyed(true);
             }
+        }
+    }
+}
+
+void MainWindow::checkAndProcessCollisionWithPaddle(const QRect& ballRect)
+{
+    const QRect& paddleRect = paddle_->getRect();
+
+    if(ballRect.intersects(paddleRect))
+    {
+        if(ballRect.center().y() <= paddleRect.center().y())
+        {
+            LOG(INFO) << "Paddle hit from above";
+            ball_->setVerticalDirection(-1);
         }
     }
 }

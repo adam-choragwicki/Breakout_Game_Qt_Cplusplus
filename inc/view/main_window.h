@@ -23,6 +23,7 @@ private:
     void checkAndProcessCollisions();
     void checkAndProcessCollisionWithArenaEdges(const QRect& ballRect);
     void checkAndProcessCollisionWithBrick(const QRect& ballRect);
+    void checkAndProcessCollisionWithPaddle(const QRect& ballRect);
 
     Model* model_;
 
