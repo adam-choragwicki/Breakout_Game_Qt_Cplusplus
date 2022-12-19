@@ -15,17 +15,17 @@ QRect Paddle::getRect()
 void Paddle::moveLeft()
 {
     //todo boundaries
-    if(rect.left() >= 5)
+    if(rect.left() >= GameParameters::Paddle::MOVE_INCREMENT)
     {
-        rect.moveLeft(rect.left() - 5);
+        rect.moveLeft(rect.left() - GameParameters::Paddle::MOVE_INCREMENT);
     }
 }
 
 void Paddle::moveRight()
 {
     //todo boundaries
-    if(rect.right() <= 235)
+    if(rect.right() <= GameParameters::Arena::WIDTH - GameParameters::Paddle::MOVE_INCREMENT)
     {
-        rect.moveRight(rect.right() + 5);
+        rect.moveRight(rect.right() + GameParameters::Paddle::MOVE_INCREMENT);
     }
 }

@@ -18,8 +18,8 @@ MainWindow::MainWindow(Model* model) : model_(model)
         }
     }
 
-    paddle_ = new Paddle(90, GameParameters::Paddle::ELEVATION);
-    ball_ = new Ball(120, GameParameters::Ball::STARTING_ELEVATION);
+    paddle_ = new Paddle(GameParameters::Paddle::POSITION_X, GameParameters::Paddle::POSITION_Y);
+    ball_ = new Ball(GameParameters::Ball::POSITION_X, GameParameters::Ball::POSITION_Y);
 
     startGame();
 }
@@ -32,6 +32,7 @@ MainWindow::~MainWindow()
     }
 
     delete paddle_;
+    delete ball_;
 }
 
 void MainWindow::closeEvent(QCloseEvent*)
