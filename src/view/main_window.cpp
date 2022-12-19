@@ -9,17 +9,23 @@ MainWindow::MainWindow(Model* model) : model_(model)
 
     int bricksCounter = 0;
 
+    std::vector<QColor> colors{Qt::red, QColor{"orange"}, Qt::green, Qt::yellow, Qt::cyan};
+
     for(int row = 0; row < GameParameters::ROWS_COUNT; row++)
     {
+        QColor color = colors.at(row % colors.size());
+
         for(int column = 0; column < GameParameters::COLUMNS_COUNT; column++)
         {
-            bricks_[bricksCounter] = new Brick(column * GameParameters::Brick::WIDTH, row * GameParameters::Brick::HEIGHT);
+            bricks_[bricksCounter] = new Brick(column * GameParameters::Brick::WIDTH, row * GameParameters::Brick::HEIGHT, color);
             ++bricksCounter;
         }
     }
 
     paddle_ = new Paddle(GameParameters::Paddle::POSITION_X, GameParameters::Paddle::POSITION_Y);
     ball_ = new Ball(GameParameters::Ball::POSITION_X, GameParameters::Ball::POSITION_Y);
+
+    setPalette(QPalette(Qt::black));
 
     setMouseTracking(true);
     setCursor(QCursor{Qt::BlankCursor});
@@ -49,10 +55,11 @@ void MainWindow::paintEvent(QPaintEvent* e)
     if(gameResult_ == GameResult::NO_RESULT_YET)
     {
         painter.setPen(Qt::black);
-        painter.setBrush(Qt::red);
 
         for(const auto& brick : bricks_)
         {
+            painter.setBrush(brick->getColor());
+
             if(!brick->isDestroyed())
             {
                 painter.drawRect(brick->getRect());

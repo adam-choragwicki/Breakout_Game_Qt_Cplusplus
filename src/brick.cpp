@@ -1,7 +1,7 @@
 #include "brick.h"
 #include "common.h"
 
-Brick::Brick(int x, int y)
+Brick::Brick(int x, int y, QColor color) : color_(color)
 {
     rect.setSize(QSize(GameParameters::Brick::WIDTH, GameParameters::Brick::HEIGHT));
     rect.translate(x, y);
