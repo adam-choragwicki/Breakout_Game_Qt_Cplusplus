@@ -5,6 +5,7 @@
 #include "common.h"
 #include "paddle.h"
 #include "ball.h"
+#include <set>
 
 #include <QMainWindow>
 #include <QKeyEvent>
@@ -13,12 +14,12 @@ class MainWindow : public QMainWindow
 {
 public:
     explicit MainWindow(Model* model);
-    ~MainWindow() override;
 
 private:
     void closeEvent(QCloseEvent*) override;
     void paintEvent(QPaintEvent*) override;
     void keyPressEvent(QKeyEvent*) override;
+    void mousePressEvent(QMouseEvent* event) override;
     void timerEvent(QTimerEvent*) override;
     void mouseMoveEvent(QMouseEvent* event) override;
     void checkAndProcessCollisions();
@@ -32,11 +33,13 @@ private:
 
     Model* model_;
 
-    Brick* bricks_[GameParameters::BRICKS_COUNT];
-    Paddle* paddle_;
-    Ball* ball_;
+    std::set<std::unique_ptr<Brick>> bricks_;
+    std::unique_ptr<Paddle> paddle_;
+    std::unique_ptr<Ball> ball_;
 
     int timerId_;
 
+    GameState gameState_{GameState::STOPPED};
     GameResult gameResult_{GameResult::NO_RESULT_YET};
+    void createBricks();
 };

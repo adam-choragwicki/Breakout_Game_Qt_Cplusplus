@@ -37,7 +37,7 @@ namespace GameParameters
     namespace Ball
     {
         const int RADIUS = 5;
-        const int POSITION_X = Paddle::POSITION_X;
+        const int POSITION_X = Paddle::POSITION_X + Paddle::WIDTH / 2;
         const int POSITION_Y = Paddle::POSITION_Y - 5;
     }
 }
@@ -50,6 +50,11 @@ enum class VerticalDirection
 enum class HorizontalDirection
 {
     WEST = -1, EAST = +1
+};
+
+enum class GameState
+{
+    STOPPED, RUNNING
 };
 
 enum class GameResult
