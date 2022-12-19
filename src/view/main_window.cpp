@@ -21,7 +21,7 @@ MainWindow::MainWindow(Model* model) : model_(model)
     paddle_ = new Paddle(90, GameParameters::Paddle::ELEVATION);
     ball_ = new Ball(120, GameParameters::Ball::STARTING_ELEVATION);
 
-    timerId_ = startTimer(GameParameters::BALL_DELAY_MS);
+    startGame();
 }
 
 MainWindow::~MainWindow()
@@ -43,24 +43,35 @@ void MainWindow::paintEvent(QPaintEvent* e)
 {
     QPainter painter(this);
 
-    painter.setPen(Qt::black);
-    painter.setBrush(Qt::red);
-
-    for(const auto& brick : bricks_)
+    if(gameResult_ == GameResult::NO_RESULT_YET)
     {
-        if(!brick->isDestroyed())
+        painter.setPen(Qt::black);
+        painter.setBrush(Qt::red);
+
+        for(const auto& brick : bricks_)
         {
-            painter.drawRect(brick->getRect());
+            if(!brick->isDestroyed())
+            {
+                painter.drawRect(brick->getRect());
+            }
         }
+
+        painter.setPen(Qt::black);
+        painter.setBrush(Qt::blue);
+        painter.drawRect(paddle_->getRect());
+
+        painter.setPen(Qt::black);
+        painter.setBrush(Qt::white);
+        painter.drawEllipse(ball_->getRect());
     }
-
-    painter.setPen(Qt::black);
-    painter.setBrush(Qt::blue);
-    painter.drawRect(paddle_->getRect());
-
-    painter.setPen(Qt::black);
-    painter.setBrush(Qt::white);
-    painter.drawEllipse(ball_->getRect());
+    else if(gameResult_ == GameResult::WIN)
+    {
+        displayResult(&painter);
+    }
+    else if(gameResult_ == GameResult::LOSE)
+    {
+        displayResult(&painter);
+    }
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
@@ -99,24 +110,21 @@ void MainWindow::checkAndProcessCollisions()
 
 void MainWindow::checkAndProcessCollisionWithArenaEdges(const QRect& ballRect)
 {
-    if(ballRect.left() == GameParameters::Arena::LEFT_EDGE)
+    if(ballRect.bottom() == GameParameters::Arena::BOTTOM_EDGE)
+    {
+        endGame(GameResult::LOSE);
+    }
+    else if(ballRect.left() == GameParameters::Arena::LEFT_EDGE)
     {
         ball_->setHorizontalDirection(HorizontalDirection::EAST);
     }
-
-    if(ballRect.right() == GameParameters::Arena::RIGHT_EDGE)
+    else if(ballRect.right() == GameParameters::Arena::RIGHT_EDGE)
     {
         ball_->setHorizontalDirection(HorizontalDirection::WEST);
     }
-
-    if(ballRect.top() == GameParameters::Arena::TOP_EDGE)
+    else if(ballRect.top() == GameParameters::Arena::TOP_EDGE)
     {
         ball_->setVerticalDirection(VerticalDirection::SOUTH);
-    }
-
-    if(ballRect.bottom() == GameParameters::Arena::BOTTOM_EDGE)
-    {
-        ball_->setVerticalDirection(VerticalDirection::NORTH);
     }
 }
 
@@ -156,6 +164,16 @@ void MainWindow::checkAndProcessCollisionWithBrick(const QRect& ballRect)
                 }
 
                 brick->setDestroyed(true);
+
+                uint destroyedBricksCounter = std::count_if(std::begin(bricks_), std::end(bricks_), [](const Brick* brick)
+                {
+                    return brick->isDestroyed();
+                });
+
+                if(destroyedBricksCounter == GameParameters::BRICKS_COUNT)
+                {
+                    endGame(GameResult::WIN);
+                }
             }
         }
     }
@@ -173,4 +191,47 @@ void MainWindow::checkAndProcessCollisionWithPaddle(const QRect& ballRect)
             ball_->setVerticalDirection(VerticalDirection::NORTH);
         }
     }
+}
+
+void MainWindow::displayResult(QPainter* painter)
+{
+    QFont font("Console", 20, QFont::Bold);
+    QFontMetrics fontMetrics(font);
+
+    QString message;
+
+    if(gameResult_ == GameResult::WIN)
+    {
+        message = "Victory";
+    }
+    else if(gameResult_ == GameResult::LOSE)
+    {
+        message = "Game over";
+    }
+    else
+    {
+        //todo
+        throw std::runtime_error("Should not happen");
+    }
+
+    int textWidth = fontMetrics.horizontalAdvance(message);
+
+    painter->setFont(font);
+    int h = height();
+    int w = width();
+
+    painter->translate(QPoint(w / 2, h / 2));
+    painter->drawText(-textWidth / 2, 0, message);
+}
+
+void MainWindow::startGame()
+{
+    timerId_ = startTimer(GameParameters::BALL_DELAY_MS);
+    gameResult_ = GameResult::NO_RESULT_YET;
+}
+
+void MainWindow::endGame(GameResult gameResult)
+{
+    killTimer(timerId_);
+    gameResult_ = gameResult;
 }

@@ -49,3 +49,8 @@ enum class HorizontalDirection
 {
     WEST = -1, EAST = +1
 };
+
+enum class GameResult
+{
+    NO_RESULT_YET, WIN, LOSE
+};

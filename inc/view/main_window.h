@@ -25,6 +25,10 @@ private:
     void checkAndProcessCollisionWithBrick(const QRect& ballRect);
     void checkAndProcessCollisionWithPaddle(const QRect& ballRect);
 
+    void startGame();
+    void endGame(GameResult gameResult);
+    void displayResult(QPainter* painter);
+
     Model* model_;
 
     Brick* bricks_[GameParameters::BRICKS_COUNT];
@@ -32,4 +36,6 @@ private:
     Ball* ball_;
 
     int timerId_;
+
+    GameResult gameResult_{GameResult::NO_RESULT_YET};
 };
