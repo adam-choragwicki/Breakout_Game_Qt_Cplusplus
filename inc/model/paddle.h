@@ -6,9 +6,12 @@ class Paddle
 {
 public:
     Paddle(int x, int y);
-    QRect getRect();
+
+    QRect getRect()
+    { return rect_; }
+
     void setHorizontalPosition(int x);
 
 private:
-    QRect rect;
+    QRect rect_;
 };

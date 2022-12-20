@@ -8,9 +8,10 @@ class Ball
 {
 public:
     Ball(int x, int y);
-    QRect getRect();
-
     void move();
+
+    QRect getRect()
+    { return rect_; }
 
     void setHorizontalDirection(HorizontalDirection horizontalDirection)
     { horizontalDirection_ = horizontalDirection; }

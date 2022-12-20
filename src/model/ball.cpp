@@ -1,4 +1,4 @@
-#include "ball.h"
+#include "model/ball.h"
 #include "common.h"
 
 Ball::Ball(int x, int y)
@@ -8,11 +8,6 @@ Ball::Ball(int x, int y)
 
     rect_.setSize(QSize(GameParameters::Ball::RADIUS, GameParameters::Ball::RADIUS));
     rect_.translate(x, y);
-}
-
-QRect Ball::getRect()
-{
-    return rect_;
 }
 
 void Ball::move()

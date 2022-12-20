@@ -65,16 +65,6 @@ void MainWindow::paintEvent(QPaintEvent* e)
     }
 }
 
-void MainWindow::keyPressEvent(QKeyEvent* event)
-{
-    switch(event->key())
-    {
-
-    }
-
-    update();
-}
-
 void MainWindow::timerEvent(QTimerEvent* e)
 {
     ball_->move();
@@ -180,19 +170,15 @@ void MainWindow::displayResult(QPainter* painter)
     {
         message = "Game over, press LMB to restart";
     }
-    else
-    {
-        //todo
-        throw std::runtime_error("Should not happen");
-    }
-
-    int textWidth = fontMetrics.horizontalAdvance(message);
 
     painter->setFont(font);
-    int h = height();
-    int w = width();
 
-    painter->translate(QPoint(w / 2, h / 2));
+    int height = this->height();
+    int width = this->width();
+
+    painter->translate(QPoint(width / 2, height / 2));
+
+    int textWidth = fontMetrics.horizontalAdvance(message);
     painter->drawText(-textWidth / 2, 0, message);
 }
 
@@ -205,7 +191,7 @@ void MainWindow::startGame()
     ball_ = std::make_unique<Ball>(GameParameters::Ball::POSITION_X, GameParameters::Ball::POSITION_Y);
 
     gameState_ = GameState::RUNNING;
-    timerId_ = startTimer(GameParameters::BALL_DELAY_MS);
+    timerId_ = startTimer(GameParameters::GAME_TICK_MS);
     gameResult_ = GameResult::NO_RESULT_YET;
 }
 
