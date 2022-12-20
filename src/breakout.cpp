@@ -1,5 +1,5 @@
 #include "breakout.h"
-#include "model.h"
+#include "model/model.h"
 
 Breakout::Breakout()
 {

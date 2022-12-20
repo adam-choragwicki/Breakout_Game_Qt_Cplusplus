@@ -22,8 +22,14 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(SOURCE_FILES
         ${INCLUDES_DIR}/breakout.h ${SOURCES_DIR}/breakout.cpp
-        src/view/main_window.cpp inc/view/main_window.h src/controller.cpp inc/controller.h src/model.cpp inc/model.h
-        ${INCLUDES_DIR}/model/brick.h ${SOURCES_DIR}/model/brick.cpp inc/common.h src/model/paddle.cpp inc/model/paddle.h src/model/ball.cpp inc/model/ball.h
+        ${INCLUDES_DIR}/view/main_window.h ${SOURCES_DIR}/view/main_window.cpp
+        ${INCLUDES_DIR}/controller.h ${SOURCES_DIR}/controller.cpp
+        ${INCLUDES_DIR}/model/model.h ${SOURCES_DIR}/model/model.cpp
+        ${INCLUDES_DIR}/breakout.h ${SOURCES_DIR}/breakout.cpp
+        ${INCLUDES_DIR}/model/model.h ${SOURCES_DIR}/model/model.cpp
+        ${INCLUDES_DIR}/model/paddle.h ${SOURCES_DIR}/model/paddle.cpp
+        ${INCLUDES_DIR}/model/ball.h ${SOURCES_DIR}/model/ball.cpp
+        ${INCLUDES_DIR}/model/brick.h ${SOURCES_DIR}/model/brick.cpp inc/common.h
         ${INCLUDES_DIR}/log_manager.h)
 
 add_library(libBreakout ${SOURCE_FILES})
