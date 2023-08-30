@@ -1,106 +1,91 @@
 #include "controller.h"
-#include "log_manager.h"
+#include "backend/collision_detectors.h"
+#include <QCoreApplication>
 
-Controller::Controller(Model* model, MainWindow* view)
+Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(view)
 {
-    model_ = model;
-    view_ = view;
-
-    connect(&gameTickTimer_, &QTimer::timeout, this, &Controller::processGameTickEvent);
-    connect(view, &MainWindow::mouseClickedEvent, this, &Controller::processMouseClickedEvent);
-    connect(view, &MainWindow::mouseMovedEvent, this, &Controller::processMouseMovedEvent);
-
-    gameTickTimer_.setInterval(GameParameters::GAME_TICK_MS);
-
-    startGame();
+    connect(&model_.getGameTickTimer(), &QTimer::timeout, this, &Controller::processGameTickEvent);
+    connect(&view_, &MainWindow::mouseClickedEvent, this, &Controller::processMouseClickedEvent);
+    connect(&view_, &MainWindow::mouseMovedEvent, this, &Controller::processMouseMovedEvent);
+    connect(&view_, &MainWindow::keyPressedEvent, this, &Controller::processKeyPressedEvent);
+    connect(&view_, &MainWindow::applicationTerminationRequest, this, &Controller::processApplicationTerminationRequest);
 }
 
 void Controller::startGame()
 {
-    model_->reset();
-    model_->setGameState(GameState::RUNNING);
-    gameTickTimer_.start();
+    model_.reset();
+    model_.getGameStateManager().startGame();
 }
 
 void Controller::endGame(GameResult gameResult)
 {
-    gameTickTimer_.stop();
-    model_->setGameState(GameState::STOPPED);
-    model_->setGameResult(gameResult);
-    view_->update();
+    model_.getGameStateManager().endGame(gameResult);
+    view_.update();
 }
 
 void Controller::processGameTickEvent()
 {
-    if(model_->getGameState() == GameState::RUNNING)
-    {
-        model_->getBall()->move();
-        checkAndProcessCollisions();
-        view_->update();
-    }
+    model_.getBall().move();
+    checkAndProcessBallCollisions();
+    view_.update();
 }
 
-void Controller::checkAndProcessCollisions()
+void Controller::checkAndProcessBallCollisions()
 {
-    const QRect& ballRect = model_->getBall()->getRect();
+    const QRect ballRect = model_.getBall().getRect();
 
-    checkAndProcessCollisionWithArenaEdges(ballRect);
-    checkAndProcessCollisionWithBrick(ballRect);
-    checkAndProcessCollisionWithPaddle(ballRect);
+    checkAndProcessBallCollisionWithArenaEdges(ballRect);
+    checkAndProcessBallCollisionWithBrick(ballRect);
+    checkAndProcessBallCollisionWithPaddle(ballRect);
 }
 
-void Controller::checkAndProcessCollisionWithArenaEdges(const QRect& ballRect)
+void Controller::checkAndProcessBallCollisionWithArenaEdges(const QRect& ballRect)
 {
-    if(ballRect.bottom() == GameParameters::Arena::BOTTOM_EDGE)
+    if(ArenaEdgeCollisionDetector::checkCollisionWithArenaBottomEdge(ballRect))
     {
         endGame(GameResult::LOSE);
     }
-    else if(ballRect.left() == GameParameters::Arena::LEFT_EDGE)
+
+    if(ArenaEdgeCollisionDetector::checkCollisionWithArenaTopEdge(ballRect))
     {
-        model_->getBall()->setHorizontalDirection(HorizontalDirection::EAST);
+        model_.getBall().bounceHorizontally();
     }
-    else if(ballRect.right() == GameParameters::Arena::RIGHT_EDGE)
+
+    if(ArenaEdgeCollisionDetector::checkCollisionWithArenaLeftEdge(ballRect) || ArenaEdgeCollisionDetector::checkCollisionWithArenaRightEdge(ballRect))
     {
-        model_->getBall()->setHorizontalDirection(HorizontalDirection::WEST);
-    }
-    else if(ballRect.top() == GameParameters::Arena::TOP_EDGE)
-    {
-        model_->getBall()->setVerticalDirection(VerticalDirection::SOUTH);
+        model_.getBall().bounceVertically();
     }
 }
 
-void Controller::checkAndProcessCollisionWithBrick(const QRect& ballRect)
+void Controller::checkAndProcessBallCollisionWithBrick(const QRect& ballRect)
 {
-    const QPoint& ballRectCenter = ballRect.center();
-
-    for(const auto& brick : model_->getBricks())
+    for(const auto& brick : model_.getBricksContainer())
     {
-        const QRect& brickRect = brick->getRect();
-        const QPoint& brickRectCenter = brickRect.center();
-        constexpr int halfBrickHeight = GameParameters::Brick::HEIGHT / 2;
+        const QRect brickRect = brick.getRect();
 
         if(ballRect.intersects(brickRect))
         {
-            if(ballRectCenter.y() >= (brickRectCenter.y() + halfBrickHeight))
+            const QPoint ballRectCenter = ballRect.center();
+            const QPoint brickRectCenter = brickRect.center();
+
+            if(BrickCollisionDetector::checkBallCollisionWithBrickFromBrickBottomSide(ballRectCenter, brickRectCenter) ||
+               BrickCollisionDetector::checkBallCollisionWithBrickFromBrickTopSide(ballRectCenter, brickRectCenter))
             {
-                model_->getBall()->setVerticalDirection(VerticalDirection::SOUTH);
+                model_.getBall().bounceHorizontally();
             }
-            else if(ballRectCenter.y() <= (brickRectCenter.y() - halfBrickHeight))
+            else if(BrickCollisionDetector::checkBallCollisionWithBrickFromBrickLeftSide(ballRectCenter, brickRectCenter) ||
+                    BrickCollisionDetector::checkBallCollisionWithBrickFromBrickRightSide(ballRectCenter, brickRectCenter))
             {
-                model_->getBall()->setVerticalDirection(VerticalDirection::NORTH);
+                model_.getBall().bounceVertically();
             }
-            else if(ballRectCenter.x() < brickRectCenter.x())
+            else
             {
-                model_->getBall()->setHorizontalDirection(HorizontalDirection::WEST);
-            }
-            else if(ballRectCenter.x() > brickRectCenter.x())
-            {
-                model_->getBall()->setHorizontalDirection(HorizontalDirection::EAST);
+                throw std::runtime_error("Error, ball collision with brick detected, but collision details processed incorrectly");
             }
 
-            model_->getBricks().erase(brick);
+            model_.getBricksContainer().removeBrick(brick);
 
-            if(model_->getBricks().empty())
+            if(model_.getBricksContainer().isEmpty())
             {
                 endGame(GameResult::WIN);
             }
@@ -110,22 +95,31 @@ void Controller::checkAndProcessCollisionWithBrick(const QRect& ballRect)
     }
 }
 
-void Controller::checkAndProcessCollisionWithPaddle(const QRect& ballRect)
+void Controller::checkAndProcessBallCollisionWithPaddle(const QRect& ballRect)
 {
-    const QRect& paddleRect = model_->getPaddle()->getRect();
-
-    if(ballRect.intersects(paddleRect))
+    if(model_.getBall().isFallingDown())
     {
-        if(ballRect.center().y() <= paddleRect.center().y())
+        const QRect paddleRect = model_.getPaddle().getRect();
+
+        if(ballRect.intersects(paddleRect))
         {
-            model_->getBall()->setVerticalDirection(VerticalDirection::NORTH);
+            if(PaddleCollisionDetector::checkBallCollisionWithPaddleFromPaddleTopSide(ballRect, paddleRect))
+            {
+                /*Ball is above paddle*/
+                model_.getBall().bounceHorizontally();
+            }
+            else
+            {
+                /*Ball is lateral to paddle*/
+                model_.getBall().bounceVertically();
+            }
         }
     }
 }
 
 void Controller::processMouseClickedEvent()
 {
-    if(model_->getGameState() == GameState::STOPPED)
+    if(model_.getGameStateManager().isStopped())
     {
         startGame();
     }
@@ -133,8 +127,21 @@ void Controller::processMouseClickedEvent()
 
 void Controller::processMouseMovedEvent(int mousePositionX)
 {
-    if(mousePositionX > GameParameters::Paddle::WIDTH / 2 && mousePositionX < GameParameters::Arena::WIDTH - GameParameters::Paddle::WIDTH / 2)
+    if(mousePositionX > Config::Paddle::WIDTH / 2 && mousePositionX < Config::Arena::WIDTH - Config::Paddle::WIDTH / 2)
     {
-        model_->getPaddle()->setHorizontalPosition(mousePositionX);
+        model_.getPaddle().setHorizontalPosition(mousePositionX);
     }
+}
+
+void Controller::processKeyPressedEvent(QKeyEvent* keyEvent)
+{
+    if(keyEvent->key() == Qt::Key_P)
+    {
+        model_.getGameStateManager().togglePause();
+    }
+}
+
+void Controller::processApplicationTerminationRequest()
+{
+    QCoreApplication::exit(0);
 }

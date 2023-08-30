@@ -1,15 +1,13 @@
 #pragma once
 
 #include "model/model.h"
-#include "view/main_window.h"
+#include "frontend/main_window.h"
 #include "controller.h"
 
-#include <memory>
-
-class Breakout
+class Game
 {
 public:
-    Breakout();
+    Game();
 
 private:
     std::unique_ptr<Model> model_;

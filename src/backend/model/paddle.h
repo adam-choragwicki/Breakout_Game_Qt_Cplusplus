@@ -7,7 +7,7 @@ class Paddle
 public:
     Paddle(int x, int y);
 
-    QRect getRect()
+    [[nodiscard]] QRect getRect() const
     { return rect_; }
 
     void setHorizontalPosition(int x);

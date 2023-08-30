@@ -11,7 +11,7 @@ enum LogType
 class LOG
 {
 public:
-    LOG(LogType logType) : logType_(logType)
+    explicit LOG(LogType logType) : logType_(logType)
     {
         if(!logFile_.is_open() && LOG_TO_FILE)
         {
