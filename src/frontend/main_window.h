@@ -18,6 +18,9 @@ signals:
 public:
     explicit MainWindow(const Model& model);
 
+    [[nodiscard]] QTimer* getViewportUpdateTimer() const
+    { return viewportUpdateTimer_.get(); }
+
 private:
     void closeEvent(QCloseEvent*) override;
     void paintEvent(QPaintEvent*) override;
@@ -33,4 +36,8 @@ private:
     void displayResult(QPainter& painter);
 
     const Model& model_;
+
+    std::unique_ptr<QTimer> viewportUpdateTimer_;
+
+    static constexpr auto VIEWPORT_UPDATE_INTERVAL = std::chrono::milliseconds(17);
 };

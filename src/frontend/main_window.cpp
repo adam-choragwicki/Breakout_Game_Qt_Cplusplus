@@ -1,16 +1,26 @@
 #include "main_window.h"
 #include "gui_config.h"
+#include "spdlog/spdlog.h"
 #include <QPainter>
 #include <QKeyEvent>
 #include <QGuiApplication>
 
 MainWindow::MainWindow(const Model& model) : model_(model)
 {
+    spdlog::debug("Initializing view");
+
+    setWindowTitle("Pacman");
+
     setFixedSize(Config::Arena::WIDTH, Config::Arena::HEIGHT);
     setPalette(QPalette(Qt::black));
     setMouseTracking(true);
     setCursor(QCursor{Qt::BlankCursor});
     centerOnPrimaryScreen();
+
+    viewportUpdateTimer_ = std::make_unique<QTimer>(this);
+    viewportUpdateTimer_->setTimerType(Qt::PreciseTimer);
+    viewportUpdateTimer_->setInterval(VIEWPORT_UPDATE_INTERVAL);
+    //    viewportUpdateTimer_->start();
 }
 
 void MainWindow::centerOnPrimaryScreen()
@@ -38,16 +48,16 @@ void MainWindow::paintEvent(QPaintEvent* e)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    if(model_.getGameStateManager().isGameFinished())
-    {
-        displayResult(painter);
-    }
-    else
-    {
-        drawBricks(painter);
-        drawPaddle(painter);
-        drawBall(painter);
-    }
+    //    if(model_.getGameStateManager().isGameFinished())
+    //    {
+    //        displayResult(painter);
+    //    }
+    //    else
+    //    {
+    //        drawBricks(painter);
+    //        drawPaddle(painter);
+    //        drawBall(painter);
+    //    }
 }
 
 void MainWindow::drawBall(QPainter& painter) const
@@ -87,9 +97,9 @@ void MainWindow::displayResult(QPainter& painter)
     painter.translate(QPoint(width / 2, height / 2));
 
     QFontMetrics fontMetrics(font);
-    QString gameEndMessage = model_.getGameStateManager().getGameEndMessage();
-    int textWidth = fontMetrics.horizontalAdvance(gameEndMessage);
-    painter.drawText(-textWidth / 2, 0, gameEndMessage);
+    //    QString gameEndMessage = model_.getGameStateManager().getGameEndMessage();
+    //    int textWidth = fontMetrics.horizontalAdvance(gameEndMessage);
+    //    painter.drawText(-textWidth / 2, 0, gameEndMessage);
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent* event)

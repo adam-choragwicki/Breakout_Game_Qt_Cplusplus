@@ -5,13 +5,13 @@ GameStateManager::GameStateManager(QTimer& gameTickTimer) : gameTickTimer_(gameT
 
 void GameStateManager::startGame()
 {
-    gameTickTimer_.start();
+//    gameTickTimer_.start();
     state_ = State::RUNNING;
 }
 
 void GameStateManager::endGame(GameResult gameResult)
 {
-    gameTickTimer_.stop();
+//    gameTickTimer_.stop();
     gameResultManager_.setGameResult(gameResult);
     state_ = State::STOPPED;
 }

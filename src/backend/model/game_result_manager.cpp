@@ -12,7 +12,7 @@ QString GameResultManager::getGameEndMessage() const
     {
         return victoryMessage;
     }
-    else if(gameResult_ == GameResult::LOSE)
+    else if(gameResult_ == GameResult::LOST)
     {
         return gameOverMessage;
     }

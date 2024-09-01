@@ -16,8 +16,8 @@ public:
     Model();
     void reset();
 
-    [[nodiscard]] const QTimer& getGameTickTimer() const
-    { return gameTickTimer_; }
+//    [[nodiscard]] const QTimer& getGameTickTimer() const
+//    { return gameTickTimer_; }
 
     [[nodiscard]] const BricksContainer& getBricksContainer() const
     { return *bricksContainer_; }
@@ -37,17 +37,17 @@ public:
     [[nodiscard]] Ball& getBall()
     { return *ball_; }
 
-    [[nodiscard]] const GameStateManager& getGameStateManager() const
-    { return *gameStateManager_; }
-
-    [[nodiscard]] GameStateManager& getGameStateManager()
-    { return *gameStateManager_; }
+//    [[nodiscard]] const GameStateManager& getGameStateManager() const
+//    { return *gameStateManager_; }
+//
+//    [[nodiscard]] GameStateManager& getGameStateManager()
+//    { return *gameStateManager_; }
 
 private:
-    QTimer gameTickTimer_;
+//    QTimer gameTickTimer_;
 
     std::unique_ptr<BricksContainer> bricksContainer_;
     std::unique_ptr<Paddle> paddle_;
     std::unique_ptr<Ball> ball_;
-    std::unique_ptr<GameStateManager> gameStateManager_;
+//    std::unique_ptr<GameStateManager> gameStateManager_;
 };

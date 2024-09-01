@@ -1,11 +1,7 @@
 #pragma once
 
+#include "common.h"
 #include <QString>
-
-enum class GameResult
-{
-    NO_RESULT_YET, WIN, LOSE
-};
 
 class GameResultManager
 {
