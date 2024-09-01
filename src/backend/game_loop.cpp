@@ -27,8 +27,7 @@ void GameLoop::execute()
     spdlog::debug("Loop {}: ", loopCounter_);
 
     model_.getBall().move();
-//    checkAndProcessBallCollisions();
-    //    view_.update();
+    checkAndProcessBallCollisions();
 
     ++loopCounter_;
 }
