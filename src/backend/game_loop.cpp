@@ -96,7 +96,7 @@ void GameLoop::checkAndProcessBallCollisionWithPaddle(const QRect& ballRect)
 {
     if(model_.getBall().isFallingDown())
     {
-        const QRect paddleRect = model_.getPaddle().getRect();
+        const QRect paddleRect = model_.getPaddle().getRect().toRect();
 
         if(ballRect.intersects(paddleRect))
         {

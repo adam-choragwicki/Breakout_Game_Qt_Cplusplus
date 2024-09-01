@@ -5,7 +5,7 @@
 Paddle::Paddle(int x, int y) : CustomGraphicsItem(x, y)
 {
     rect_.setSize(QSize(Config::Paddle::WIDTH, Config::Paddle::HEIGHT));
-    rect_.translate(x, y);
+    //    rect_.translate(x, y);
 }
 
 void Paddle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
@@ -20,5 +20,5 @@ void Paddle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QW
 
 void Paddle::setHorizontalPosition(int x)
 {
-    rect_.moveCenter({x, Config::Paddle::POSITION_Y});
+    rect_.moveCenter(QPointF(x, Config::Paddle::POSITION_Y));
 }

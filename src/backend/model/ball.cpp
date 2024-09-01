@@ -5,7 +5,7 @@
 Ball::Ball(int x, int y) : CustomGraphicsItem(x, y), direction_(HorizontalDirection::EAST, VerticalDirection::NORTH)
 {
     rect_.setSize(QSize(Config::Ball::RADIUS, Config::Ball::RADIUS));
-    rect_.translate(x, y);
+//    rect_.translate(x, y);
 }
 
 void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
