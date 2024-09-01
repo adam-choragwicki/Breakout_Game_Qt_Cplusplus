@@ -29,23 +29,11 @@ void GraphicsView::mouseMoveEvent(QMouseEvent* event)
     emit(mouseMovedEvent(event->pos().x()));
 }
 
-void GraphicsView::drawBackground(QPainter* painter, const QRectF& rect)
-{
-    QGraphicsView::drawBackground(painter, rect);
-
-    //    if(whatToDrawManager_.drawBackground_)
-    //    {
-    //        painter->drawPixmap(0, 0, 614, 740, *arenaPixmap_);
-    //    }
-}
-
 void GraphicsView::drawForeground(QPainter* painter, const QRectF& rect)
 {
     /* Ensure FPS counter is drawn on top of scene and always visible */
     QGraphicsView::drawForeground(painter, rect);
 
-    //    if(whatToDrawManager_.drawFPSCounter_)
-    //    {
     ++frameCount_;
 
     painter->setPen(fpsCounterPen_);
@@ -53,7 +41,6 @@ void GraphicsView::drawForeground(QPainter* painter, const QRectF& rect)
 
     const QPointF topLeft = mapToScene(viewport()->rect().topLeft());
     painter->drawText(topLeft + QPointF(10, 20), QString("FPS: %1").arg(qRound(currentFPS_)));
-    //    }
 }
 
 void GraphicsView::updateFPS()

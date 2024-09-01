@@ -82,7 +82,7 @@ void Controller::processMouseClickedEvent()
 
 void Controller::processMouseMovedEvent(int mousePositionX)
 {
-    qDebug() << "Mouse moved event";
+//    qDebug() << "Mouse moved event";
 
     if(mousePositionX > ConfigProd::Paddle::WIDTH / 2 && mousePositionX < ConfigProd::Arena::WIDTH - ConfigProd::Paddle::WIDTH / 2)
     {

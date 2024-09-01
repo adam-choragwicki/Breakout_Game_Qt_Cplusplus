@@ -16,7 +16,6 @@ signals:
 public:
     explicit GraphicsView(GraphicsScene* scene, QWidget* parent = nullptr);
 
-    void drawBackground(QPainter* painter, const QRectF& rect) override;
     void drawForeground(QPainter* painter, const QRectF& rect) override;
     bool eventFilter(QObject* obj, QEvent* event) override;
 

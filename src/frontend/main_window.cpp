@@ -21,9 +21,7 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     setCentralWidget(graphicsView_.get());
 
     setPalette(QPalette(Qt::black));
-    setMouseTracking(true);
     setCursor(QCursor{Qt::BlankCursor});
-
 
     connect(graphicsView_.get(), &GraphicsView::mouseMovedEvent, this, &MainWindow::mouseMovedEvent);
 
@@ -71,32 +69,6 @@ void MainWindow::closeEvent(QCloseEvent* event)
 //    //    }
 //}
 
-//void MainWindow::drawBall(QPainter& painter) const
-//{
-//    painter.setPen(GuiConfig::Ball::PEN_OUTLINE);
-//    painter.setBrush(GuiConfig::Ball::COLOR);
-//    painter.drawEllipse(model_.getBall().getRect());
-//}
-//
-//void MainWindow::drawPaddle(QPainter& painter) const
-//{
-//    painter.setPen(GuiConfig::Paddle::PEN_OUTLINE);
-//    painter.setBrush(GuiConfig::Paddle::COLOR);
-//
-//    painter.drawRoundedRect(model_.getPaddle().getRect(), GuiConfig::Paddle::ROUNDED_RECT_WIDTH_RATIO_PERCENTAGE, GuiConfig::Paddle::ROUNDED_RECT_HEIGHT_RATIO_PERCENTAGE, Qt::RelativeSize);
-//}
-//
-//void MainWindow::drawBricks(QPainter& painter) const
-//{
-//    painter.setPen(Qt::black);
-//
-//    for(const Brick& brick : model_.getBricksContainer())
-//    {
-//        painter.setBrush(brick.getColor());
-//        painter.drawRect(brick.getRect());
-//    }
-//}
-//
 //void MainWindow::displayResult(QPainter& painter)
 //{
 //    QFont font("Console", 20, QFont::Bold);
@@ -112,11 +84,6 @@ void MainWindow::closeEvent(QCloseEvent* event)
 //    //    int textWidth = fontMetrics.horizontalAdvance(gameEndMessage);
 //    //    painter.drawText(-textWidth / 2, 0, gameEndMessage);
 //}
-
-void MainWindow::mouseMoveEvent(QMouseEvent* event)
-{
-    emit(mouseMovedEvent(event->pos().x()));
-}
 
 void MainWindow::mousePressEvent(QMouseEvent* event)
 {
