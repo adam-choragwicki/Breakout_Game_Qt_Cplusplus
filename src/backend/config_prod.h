@@ -8,29 +8,8 @@
 
 namespace ConfigProd
 {
-    namespace Arena
-    {
-        const int PRIMARY_SQUARE_SIZE = 40;
-
-        const int PLAYABLE_HORIZONTAL_SQUARES_COUNT = 20;
-        const int PLAYABLE_VERTICAL_SQUARES_COUNT = 20;
-
-        const int TOTAL_HORIZONTAL_SQUARES_COUNT_INCLUDING_BOUNDARY_WALLS = PLAYABLE_HORIZONTAL_SQUARES_COUNT + 2;
-        const int TOTAL_VERTICAL_SQUARES_COUNT_INCLUDING_BOUNDARY_WALLS = PLAYABLE_VERTICAL_SQUARES_COUNT + 2;
-
-        const int MINIMUM_X = 1;
-        const int MINIMUM_Y = 1;
-        const int MAXIMUM_X = PLAYABLE_HORIZONTAL_SQUARES_COUNT;
-        const int MAXIMUM_Y = PLAYABLE_VERTICAL_SQUARES_COUNT;
-
-        constexpr int TOTAL_FIELDS_COUNT = MAXIMUM_Y * MAXIMUM_X;
-    }
-
     namespace Brick
     {
-        const int ROWS_COUNT = 5;
-        const int COLUMNS_COUNT = 15;
-
         const int WIDTH = 50;
         const int HEIGHT = 20;
 
@@ -39,11 +18,15 @@ namespace ConfigProd
 
     namespace Arena
     {
-        constexpr int WIDTH = Brick::WIDTH * Brick::COLUMNS_COUNT;
+        const int ROWS_COUNT = 5;
+        const int COLUMNS_COUNT = 15;
+
+        constexpr int WIDTH = COLUMNS_COUNT * Brick::WIDTH;
         const int HEIGHT = Brick::HEIGHT * 20;
 
         const int LEFT_EDGE = 0;
-        constexpr int RIGHT_EDGE = Brick::WIDTH * Brick::COLUMNS_COUNT;
+        //is right edge ok?
+        constexpr int RIGHT_EDGE = COLUMNS_COUNT * Brick::WIDTH;
 
         const int TOP_EDGE = 0;
         const int BOTTOM_EDGE = HEIGHT;

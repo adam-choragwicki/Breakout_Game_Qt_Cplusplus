@@ -35,7 +35,7 @@ void CustomGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
     }
 }
 
-void CustomGraphicsItem::setPositionOnSceneAtCoordinates(Coordinates& coordinates)
-{
-    setPos(coordinates.x_ * ConfigProd::Arena::PRIMARY_SQUARE_SIZE, coordinates.y_ * ConfigProd::Arena::PRIMARY_SQUARE_SIZE);
-}
+//void CustomGraphicsItem::setPositionOnSceneAtCoordinates(Coordinates& coordinates)
+//{
+//    setPos(coordinates.x_ * ConfigProd::Arena::PRIMARY_SQUARE_SIZE, coordinates.y_ * ConfigProd::Arena::PRIMARY_SQUARE_SIZE);
+//}

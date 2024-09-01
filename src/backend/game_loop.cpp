@@ -45,7 +45,8 @@ void GameLoop::checkAndProcessBallCollisionWithArenaEdges(const QRect& ballRect)
 {
     if(ArenaEdgeCollisionDetector::checkCollisionWithArenaBottomEdge(ballRect))
     {
-        endGame(GameResult::LOST);
+        model_.getBall().bounceHorizontally();
+        //        endGame(GameResult::LOST);
     }
 
     if(ArenaEdgeCollisionDetector::checkCollisionWithArenaTopEdge(ballRect))
