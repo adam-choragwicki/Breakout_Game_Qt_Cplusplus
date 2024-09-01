@@ -1,9 +1,13 @@
 #include "game.h"
+#include "log_manager.h"
 #include <QApplication>
 
 int main(int argc, char* argv[])
 {
     QApplication application(argc, argv);
+
+    LogManager::activateLogging();
+
     Game game;
 
     return QApplication::exec();
