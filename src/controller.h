@@ -2,7 +2,6 @@
 
 #include "model/model.h"
 #include "frontend/main_window.h"
-#include "backend/config.h"
 //#include "input_handler.h"
 #include "game_loop.h"
 #include "game_manager.h"

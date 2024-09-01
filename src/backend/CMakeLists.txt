@@ -15,7 +15,6 @@ set(SOURCE_FILES
         model/game_result_manager.h model/game_result_manager.cpp
         model/bricks_container.cpp model/bricks_container.h
         model/brick_factory.cpp model/brick_factory.h
-        config.h
         log_manager.h
         collision_detectors.cpp collision_detectors.h
         id_generator.h)

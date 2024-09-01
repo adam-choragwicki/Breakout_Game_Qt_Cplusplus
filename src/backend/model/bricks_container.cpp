@@ -1,14 +1,14 @@
 #include "bricks_container.h"
 #include "brick_factory.h"
-#include "config.h"
+#include "config_prod.h"
 
 BricksContainer::BricksContainer()
 {
     BrickFactory brickFactory;
 
-    for(int row = 0; row < Config::Brick::ROWS_COUNT; row++)
+    for(int row = 0; row < ConfigProd::Brick::ROWS_COUNT; row++)
     {
-        for(int column = 0; column < Config::Brick::COLUMNS_COUNT; column++)
+        for(int column = 0; column < ConfigProd::Brick::COLUMNS_COUNT; column++)
         {
             BrickFactory::Parameters parameters = brickFactory.generateBrickConstructorParameters(column, row);
 

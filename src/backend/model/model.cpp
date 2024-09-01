@@ -1,6 +1,6 @@
 #include "model.h"
 #include "spdlog/spdlog.h"
-#include "config.h"
+#include "config_prod.h"
 
 Model::Model()
 {
@@ -10,8 +10,8 @@ Model::Model()
 
     //    gameTickTimer_.setInterval(Config::Timing::GAME_TICK_INTERVAL);
 
-    paddle_ = std::make_unique<Paddle>(Config::Paddle::POSITION_X, Config::Paddle::POSITION_Y);
-    ball_ = std::make_unique<Ball>(Config::Ball::POSITION_X, Config::Ball::POSITION_Y);
+    paddle_ = std::make_unique<Paddle>(ConfigProd::Paddle::POSITION_X, ConfigProd::Paddle::POSITION_Y);
+    ball_ = std::make_unique<Ball>(ConfigProd::Ball::POSITION_X, ConfigProd::Ball::POSITION_Y);
     bricksContainer_ = std::make_unique<BricksContainer>();
 
     addItemsToScene();
@@ -21,8 +21,8 @@ Model::Model()
 
 void Model::reset()
 {
-    paddle_ = std::make_unique<Paddle>(Config::Paddle::POSITION_X, Config::Paddle::POSITION_Y);
-    ball_ = std::make_unique<Ball>(Config::Ball::POSITION_X, Config::Ball::POSITION_Y);
+    paddle_ = std::make_unique<Paddle>(ConfigProd::Paddle::POSITION_X, ConfigProd::Paddle::POSITION_Y);
+    ball_ = std::make_unique<Ball>(ConfigProd::Ball::POSITION_X, ConfigProd::Ball::POSITION_Y);
     //    gameStateManager_ = std::make_unique<GameStateManager>(gameTickTimer_);
     bricksContainer_ = std::make_unique<BricksContainer>();
 }

@@ -1,10 +1,10 @@
 #include "paddle.h"
-#include "config.h"
+#include "config_prod.h"
 #include <QPainter>
 
 Paddle::Paddle(int x, int y) : CustomGraphicsItem(x, y)
 {
-    rect_.setSize(QSize(Config::Paddle::WIDTH, Config::Paddle::HEIGHT));
+    rect_.setSize(QSize(ConfigProd::Paddle::WIDTH, ConfigProd::Paddle::HEIGHT));
 }
 
 void Paddle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
@@ -19,5 +19,5 @@ void Paddle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QW
 
 void Paddle::setHorizontalPosition(int x)
 {
-    rect_.moveCenter(QPointF(x, Config::Paddle::POSITION_Y));
+    rect_.moveCenter(QPointF(x, ConfigProd::Paddle::POSITION_Y));
 }

@@ -1,6 +1,6 @@
 #include "controller.h"
-#include "backend/collision_detectors.h"
 #include "spdlog/spdlog.h"
+#include "config_prod.h"
 #include <QCoreApplication>
 
 Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(view)
@@ -82,7 +82,7 @@ void Controller::processMouseClickedEvent()
 
 void Controller::processMouseMovedEvent(int mousePositionX)
 {
-    if(mousePositionX > Config::Paddle::WIDTH / 2 && mousePositionX < Config::Arena::WIDTH - Config::Paddle::WIDTH / 2)
+    if(mousePositionX > ConfigProd::Paddle::WIDTH / 2 && mousePositionX < ConfigProd::Arena::WIDTH - ConfigProd::Paddle::WIDTH / 2)
     {
         model_.getPaddle().setHorizontalPosition(mousePositionX);
     }

@@ -1,10 +1,10 @@
 #include "ball.h"
-#include "config.h"
+#include "config_prod.h"
 #include <QPainter>
 
 Ball::Ball(int x, int y) : CustomGraphicsItem(x, y), direction_(HorizontalDirection::EAST, VerticalDirection::NORTH)
 {
-    rect_.setSize(QSize(Config::Ball::RADIUS, Config::Ball::RADIUS));
+    rect_.setSize(QSize(ConfigProd::Ball::RADIUS, ConfigProd::Ball::RADIUS));
 }
 
 void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

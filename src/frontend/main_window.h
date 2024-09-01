@@ -33,10 +33,10 @@ private:
     void centerOnScreen(QScreen* screen);
     void centerOnPrimaryScreen();
 
-    void drawBricks(QPainter& painter) const;
-    void drawPaddle(QPainter& painter) const;
-    void drawBall(QPainter& painter) const;
-    void displayResult(QPainter& painter);
+//    void drawBricks(QPainter& painter) const;
+//    void drawPaddle(QPainter& painter) const;
+//    void drawBall(QPainter& painter) const;
+//    void displayResult(QPainter& painter);
 
     const Model& model_;
 

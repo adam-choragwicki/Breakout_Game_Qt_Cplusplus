@@ -1,5 +1,4 @@
 #include "main_window.h"
-#include "gui_config.h"
 #include "model/model.h"
 #include "spdlog/spdlog.h"
 #include <QPainter>
@@ -15,9 +14,9 @@ MainWindow::MainWindow(const Model& model) : model_(model)
 
     graphicsView_ = std::make_unique<GraphicsView>(model_.getScene(), this);
 
-//    setFixedSize(Config::Arena::WIDTH, Config::Arena::HEIGHT);
-    setFixedSize(900, 800);
-//    setFixedSize(1000, 500);
+    //    setFixedSize(Config::Arena::WIDTH, Config::Arena::HEIGHT);
+    setFixedSize(1000, 800);
+    //    setFixedSize(1000, 500);
 
     setPalette(QPalette(Qt::black));
     setMouseTracking(true);
@@ -70,47 +69,47 @@ void MainWindow::closeEvent(QCloseEvent* event)
 //    //    }
 //}
 
-void MainWindow::drawBall(QPainter& painter) const
-{
-    painter.setPen(GuiConfig::Ball::PEN_OUTLINE);
-    painter.setBrush(GuiConfig::Ball::COLOR);
-    painter.drawEllipse(model_.getBall().getRect());
-}
-
-void MainWindow::drawPaddle(QPainter& painter) const
-{
-    painter.setPen(GuiConfig::Paddle::PEN_OUTLINE);
-    painter.setBrush(GuiConfig::Paddle::COLOR);
-
-    painter.drawRoundedRect(model_.getPaddle().getRect(), GuiConfig::Paddle::ROUNDED_RECT_WIDTH_RATIO_PERCENTAGE, GuiConfig::Paddle::ROUNDED_RECT_HEIGHT_RATIO_PERCENTAGE, Qt::RelativeSize);
-}
-
-void MainWindow::drawBricks(QPainter& painter) const
-{
-    painter.setPen(Qt::black);
-
-    for(const Brick& brick : model_.getBricksContainer())
-    {
-        painter.setBrush(brick.getColor());
-        painter.drawRect(brick.getRect());
-    }
-}
-
-void MainWindow::displayResult(QPainter& painter)
-{
-    QFont font("Console", 20, QFont::Bold);
-    painter.setFont(font);
-
-    int height = this->height();
-    int width = this->width();
-
-    painter.translate(QPoint(width / 2, height / 2));
-
-    QFontMetrics fontMetrics(font);
-    //    QString gameEndMessage = model_.getGameStateManager().getGameEndMessage();
-    //    int textWidth = fontMetrics.horizontalAdvance(gameEndMessage);
-    //    painter.drawText(-textWidth / 2, 0, gameEndMessage);
-}
+//void MainWindow::drawBall(QPainter& painter) const
+//{
+//    painter.setPen(GuiConfig::Ball::PEN_OUTLINE);
+//    painter.setBrush(GuiConfig::Ball::COLOR);
+//    painter.drawEllipse(model_.getBall().getRect());
+//}
+//
+//void MainWindow::drawPaddle(QPainter& painter) const
+//{
+//    painter.setPen(GuiConfig::Paddle::PEN_OUTLINE);
+//    painter.setBrush(GuiConfig::Paddle::COLOR);
+//
+//    painter.drawRoundedRect(model_.getPaddle().getRect(), GuiConfig::Paddle::ROUNDED_RECT_WIDTH_RATIO_PERCENTAGE, GuiConfig::Paddle::ROUNDED_RECT_HEIGHT_RATIO_PERCENTAGE, Qt::RelativeSize);
+//}
+//
+//void MainWindow::drawBricks(QPainter& painter) const
+//{
+//    painter.setPen(Qt::black);
+//
+//    for(const Brick& brick : model_.getBricksContainer())
+//    {
+//        painter.setBrush(brick.getColor());
+//        painter.drawRect(brick.getRect());
+//    }
+//}
+//
+//void MainWindow::displayResult(QPainter& painter)
+//{
+//    QFont font("Console", 20, QFont::Bold);
+//    painter.setFont(font);
+//
+//    int height = this->height();
+//    int width = this->width();
+//
+//    painter.translate(QPoint(width / 2, height / 2));
+//
+//    QFontMetrics fontMetrics(font);
+//    //    QString gameEndMessage = model_.getGameStateManager().getGameEndMessage();
+//    //    int textWidth = fontMetrics.horizontalAdvance(gameEndMessage);
+//    //    painter.drawText(-textWidth / 2, 0, gameEndMessage);
+//}
 
 void MainWindow::mouseMoveEvent(QMouseEvent* event)
 {

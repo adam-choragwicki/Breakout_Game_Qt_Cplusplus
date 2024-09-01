@@ -1,7 +1,6 @@
 set(SOURCE_FILES
         main_window.cpp main_window.h
-        graphics_view.cpp graphics_view.h
-        gui_config.h)
+        graphics_view.cpp graphics_view.h)
 
 # Create the frontend library
 add_library(lib${PROJECT_NAME}Frontend ${SOURCE_FILES})
