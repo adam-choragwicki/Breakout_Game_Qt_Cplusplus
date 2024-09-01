@@ -5,7 +5,6 @@
 Paddle::Paddle(int x, int y) : CustomGraphicsItem(x, y)
 {
     rect_.setSize(QSize(Config::Paddle::WIDTH, Config::Paddle::HEIGHT));
-    //    rect_.translate(x, y);
 }
 
 void Paddle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

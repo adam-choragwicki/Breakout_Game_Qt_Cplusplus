@@ -1,5 +1,6 @@
 #include "model.h"
 #include "spdlog/spdlog.h"
+#include "config.h"
 
 Model::Model()
 {

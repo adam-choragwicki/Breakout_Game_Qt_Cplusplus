@@ -1,10 +1,7 @@
 #pragma once
 
 #include "custom_graphics_item.h"
-#include "config.h"
 #include "direction.h"
-
-#include <QRect>
 
 class Ball : public CustomGraphicsItem
 {
