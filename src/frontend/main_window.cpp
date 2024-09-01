@@ -16,7 +16,8 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     graphicsView_ = std::make_unique<GraphicsView>(model_.getScene(), this);
 
 //    setFixedSize(Config::Arena::WIDTH, Config::Arena::HEIGHT);
-    setFixedSize(2000, 1000);
+    setFixedSize(1000, 1000);
+//    setFixedSize(1000, 500);
 
     setPalette(QPalette(Qt::black));
     setMouseTracking(true);

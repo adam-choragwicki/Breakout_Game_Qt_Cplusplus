@@ -37,8 +37,10 @@ public:
     //    [[nodiscard]] bool isGameLost() const
     //    { return gameResult_ == GameResult::LOST; }
 
-private:
     void startGame();
+
+private:
+//    void startGame();
 
     enum class GameState
     {

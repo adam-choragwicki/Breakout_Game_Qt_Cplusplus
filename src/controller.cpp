@@ -23,6 +23,8 @@ Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(vi
     gameManager_->prepareGameToStart();
 
     view_.getViewportUpdateTimer()->start();
+
+    gameManager_->startGame();
 }
 
 void Controller::subscribeToFrontendEvents()
@@ -40,8 +42,7 @@ void Controller::initializeFrontendEvents()
 
 void Controller::viewportUpdateHandler()
 {
-
-    view_.update();
+    view_.updateViewport();
 
     //    QList<QRectF>& dirtyRegions = model_.getScene()->getDirtyRegions();
     //
