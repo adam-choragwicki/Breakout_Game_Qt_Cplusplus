@@ -24,6 +24,7 @@ private slots:
     void processApplicationTerminationRequest();
 
 private:
+    void subscribeToFrontendEvents();
     void initializeFrontendEvents();
 
     void startGame();

@@ -15,17 +15,22 @@ Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(vi
 
     //    connect(gameLoop_.get(), &GameLoop::endGame, gameManager_.get(), &GameManager::endGame);
 
+    subscribeToFrontendEvents();
     initializeFrontendEvents();
 
     //    connect(&model_.getGameTickTimer(), &QTimer::timeout, this, &Controller::processGameTickEvent);
-    connect(&view_, &MainWindow::mouseClickedEvent, this, &Controller::processMouseClickedEvent);
-    connect(&view_, &MainWindow::mouseMovedEvent, this, &Controller::processMouseMovedEvent);
-    connect(&view_, &MainWindow::keyPressedEvent, this, &Controller::processKeyPressedEvent);
-    connect(&view_, &MainWindow::applicationTerminationRequest, this, &Controller::processApplicationTerminationRequest);
 
     gameManager_->prepareGameToStart();
 
     view_.getViewportUpdateTimer()->start();
+}
+
+void Controller::subscribeToFrontendEvents()
+{
+    connect(&view_, &MainWindow::mouseClickedEvent, this, &Controller::processMouseClickedEvent);
+    connect(&view_, &MainWindow::mouseMovedEvent, this, &Controller::processMouseMovedEvent);
+    connect(&view_, &MainWindow::keyPressedEvent, this, &Controller::processKeyPressedEvent);
+    connect(&view_, &MainWindow::applicationTerminationRequest, this, &Controller::processApplicationTerminationRequest);
 }
 
 void Controller::initializeFrontendEvents()
@@ -48,14 +53,14 @@ void Controller::viewportUpdateHandler()
 
 void Controller::startGame()
 {
-//    model_.reset();
-//    model_.getGameStateManager().startGame();
+    //    model_.reset();
+    //    model_.getGameStateManager().startGame();
 }
 
 void Controller::endGame(GameResult gameResult)
 {
-//    model_.getGameStateManager().endGame(gameResult);
-//    view_.update();
+    //    model_.getGameStateManager().endGame(gameResult);
+    //    view_.update();
 }
 
 //void Controller::processGameTickEvent()
@@ -67,10 +72,10 @@ void Controller::endGame(GameResult gameResult)
 
 void Controller::processMouseClickedEvent()
 {
-//    if(model_.getGameStateManager().isStopped())
-//    {
-//        startGame();
-//    }
+    //    if(model_.getGameStateManager().isStopped())
+    //    {
+    //        startGame();
+    //    }
 }
 
 void Controller::processMouseMovedEvent(int mousePositionX)
@@ -83,10 +88,10 @@ void Controller::processMouseMovedEvent(int mousePositionX)
 
 void Controller::processKeyPressedEvent(QKeyEvent* keyEvent)
 {
-//    if(keyEvent->key() == Qt::Key_P)
-//    {
-//        model_.getGameStateManager().togglePause();
-//    }
+    //    if(keyEvent->key() == Qt::Key_P)
+    //    {
+    //        model_.getGameStateManager().togglePause();
+    //    }
 }
 
 void Controller::processApplicationTerminationRequest()
