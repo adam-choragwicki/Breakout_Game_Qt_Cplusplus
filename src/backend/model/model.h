@@ -1,5 +1,6 @@
 #pragma once
 
+#include "graphics_scene.h"
 #include "brick.h"
 #include "paddle.h"
 #include "ball.h"
@@ -15,6 +16,9 @@ class Model
 public:
     Model();
     void reset();
+
+    [[nodiscard]] GraphicsScene* getScene() const
+    { return scene_.get(); }
 
 //    [[nodiscard]] const QTimer& getGameTickTimer() const
 //    { return gameTickTimer_; }
@@ -44,7 +48,11 @@ public:
 //    { return *gameStateManager_; }
 
 private:
-//    QTimer gameTickTimer_;
+    void addItemsToScene();
+
+    //    QTimer gameTickTimer_;
+
+    std::unique_ptr<GraphicsScene> scene_;
 
     std::unique_ptr<BricksContainer> bricksContainer_;
     std::unique_ptr<Paddle> paddle_;

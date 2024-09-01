@@ -1,5 +1,6 @@
 #include "main_window.h"
 #include "gui_config.h"
+#include "model/model.h"
 #include "spdlog/spdlog.h"
 #include <QPainter>
 #include <QKeyEvent>
@@ -9,7 +10,10 @@ MainWindow::MainWindow(const Model& model) : model_(model)
 {
     spdlog::debug("Initializing view");
 
-    setWindowTitle("Pacman");
+    setWindowTitle("Breakout");
+    setFocus(Qt::ActiveWindowFocusReason);
+
+    graphicsView_ = std::make_unique<GraphicsView>(model_.getScene(), this);
 
     setFixedSize(Config::Arena::WIDTH, Config::Arena::HEIGHT);
     setPalette(QPalette(Qt::black));

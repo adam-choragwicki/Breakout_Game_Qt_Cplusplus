@@ -3,6 +3,7 @@ set(SOURCE_FILES
         game_loop.cpp game_loop.h
         game_manager.cpp game_manager.h
 
+        graphics_scene.cpp graphics_scene.h
         model/paddle.h model/paddle.cpp
         model/ball.h model/ball.cpp
         model/brick.h model/brick.cpp

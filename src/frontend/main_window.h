@@ -1,9 +1,10 @@
 #pragma once
 
-#include "model/model.h"
-
+#include "graphics_view.h"
 #include <QMainWindow>
 #include <QMouseEvent>
+
+class Model;
 
 class MainWindow : public QMainWindow
 {
@@ -36,6 +37,8 @@ private:
     void displayResult(QPainter& painter);
 
     const Model& model_;
+
+    std::unique_ptr<GraphicsView> graphicsView_;
 
     std::unique_ptr<QTimer> viewportUpdateTimer_;
 
