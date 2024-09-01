@@ -31,7 +31,7 @@ void GameLoop::execute()
 
 void GameLoop::checkAndProcessBallCollisions()
 {
-    const QRect ballRect = model_.getBall().getRect();
+    const QRect ballRect = model_.getBall().getRect().toRect();
 
     checkAndProcessBallCollisionWithArenaEdges(ballRect);
     checkAndProcessBallCollisionWithBrick(ballRect);
@@ -60,7 +60,7 @@ void GameLoop::checkAndProcessBallCollisionWithBrick(const QRect& ballRect)
 {
     for(const auto& brick : model_.getBricksContainer())
     {
-        const QRect brickRect = brick.getRect();
+        const QRect brickRect = brick.getRect().toRect();
 
         if(ballRect.intersects(brickRect))
         {

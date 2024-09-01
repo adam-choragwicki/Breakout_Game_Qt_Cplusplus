@@ -18,7 +18,8 @@ public:
     void drawForeground(QPainter* painter, const QRectF& rect) override;
     bool eventFilter(QObject* obj, QEvent* event) override;
 
-    void updateViewport(const QList<QRectF>& dirtyRegions);
+    //    void updateViewport(const QList<QRectF>& dirtyRegions);
+    void updateViewport();
 
 private slots:
     void updateFPS();

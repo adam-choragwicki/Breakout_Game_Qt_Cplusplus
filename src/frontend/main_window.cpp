@@ -15,10 +15,15 @@ MainWindow::MainWindow(const Model& model) : model_(model)
 
     graphicsView_ = std::make_unique<GraphicsView>(model_.getScene(), this);
 
-    setFixedSize(Config::Arena::WIDTH, Config::Arena::HEIGHT);
+//    setFixedSize(Config::Arena::WIDTH, Config::Arena::HEIGHT);
+    setFixedSize(2000, 1000);
+
     setPalette(QPalette(Qt::black));
     setMouseTracking(true);
     setCursor(QCursor{Qt::BlankCursor});
+
+    setCentralWidget(graphicsView_.get());
+
     centerOnPrimaryScreen();
 
     viewportUpdateTimer_ = std::make_unique<QTimer>(this);
@@ -47,22 +52,22 @@ void MainWindow::closeEvent(QCloseEvent* event)
     emit applicationTerminationRequest();
 }
 
-void MainWindow::paintEvent(QPaintEvent* e)
-{
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing);
-
-    //    if(model_.getGameStateManager().isGameFinished())
-    //    {
-    //        displayResult(painter);
-    //    }
-    //    else
-    //    {
-    //        drawBricks(painter);
-    //        drawPaddle(painter);
-    //        drawBall(painter);
-    //    }
-}
+//void MainWindow::paintEvent(QPaintEvent* e)
+//{
+//    QPainter painter(this);
+//    painter.setRenderHint(QPainter::Antialiasing);
+//
+//    //    if(model_.getGameStateManager().isGameFinished())
+//    //    {
+//    //        displayResult(painter);
+//    //    }
+//    //    else
+//    //    {
+//    //        drawBricks(painter);
+//    //        drawPaddle(painter);
+//    //        drawBall(painter);
+//    //    }
+//}
 
 void MainWindow::drawBall(QPainter& painter) const
 {
@@ -119,4 +124,9 @@ void MainWindow::mousePressEvent(QMouseEvent* event)
 void MainWindow::keyPressEvent(QKeyEvent* event)
 {
     emit keyPressedEvent(event);
+}
+
+void MainWindow::updateViewport()
+{
+    graphicsView_->updateViewport();
 }

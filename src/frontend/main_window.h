@@ -19,12 +19,14 @@ signals:
 public:
     explicit MainWindow(const Model& model);
 
+    void updateViewport();
+
     [[nodiscard]] QTimer* getViewportUpdateTimer() const
     { return viewportUpdateTimer_.get(); }
 
 private:
     void closeEvent(QCloseEvent*) override;
-    void paintEvent(QPaintEvent*) override;
+//    void paintEvent(QPaintEvent*) override;
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
     void keyPressEvent(QKeyEvent* event) override;

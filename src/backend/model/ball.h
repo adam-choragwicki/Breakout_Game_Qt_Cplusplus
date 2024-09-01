@@ -1,17 +1,17 @@
 #pragma once
 
+#include "custom_graphics_item.h"
 #include "config.h"
 #include "direction.h"
 
 #include <QRect>
 
-class Ball
+class Ball : public CustomGraphicsItem
 {
 public:
     Ball(int x, int y);
 
-    [[nodiscard]] QRect getRect() const
-    { return rect_; }
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
 
     bool isFallingDown()
     {
@@ -23,6 +23,7 @@ public:
     void bounceVertically();
 
 private:
-    QRect rect_;
+    inline static const QColor COLOR = {Qt::white};
+
     Direction direction_;
 };

@@ -81,10 +81,15 @@ void GraphicsView::initializePainterData()
     fpsCounterPen_.setColor(Qt::red);
 }
 
-void GraphicsView::updateViewport(const QList<QRectF>& dirtyRegions)
+void GraphicsView::updateViewport()
 {
-    for(const QRectF& rect : dirtyRegions)
-    {
-        viewport()->update(rect.toRect());
-    }
+    viewport()->update();
 }
+
+//void GraphicsView::updateViewport(const QList<QRectF>& dirtyRegions)
+//{
+//    for(const QRectF& rect : dirtyRegions)
+//    {
+//        viewport()->update(rect.toRect());
+//    }
+//}

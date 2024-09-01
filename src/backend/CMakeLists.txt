@@ -4,6 +4,9 @@ set(SOURCE_FILES
         game_manager.cpp game_manager.h
 
         graphics_scene.cpp graphics_scene.h
+        coordinates.h coordinates.cpp
+        config_prod.cpp config_prod.h
+        model/custom_graphics_item.cpp model/custom_graphics_item.cpp
         model/paddle.h model/paddle.cpp
         model/ball.h model/ball.cpp
         model/brick.h model/brick.cpp
@@ -14,7 +17,8 @@ set(SOURCE_FILES
         model/brick_factory.cpp model/brick_factory.h
         config.h
         log_manager.h
-        collision_detectors.cpp collision_detectors.h)
+        collision_detectors.cpp collision_detectors.h
+        id_generator.h)
 
 # Create the backend library
 add_library(lib${PROJECT_NAME}Backend ${SOURCE_FILES})

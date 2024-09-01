@@ -40,6 +40,7 @@ void Controller::initializeFrontendEvents()
 
 void Controller::viewportUpdateHandler()
 {
+
     view_.update();
 
     //    QList<QRectF>& dirtyRegions = model_.getScene()->getDirtyRegions();

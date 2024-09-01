@@ -1,15 +1,19 @@
 #pragma once
 
+#include "custom_graphics_item.h"
 #include <QRect>
 #include <QColor>
 
-class Brick
+class Brick : public CustomGraphicsItem
 {
 public:
     Brick(int x, int y, unsigned int id, QColor color);
+    ~Brick() override;
 
-    [[nodiscard]] QRect getRect() const
-    { return rect_; }
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
+
+    //    [[nodiscard]] QRect getRect() const
+    //    { return rect_; }
 
     [[nodiscard]] QColor getColor() const
     { return color_; }
@@ -20,7 +24,6 @@ public:
     }
 
 private:
-    QRect rect_;
     const QColor color_;
     const unsigned int id_;
 };

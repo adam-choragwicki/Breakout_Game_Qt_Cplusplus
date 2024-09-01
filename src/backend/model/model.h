@@ -49,6 +49,7 @@ public:
 
 private:
     void addItemsToScene();
+    void addBricksToScene();
 
     //    QTimer gameTickTimer_;
 

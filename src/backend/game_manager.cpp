@@ -29,7 +29,7 @@ void GameManager::processStartOrRestartGameRequest()
 void GameManager::prepareGameToStart()
 {
     spdlog::debug("Prepare game to start");
-    model_.reset();
+//    model_.reset();
 
     gameState_ = GameState::READY_TO_START;
 
