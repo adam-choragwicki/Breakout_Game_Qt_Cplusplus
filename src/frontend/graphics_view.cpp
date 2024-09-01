@@ -6,13 +6,14 @@
 
 GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsView(scene, parent)
 {
-    setFocusPolicy(Qt::NoFocus);
     setViewportUpdateMode(QGraphicsView::NoViewportUpdate);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setRenderHint(QPainter::Antialiasing, true);
 
     connect(&fpsTimer_, &QTimer::timeout, this, &GraphicsView::updateFPS);
+
+    setMouseTracking(true);
 
     /* Update FPS every 500m */
     fpsTimer_.start(500);
@@ -21,6 +22,11 @@ GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsVie
     initializePainterData();
 
     viewport()->installEventFilter(this);
+}
+
+void GraphicsView::mouseMoveEvent(QMouseEvent* event)
+{
+    emit(mouseMovedEvent(event->pos().x()));
 }
 
 void GraphicsView::drawBackground(QPainter* painter, const QRectF& rect)

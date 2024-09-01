@@ -25,6 +25,8 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     setCursor(QCursor{Qt::BlankCursor});
 
 
+    connect(graphicsView_.get(), &GraphicsView::mouseMovedEvent, this, &MainWindow::mouseMovedEvent);
+
     centerOnPrimaryScreen();
 
     viewportUpdateTimer_ = std::make_unique<QTimer>(this);

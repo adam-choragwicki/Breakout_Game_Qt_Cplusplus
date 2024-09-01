@@ -10,6 +10,8 @@ class GraphicsScene;
 class GraphicsView : public QGraphicsView
 {
 Q_OBJECT
+signals:
+    void mouseMovedEvent(int mousePositionX);
 
 public:
     explicit GraphicsView(GraphicsScene* scene, QWidget* parent = nullptr);
@@ -26,6 +28,8 @@ private slots:
 
 private:
     void initializePainterData();
+
+    void mouseMoveEvent(QMouseEvent* event) override;
 
     QTimer fpsTimer_;
     QElapsedTimer frameTimeTimer_;
