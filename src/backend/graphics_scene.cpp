@@ -1,6 +1,7 @@
 #include "graphics_scene.h"
+#include "config_prod.h"
 
-GraphicsScene::GraphicsScene() : QGraphicsScene(0, 0, ARENA_WIDTH_PX, ARENA_HEIGHT_PX)
+GraphicsScene::GraphicsScene() : QGraphicsScene(0, 0, ConfigProd::Arena::WIDTH, ConfigProd::Arena::HEIGHT)
 {
     connect(this, &GraphicsScene::changed, this, &GraphicsScene::updateDirtyRegion);
 }

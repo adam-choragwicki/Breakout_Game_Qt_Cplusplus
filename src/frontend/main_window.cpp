@@ -1,6 +1,7 @@
 #include "main_window.h"
 #include "model/model.h"
 #include "spdlog/spdlog.h"
+#include "config_prod.h"
 #include <QPainter>
 #include <QKeyEvent>
 #include <QGuiApplication>
@@ -14,22 +15,21 @@ MainWindow::MainWindow(const Model& model) : model_(model)
 
     graphicsView_ = std::make_unique<GraphicsView>(model_.getScene(), this);
 
-    //    setFixedSize(Config::Arena::WIDTH, Config::Arena::HEIGHT);
-    setFixedSize(1000, 800);
-    //    setFixedSize(1000, 500);
+    //setFixedSize(1000, 800);
+    setFixedSize(ConfigProd::Arena::WIDTH, ConfigProd::Arena::HEIGHT);
+
+    setCentralWidget(graphicsView_.get());
 
     setPalette(QPalette(Qt::black));
     setMouseTracking(true);
     setCursor(QCursor{Qt::BlankCursor});
 
-    setCentralWidget(graphicsView_.get());
 
     centerOnPrimaryScreen();
 
     viewportUpdateTimer_ = std::make_unique<QTimer>(this);
     viewportUpdateTimer_->setTimerType(Qt::PreciseTimer);
     viewportUpdateTimer_->setInterval(VIEWPORT_UPDATE_INTERVAL);
-    //    viewportUpdateTimer_->start();
 }
 
 void MainWindow::centerOnPrimaryScreen()

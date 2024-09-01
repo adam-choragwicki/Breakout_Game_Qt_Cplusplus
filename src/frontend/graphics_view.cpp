@@ -10,9 +10,6 @@ GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsVie
     setViewportUpdateMode(QGraphicsView::NoViewportUpdate);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    arenaPixmap_ = std::make_unique<QPixmap>(":/arena/arena.png");
-
     setRenderHint(QPainter::Antialiasing, true);
 
     connect(&fpsTimer_, &QTimer::timeout, this, &GraphicsView::updateFPS);

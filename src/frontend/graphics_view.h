@@ -34,6 +34,4 @@ private:
 
     QFont fpsCounterFont_;
     QPen fpsCounterPen_;
-
-    std::unique_ptr<QPixmap> arenaPixmap_;
 };
