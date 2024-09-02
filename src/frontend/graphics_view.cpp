@@ -13,8 +13,6 @@ GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsVie
 
     connect(&fpsTimer_, &QTimer::timeout, this, &GraphicsView::updateFPS);
 
-    setMouseTracking(true);
-
     /* Update FPS every 500m */
     fpsTimer_.start(500);
     frameTimeTimer_.start();
@@ -23,12 +21,35 @@ GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsVie
 
     viewport()->installEventFilter(this);
 
+    setCursor(QCursor{Qt::BlankCursor});
+
+    QPoint screenCenter = screen()->geometry().center();
+    QCursor::setPos(screenCenter);
+
+    lastMousePositionOnScreen_ = QCursor::pos();
+
+    qDebug() << "Placing cursor initially on " << screenCenter;
+
     setFocus();
 }
 
 void GraphicsView::mouseMoveEvent(QMouseEvent* event)
 {
+    //    QPoint mousePosition = event->pos();
+    QPoint mousePosition = event->pos();
+    QPoint mouseGlobalPosition = QCursor::pos();// event->globalPosition();
+
+    qDebug() << "Mouse position: " << mousePosition;
+
+    lastMousePositionOnScreen_ = mouseGlobalPosition;
+
     emit(mouseMovedEvent(event->pos().x()));
+}
+
+void GraphicsView::leaveEvent(QEvent* event)
+{
+    /* Restrict cursor movement */
+    QCursor::setPos(lastMousePositionOnScreen_);
 }
 
 void GraphicsView::drawForeground(QPainter* painter, const QRectF& rect)

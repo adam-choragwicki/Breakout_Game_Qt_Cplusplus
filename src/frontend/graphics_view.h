@@ -23,6 +23,8 @@ public:
     //    void updateViewport(const QList<QRectF>& dirtyRegions);
     void updateViewport();
 
+    void leaveEvent(QEvent* event);
+
 private slots:
     void updateFPS();
 
@@ -38,4 +40,6 @@ private:
 
     QFont fpsCounterFont_;
     QPen fpsCounterPen_;
+
+    QPoint lastMousePositionOnScreen_;
 };

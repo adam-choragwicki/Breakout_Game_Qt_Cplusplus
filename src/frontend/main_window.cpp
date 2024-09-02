@@ -11,7 +11,6 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     spdlog::debug("Initializing view");
 
     setWindowTitle("Breakout");
-//    setFocus(Qt::ActiveWindowFocusReason);
 
     graphicsView_ = std::make_unique<GraphicsView>(model_.getScene(), this);
 
@@ -25,12 +24,6 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     connect(graphicsView_.get(), &GraphicsView::mouseMovedEvent, this, &MainWindow::mouseMovedEvent);
 
     centerOnPrimaryScreen();
-
-    QCursor cursor(Qt::BlankCursor);
-    setCursor(cursor);
-
-    QPoint screenCenter = screen()->geometry().center();
-    QCursor::setPos(screenCenter);
 
     viewportUpdateTimer_ = std::make_unique<QTimer>(this);
     viewportUpdateTimer_->setTimerType(Qt::PreciseTimer);
