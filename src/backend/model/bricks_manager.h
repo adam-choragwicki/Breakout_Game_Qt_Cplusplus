@@ -1,8 +1,9 @@
 #pragma once
 
-#include <set>
-#include <memory>
 #include "brick.h"
+#include <memory>
+
+typedef std::map<Coordinates, std::unique_ptr<Brick>> CoordinatesToBricksMapping;
 
 class BricksManager
 {
@@ -13,14 +14,16 @@ public:
     void reset();
 
     bool isEmpty();
-    [[nodiscard]] std::set<Brick>::const_iterator begin() const;
-    [[nodiscard]] std::set<Brick>::const_iterator end() const;
-    void removeBrick(const Brick& brick);
+    [[nodiscard]] CoordinatesToBricksMapping::const_iterator begin() const;
+    [[nodiscard]] CoordinatesToBricksMapping::const_iterator end() const;
+    void removeBrickAtCoordinates(const Coordinates& coordinates);
     void hideAllBricks();
     void showAllBricks();
+
+    CoordinatesToBricksMapping& getCoordinatesToBricksMapping();
 
 private:
     void createBricks();
 
-    std::set<Brick> bricks_;
+    CoordinatesToBricksMapping coordinatesToBricksMapping_;
 };

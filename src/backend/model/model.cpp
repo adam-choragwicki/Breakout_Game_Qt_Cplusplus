@@ -1,6 +1,7 @@
 #include "model.h"
 #include "spdlog/spdlog.h"
 #include "config_prod.h"
+#include "coordinates.h"
 
 Model::Model()
 {
@@ -42,8 +43,8 @@ void Model::addItemsToScene()
 
 void Model::addBricksToScene()
 {
-    for(const Brick& brick : *bricksManager_)
+    for(const auto&[_, brick] : bricksManager_->getCoordinatesToBricksMapping())
     {
-        scene_->addItem(&(const_cast<Brick&>(brick)));
+        scene_->addItem(brick.get());
     }
 }

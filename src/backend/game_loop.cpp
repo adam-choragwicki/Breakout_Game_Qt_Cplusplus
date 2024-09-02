@@ -3,6 +3,7 @@
 #include "collision_detectors.h"
 #include "spdlog/spdlog.h"
 #include "common.h"
+#include "coordinates.h"
 #include <QTimer>
 
 GameLoop::GameLoop(Model& model) : model_(model)
@@ -64,9 +65,9 @@ void GameLoop::checkAndProcessBallCollisionWithArenaEdges(const QRect& ballRect)
 
 void GameLoop::checkAndProcessBallCollisionWithBrick(const QRect& ballRect)
 {
-    for(const auto& brick : model_.getBricksManager())
+    for(const auto&[coordinates, brick] : model_.getBricksManager().getCoordinatesToBricksMapping())
     {
-        const QRect brickRect = brick.getRect().toRect();
+        const QRect brickRect = brick->getRect().toRect();
 
         if(ballRect.intersects(brickRect))
         {
@@ -86,7 +87,7 @@ void GameLoop::checkAndProcessBallCollisionWithBrick(const QRect& ballRect)
                 throw std::runtime_error("Error, ball collision with brick detected, but collision details processed incorrectly");
             }
 
-            model_.getBricksManager().removeBrick(brick);
+            model_.getBricksManager().removeBrickAtCoordinates(coordinates);
 
             if(model_.getBricksManager().isEmpty())
             {

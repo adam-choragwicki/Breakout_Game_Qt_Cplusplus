@@ -1,6 +1,7 @@
 #include "bricks_manager.h"
 #include "brick_factory.h"
 #include "config_prod.h"
+#include "coordinates.h"
 
 BricksManager::BricksManager()
 {
@@ -14,7 +15,7 @@ BricksManager::~BricksManager()
 
 void BricksManager::reset()
 {
-    bricks_.clear();
+    coordinatesToBricksMapping_.clear();
     createBricks();
 }
 
@@ -28,7 +29,7 @@ void BricksManager::createBricks()
         {
             BrickFactory::Parameters parameters = brickFactory.generateBrickConstructorParameters(column, row);
 
-            const auto&[_, inserted] = bricks_.emplace(parameters.x_, parameters.y_, parameters.id_, parameters.color_);
+            const auto&[_, inserted] = coordinatesToBricksMapping_.insert_or_assign(Coordinates(row, column), std::make_unique<Brick>(parameters.x_, parameters.y_, parameters.id_, parameters.color_));
 
             if(!inserted)
             {
@@ -40,22 +41,22 @@ void BricksManager::createBricks()
 
 bool BricksManager::isEmpty()
 {
-    return bricks_.empty();
+    return coordinatesToBricksMapping_.empty();
 }
 
-std::set<Brick>::const_iterator BricksManager::begin() const
+CoordinatesToBricksMapping::const_iterator BricksManager::begin() const
 {
-    return bricks_.begin();
+    return coordinatesToBricksMapping_.begin();
 }
 
-std::set<Brick>::const_iterator BricksManager::end() const
+CoordinatesToBricksMapping::const_iterator BricksManager::end() const
 {
-    return bricks_.end();
+    return coordinatesToBricksMapping_.end();
 }
 
-void BricksManager::removeBrick(const Brick& brick)
+void BricksManager::removeBrickAtCoordinates(const Coordinates& coordinates)
 {
-    unsigned int elementsErased = bricks_.erase(brick);
+    unsigned int elementsErased = coordinatesToBricksMapping_.erase(coordinates);
 
     if(elementsErased == 0)
     {
@@ -65,16 +66,21 @@ void BricksManager::removeBrick(const Brick& brick)
 
 void BricksManager::hideAllBricks()
 {
-    for(const Brick& brick : bricks_)
+    for(const auto&[_, brick] : coordinatesToBricksMapping_)
     {
-        const_cast<Brick&>(brick).hide();
+        brick->hide();
     }
 }
 
 void BricksManager::showAllBricks()
 {
-    for(const Brick& brick : bricks_)
+    for(const auto&[_, brick] : coordinatesToBricksMapping_)
     {
-        const_cast<Brick&>(brick).show();
+        brick->show();
     }
+}
+
+CoordinatesToBricksMapping& BricksManager::getCoordinatesToBricksMapping()
+{
+    return coordinatesToBricksMapping_;
 }
