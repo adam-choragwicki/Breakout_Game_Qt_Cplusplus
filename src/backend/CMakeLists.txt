@@ -10,9 +10,7 @@ set(SOURCE_FILES
         model/paddle.h model/paddle.cpp
         model/ball.h model/ball.cpp
         model/brick.h model/brick.cpp
-        model/game_state_manager.h model/game_state_manager.cpp
         model/direction.h model/direction.cpp
-        model/game_result_manager.h model/game_result_manager.cpp
         model/bricks_container.cpp model/bricks_container.h
         model/brick_factory.cpp model/brick_factory.h
         log_manager.h

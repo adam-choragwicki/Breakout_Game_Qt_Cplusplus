@@ -29,7 +29,7 @@ void ScreenTextDisplay::paint(QPainter* painter, const QStyleOptionGraphicsItem*
     if(isReadyToStart)
     {
         painter->setPen(penWhite_);
-        painter->drawText(screenTextDisplayBoundingRect, Qt::AlignCenter, "CLICK LMB TO CONTINUE");
+        painter->drawText(screenTextDisplayBoundingRect, Qt::AlignCenter, "PRESS LMB TO CONTINUE");
     }
     else if(isRunning)
     {
@@ -40,16 +40,16 @@ void ScreenTextDisplay::paint(QPainter* painter, const QStyleOptionGraphicsItem*
         if(gameManager_->isGameWin())
         {
             painter->setPen(penYellow_);
-            painter->drawText(screenTextDisplayBoundingRect, Qt::AlignTop | Qt::AlignHCenter, "CONGRATULATIONS");
+            painter->drawText(screenTextDisplayBoundingRect, Qt::AlignTop | Qt::AlignHCenter, "VICTORY");
             painter->setPen(penWhite_);
-            painter->drawText(screenTextDisplayBoundingRect, Qt::AlignBottom | Qt::AlignHCenter, "CLICK LMB TO CONTINUE");
+            painter->drawText(screenTextDisplayBoundingRect, Qt::AlignBottom | Qt::AlignHCenter, "PRESS LMB TO CONTINUE");
         }
         else if(gameManager_->isGameLost())
         {
             painter->setPen(penRed_);
             painter->drawText(screenTextDisplayBoundingRect, Qt::AlignTop | Qt::AlignHCenter, "GAME OVER");
             painter->setPen(penWhite_);
-            painter->drawText(screenTextDisplayBoundingRect, Qt::AlignBottom | Qt::AlignHCenter, "CLICK LMB TO CONTINUE");
+            painter->drawText(screenTextDisplayBoundingRect, Qt::AlignBottom | Qt::AlignHCenter, "PRESS LMB TO CONTINUE");
         }
         else
         {

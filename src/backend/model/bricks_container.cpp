@@ -4,6 +4,22 @@
 
 BricksContainer::BricksContainer()
 {
+    qDebug() << "Creating bricks container";
+}
+
+BricksContainer::~BricksContainer()
+{
+    qDebug() << "Destroying bricks container";
+}
+
+void BricksContainer::reset()
+{
+    bricks_.clear();
+    createBricks();
+}
+
+void BricksContainer::createBricks()
+{
     BrickFactory brickFactory;
 
     for(int row = 0; row < ConfigProd::Arena::ROWS_COUNT; row++)
@@ -52,5 +68,13 @@ void BricksContainer::hideAllBricks()
     for(const Brick& brick : bricks_)
     {
         const_cast<Brick&>(brick).hide();
+    }
+}
+
+void BricksContainer::showAllBricks()
+{
+    for(const Brick& brick : bricks_)
+    {
+        const_cast<Brick&>(brick).show();
     }
 }

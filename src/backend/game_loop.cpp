@@ -1,8 +1,9 @@
 #include "game_loop.h"
 #include "model/model.h"
 #include "collision_detectors.h"
-#include <QTimer>
 #include "spdlog/spdlog.h"
+#include "common.h"
+#include <QTimer>
 
 GameLoop::GameLoop(Model& model) : model_(model)
 {

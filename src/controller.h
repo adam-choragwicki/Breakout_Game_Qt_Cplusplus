@@ -22,8 +22,6 @@ private slots:
 private:
     void subscribeToFrontendEvents();
 
-    void endGame(GameResult gameResult);
-
     Model& model_;
     MainWindow& view_;
 

@@ -11,9 +11,6 @@ public:
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
 
-    [[nodiscard]] QColor getColor() const
-    { return color_; }
-
     bool operator<(const Brick& other) const
     {
         return id_ < other.id_;

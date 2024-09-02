@@ -19,8 +19,6 @@ Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(vi
 
     subscribeToFrontendEvents();
 
-    //    connect(&model_.getGameTickTimer(), &QTimer::timeout, this, &Controller::processGameTickEvent);
-
     gameManager_->prepareGameToStart();
 
     view_.startRendering();
@@ -34,12 +32,6 @@ void Controller::subscribeToFrontendEvents()
     connect(&view_, &MainWindow::applicationTerminationRequest, this, &Controller::processApplicationTerminationRequest);
 }
 
-void Controller::endGame(GameResult gameResult)
-{
-    //    model_.getGameStateManager().endGame(gameResult);
-    //    view_.update();
-}
-
 void Controller::processMouseClickedEvent()
 {
     //    qDebug() << "Mouse clicked";
@@ -48,9 +40,13 @@ void Controller::processMouseClickedEvent()
     {
         gameManager_->startGame();
     }
+    else if(gameManager_->isStopped())
+    {
+        gameManager_->prepareGameToStart();
+    }
     else
     {
-        spdlog::warn("Mouse clicked but game is not in READY_TO_START state");
+        spdlog::warn("Mouse clicked but game is not in READY_TO_START or STOPPED state");
     }
 }
 

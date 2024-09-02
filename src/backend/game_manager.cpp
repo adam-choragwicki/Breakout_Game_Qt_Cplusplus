@@ -29,11 +29,16 @@ void GameManager::processStartOrRestartGameRequest()
 void GameManager::prepareGameToStart()
 {
     spdlog::debug("Prepare game to start");
-    //    model_.reset();
+    model_.reset();
+
+    model_.getPaddle().show();
+    model_.getBall().show();
+
+    model_.getBricksContainer().showAllBricks();
 
     gameState_ = GameState::READY_TO_START;
 
-    //    model_.getScene()->invalidate();
+    model_.getScene()->invalidate();
 }
 
 void GameManager::endGame(GameResult gameResult)

@@ -4,9 +4,7 @@
 #include "brick.h"
 #include "paddle.h"
 #include "ball.h"
-#include "game_state_manager.h"
 #include "bricks_container.h"
-#include "game_result_manager.h"
 #include "screen_text_display.h"
 
 #include <memory>
