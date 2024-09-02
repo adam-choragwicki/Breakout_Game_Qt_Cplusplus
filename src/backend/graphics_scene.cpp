@@ -10,6 +10,7 @@ void GraphicsScene::updateDirtyRegion(const QList<QRectF>& dirtyRegion)
 {
     for(const QRectF& rect : dirtyRegion)
     {
-        dirtyRegions_.append(rect);
+        QRectF enlargedRect = rect.adjusted(-1, -1, 1, 1);
+        dirtyRegions_.append(enlargedRect);
     }
 }
