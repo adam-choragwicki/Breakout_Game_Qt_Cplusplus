@@ -5,7 +5,7 @@
 
 GameManager::GameManager(Model& model) : model_(model)
 {
-    gameState_ = GameState::STOPPED;
+    gameState_ = GameState::BEFORE_FIRST_RUN;
 }
 
 void GameManager::processStartOrRestartGameRequest()
@@ -29,7 +29,11 @@ void GameManager::processStartOrRestartGameRequest()
 void GameManager::prepareGameToStart()
 {
     spdlog::debug("Prepare game to start");
-    model_.reset();
+
+    if(gameState_ != GameState::BEFORE_FIRST_RUN)
+    {
+        model_.reset();
+    }
 
     model_.getPaddle().show();
     model_.getBall().show();

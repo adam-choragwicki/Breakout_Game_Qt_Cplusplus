@@ -42,7 +42,7 @@ public:
 private:
     enum class GameState
     {
-        READY_TO_START, RUNNING, STOPPED
+        BEFORE_FIRST_RUN, READY_TO_START, RUNNING, STOPPED
     } gameState_;
 
     GameLoop* gameLoop_{};

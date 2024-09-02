@@ -6,6 +6,7 @@
 BricksManager::BricksManager()
 {
     qDebug() << "Creating bricks container";
+    createBricks();
 }
 
 BricksManager::~BricksManager()
@@ -21,6 +22,8 @@ void BricksManager::reset()
 
 void BricksManager::createBricks()
 {
+    qDebug() << "Creating bricks";
+
     BrickFactory brickFactory;
 
     for(int row = 0; row < ConfigProd::Arena::ROWS_COUNT; row++)

@@ -35,9 +35,9 @@ void Model::addItemsToScene()
     scene_->addItem(paddle_.get());
     scene_->addItem(ball_.get());
 
-//    addBricksToScene();
-//
-//    scene_->addItem(screenTextDisplay_.get());
+    addBricksToScene();
+
+    scene_->addItem(screenTextDisplay_.get());
 }
 
 void Model::addBricksToScene()
