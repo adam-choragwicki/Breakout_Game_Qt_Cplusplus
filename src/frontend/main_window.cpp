@@ -14,7 +14,6 @@ MainWindow::MainWindow(const Model& model) : model_(model)
 
     graphicsView_ = std::make_unique<GraphicsView>(model_.getScene(), this);
 
-    //setFixedSize(1000, 800);
     setFixedSize(ConfigProd::Arena::WIDTH, ConfigProd::Arena::HEIGHT);
 
     setCentralWidget(graphicsView_.get());
@@ -46,22 +45,6 @@ void MainWindow::centerOnScreen(QScreen* screen)
     const QRect widgetRect({}, frameSize().boundedTo(screenRect.size()));
     move(screenRect.center() - widgetRect.center());
 }
-
-//void MainWindow::displayResult(QPainter& painter)
-//{
-//    QFont font("Console", 20, QFont::Bold);
-//    painter.setFont(font);
-//
-//    int height = this->height();
-//    int width = this->width();
-//
-//    painter.translate(QPoint(width / 2, height / 2));
-//
-//    QFontMetrics fontMetrics(font);
-//    //    QString gameEndMessage = model_.getGameStateManager().getGameEndMessage();
-//    //    int textWidth = fontMetrics.horizontalAdvance(gameEndMessage);
-//    //    painter.drawText(-textWidth / 2, 0, gameEndMessage);
-//}
 
 void MainWindow::mousePressEvent(QMouseEvent* event)
 {
