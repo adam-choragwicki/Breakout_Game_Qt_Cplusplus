@@ -71,6 +71,7 @@ void MainWindow::updateViewport()
 
         if(!dirtyRegions.isEmpty())
         {
+            qDebug() << "Dirty regions count: " << dirtyRegions.size();
             graphicsView_->updateViewport(dirtyRegions);
             dirtyRegions.clear();
         }

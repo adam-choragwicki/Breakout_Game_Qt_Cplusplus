@@ -57,9 +57,7 @@ void GameManager::endGame(GameResult gameResult)
 
     gameResult_ = gameResult;
 
-    //    model_.getWhatToDrawManager()->drawBackground_ = false;
-
-    //    model_.getScene()->invalidate();
+    model_.getScene()->invalidate();
 }
 
 void GameManager::startGame()
@@ -70,5 +68,5 @@ void GameManager::startGame()
 
     gameLoop_->start();
 
-    //    model_.getScene()->invalidate();
+    model_.getScene()->invalidate();
 }
