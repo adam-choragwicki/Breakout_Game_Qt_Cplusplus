@@ -1,3 +1,7 @@
 #include "config_prod.h"
 
-//int ConfigProd::MOVEMENT_DELAY_MS = 25;
+const int ConfigProd::Arena::ROWS_COUNT = 10;
+const int ConfigProd::Arena::COLUMNS_COUNT = 25;
+
+const int ConfigProd::Brick::WIDTH = 50;
+const int ConfigProd::Brick::HEIGHT = 20;

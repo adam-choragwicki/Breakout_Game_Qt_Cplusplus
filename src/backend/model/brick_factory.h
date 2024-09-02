@@ -16,5 +16,7 @@ public:
     Parameters generateBrickConstructorParameters(int column, int row);
 
 private:
+    const std::vector<QColor> COLORS = {Qt::red, QColor{"orange"}, Qt::green, Qt::yellow, Qt::cyan};
+
     unsigned int count_ = 0;
 };

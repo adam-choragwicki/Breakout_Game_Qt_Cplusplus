@@ -1,32 +1,27 @@
 #pragma once
 
-#include <QInternal>
 #include <chrono>
-//#include "direction.h"
-//#include "coordinates.h"
 #include <QColor>
 
 namespace ConfigProd
 {
     namespace Brick
     {
-        const int WIDTH = 50;
-        const int HEIGHT = 20;
-
-        const std::vector<QColor> COLORS = {Qt::red, QColor{"orange"}, Qt::green, Qt::yellow, Qt::cyan};
+        extern const int WIDTH;
+        extern const int HEIGHT;
     }
 
     namespace Arena
     {
-        const int ROWS_COUNT = 5;
-        const int COLUMNS_COUNT = 15;
+        extern const int ROWS_COUNT;
+        extern const int COLUMNS_COUNT;
 
-        constexpr int WIDTH = COLUMNS_COUNT * Brick::WIDTH;
-        const int HEIGHT = Brick::HEIGHT * 20;
+        const int WIDTH = COLUMNS_COUNT * Brick::WIDTH;
+        const int HEIGHT = 30 * Brick::HEIGHT;
 
         const int LEFT_EDGE = 0;
         //is right edge ok?
-        constexpr int RIGHT_EDGE = COLUMNS_COUNT * Brick::WIDTH;
+        const int RIGHT_EDGE = COLUMNS_COUNT * Brick::WIDTH;
 
         const int TOP_EDGE = 0;
         const int BOTTOM_EDGE = HEIGHT;
@@ -34,10 +29,11 @@ namespace ConfigProd
 
     namespace Paddle
     {
-        const int WIDTH = Arena::WIDTH / 10;
-        const int HEIGHT = 10;
+        /* Paddle width is 10% of arena width */
+        const int WIDTH = 0.1 * Arena::WIDTH;
+        const int HEIGHT = 15;
         const int POSITION_X = Arena::WIDTH / 2 - WIDTH / 2;
-        const int POSITION_Y = Arena::HEIGHT * 0.95;
+        const int POSITION_Y = 0.95 * Arena::HEIGHT;
     }
 
     namespace Ball
@@ -46,12 +42,4 @@ namespace ConfigProd
         const int POSITION_X = Paddle::POSITION_X + Paddle::WIDTH / 2;
         const int POSITION_Y = Paddle::POSITION_Y - 14;
     }
-
-    namespace Timing
-    {
-        using namespace std::chrono_literals;
-        const auto GAME_TICK_INTERVAL(3ms);
-    }
-
-    extern int MOVEMENT_DELAY_MS;
 }
