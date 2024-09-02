@@ -42,4 +42,6 @@ namespace ConfigProd
         const int POSITION_X = Paddle::POSITION_X + Paddle::WIDTH / 2;
         const int POSITION_Y = Paddle::POSITION_Y - 14;
     }
+
+    extern const bool GPU_OPTIMIZATION;
 }

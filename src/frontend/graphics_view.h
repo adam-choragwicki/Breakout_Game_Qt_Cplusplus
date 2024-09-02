@@ -20,8 +20,7 @@ public:
     void drawForeground(QPainter* painter, const QRectF& rect) override;
     bool eventFilter(QObject* obj, QEvent* event) override;
 
-    //    void updateViewport(const QList<QRectF>& dirtyRegions);
-    void updateViewport();
+    void updateViewport(const QList<QRectF>& dirtyRegions);
 
     void leaveEvent(QEvent* event) override;
 

@@ -1,5 +1,6 @@
 #include "graphics_view.h"
 #include "graphics_scene.h"
+#include "config_prod.h"
 #include <QPainter>
 #include <QMouseEvent>
 #include <QTimer>
@@ -68,15 +69,19 @@ bool GraphicsView::eventFilter(QObject* obj, QEvent* event)
     return QGraphicsView::eventFilter(obj, event);
 }
 
-void GraphicsView::updateViewport()
+void GraphicsView::updateViewport(const QList<QRectF>& dirtyRegions)
 {
-    viewport()->update();
-}
+//    qDebug() << "Dirty regions count: " << dirtyRegions.size();
 
-//void GraphicsView::updateViewport(const QList<QRectF>& dirtyRegions)
-//{
-//    for(const QRectF& rect : dirtyRegions)
-//    {
-//        viewport()->update(rect.toRect());
-//    }
-//}
+    if(ConfigProd::GPU_OPTIMIZATION)
+    {
+        for(const QRectF& rect : dirtyRegions)
+        {
+            viewport()->update(rect.toRect());
+        }
+    }
+    else
+    {
+        viewport()->update();
+    }
+}

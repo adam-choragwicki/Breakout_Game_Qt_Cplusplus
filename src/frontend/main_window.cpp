@@ -65,15 +65,21 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
 void MainWindow::updateViewport()
 {
-    //    QList<QRectF>& dirtyRegions = model_.getScene()->getDirtyRegions();
-    //
-    //    if(!dirtyRegions.isEmpty())
-    //    {
-    //        view_.updateViewport(dirtyRegions);
-    //        dirtyRegions.clear();
-    //    }
+    if(ConfigProd::GPU_OPTIMIZATION)
+    {
+        QList<QRectF>& dirtyRegions = model_.getScene()->getDirtyRegions();
 
-    graphicsView_->updateViewport();
+        if(!dirtyRegions.isEmpty())
+        {
+            graphicsView_->updateViewport(dirtyRegions);
+            dirtyRegions.clear();
+        }
+    }
+    else
+    {
+        QList<QRectF> dirtyRegions;
+        graphicsView_->updateViewport(dirtyRegions);
+    }
 }
 
 void MainWindow::startRendering()
