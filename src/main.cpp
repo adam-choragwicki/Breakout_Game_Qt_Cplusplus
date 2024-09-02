@@ -14,6 +14,7 @@ int main(int argc, char* argv[])
     return QApplication::exec();
 }
 
+//TODO implement custom speed vectors
 //TODO lock cursor inside window
 //TODO add angle-based bounces
 //TODO add tests

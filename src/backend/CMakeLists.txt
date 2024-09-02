@@ -13,7 +13,6 @@ set(SOURCE_FILES
         model/direction.h model/direction.cpp
         model/bricks_manager.cpp model/bricks_manager.h
         model/brick_factory.cpp model/brick_factory.h
-        log_manager.h
         collision_detectors.cpp collision_detectors.h
         screen_text_display.cpp screen_text_display.h
         id_generator.h)
