@@ -13,6 +13,7 @@ public:
     [[nodiscard]] std::set<Brick>::const_iterator begin() const;
     [[nodiscard]] std::set<Brick>::const_iterator end() const;
     void removeBrick(const Brick& brick);
+    void hideAllBricks();
 
 private:
     std::set<Brick> bricks_;

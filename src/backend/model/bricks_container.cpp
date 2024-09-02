@@ -46,3 +46,11 @@ void BricksContainer::removeBrick(const Brick& brick)
         throw std::runtime_error("Error, remove brick operation did not remove any bricks");
     }
 }
+
+void BricksContainer::hideAllBricks()
+{
+    for(const Brick& brick : bricks_)
+    {
+        const_cast<Brick&>(brick).hide();
+    }
+}

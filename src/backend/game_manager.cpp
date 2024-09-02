@@ -29,7 +29,7 @@ void GameManager::processStartOrRestartGameRequest()
 void GameManager::prepareGameToStart()
 {
     spdlog::debug("Prepare game to start");
-//    model_.reset();
+    //    model_.reset();
 
     gameState_ = GameState::READY_TO_START;
 
@@ -38,12 +38,19 @@ void GameManager::prepareGameToStart()
 
 void GameManager::endGame(GameResult gameResult)
 {
-//    gameTickTimer_.stop();
-//    gameResultManager_.setGameResult(gameResult);
-    gameState_ = GameState::STOPPED;
+    qDebug() << "GameManager received endGame signal";
 
-//    gameResult_ = gameResult;
+    //    gameTickTimer_.stop();
+
+    gameState_ = GameState::STOPPED;
     gameLoop_->stop();
+
+    model_.getPaddle().hide();
+    model_.getBall().hide();
+
+    model_.getBricksContainer().hideAllBricks();
+
+    gameResult_ = gameResult;
 
     //    model_.getWhatToDrawManager()->drawBackground_ = false;
 

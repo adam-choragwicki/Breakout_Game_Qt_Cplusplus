@@ -14,6 +14,8 @@ Model::Model()
     ball_ = std::make_unique<Ball>(ConfigProd::Ball::POSITION_X, ConfigProd::Ball::POSITION_Y);
     bricksContainer_ = std::make_unique<BricksContainer>();
 
+    screenTextDisplay_ = std::make_unique<ScreenTextDisplay>();
+
     addItemsToScene();
 
     spdlog::debug("Items on scene: {}", scene_->items().size());
@@ -33,6 +35,8 @@ void Model::addItemsToScene()
     scene_->addItem(ball_.get());
 
     addBricksToScene();
+
+    scene_->addItem(screenTextDisplay_.get());
 }
 
 void Model::addBricksToScene()

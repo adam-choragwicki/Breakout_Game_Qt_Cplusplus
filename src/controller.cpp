@@ -13,7 +13,9 @@ Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(vi
 
     gameManager_->setGameLoop(gameLoop_.get());
 
-    //    connect(gameLoop_.get(), &GameLoop::endGame, gameManager_.get(), &GameManager::endGame);
+    connect(gameLoop_.get(), &GameLoop::endGame, gameManager_.get(), &GameManager::endGame);
+
+    model_.getScreenTextDisplay().setGameManager(gameManager_.get());
 
     subscribeToFrontendEvents();
 
@@ -37,13 +39,6 @@ void Controller::endGame(GameResult gameResult)
     //    model_.getGameStateManager().endGame(gameResult);
     //    view_.update();
 }
-
-//void Controller::processGameTickEvent()
-//{
-//    model_.getBall().move();
-//    checkAndProcessBallCollisions();
-//    view_.update();
-//}
 
 void Controller::processMouseClickedEvent()
 {

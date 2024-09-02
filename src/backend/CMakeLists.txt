@@ -17,6 +17,7 @@ set(SOURCE_FILES
         model/brick_factory.cpp model/brick_factory.h
         log_manager.h
         collision_detectors.cpp collision_detectors.h
+        screen_text_display.cpp screen_text_display.h
         id_generator.h)
 
 # Create the backend library

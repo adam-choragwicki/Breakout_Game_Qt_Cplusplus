@@ -31,17 +31,15 @@ public:
     void setGameLoop(GameLoop* gameLoop)
     { gameLoop_ = gameLoop; }
 
-    //    [[nodiscard]] bool isGameWin() const
-    //    { return gameResult_ == GameResult::WIN; }
+    [[nodiscard]] bool isGameWin() const
+    { return gameResult_ == GameResult::WIN; }
 
-    //    [[nodiscard]] bool isGameLost() const
-    //    { return gameResult_ == GameResult::LOST; }
+    [[nodiscard]] bool isGameLost() const
+    { return gameResult_ == GameResult::LOST; }
 
     void startGame();
 
 private:
-//    void startGame();
-
     enum class GameState
     {
         //        STOPPED, PAUSED, RUNNING
@@ -50,7 +48,7 @@ private:
 
     GameLoop* gameLoop_{};
 
-    //    GameResult gameResult_ = GameResult::NO_RESULT_YET;
+    GameResult gameResult_ = GameResult::NO_RESULT_YET;
 
     Model& model_;
 };

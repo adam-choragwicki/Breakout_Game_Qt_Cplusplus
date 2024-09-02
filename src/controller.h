@@ -14,7 +14,6 @@ public:
     Controller(Model& model, MainWindow& view);
 
 private slots:
-    //    void processGameTickEvent();
     void processMouseClickedEvent();
     void processMouseMovedEvent(int mousePositionX);
     void processKeyPressedEvent(QKeyEvent* keyEvent);
