@@ -20,7 +20,7 @@ public:
     void bounceVertically();
 
 private:
-    inline static const QColor COLOR = {Qt::white};
+    inline static const QColor COLOR = {Qt::yellow};
 
     const int INITIAL_X;
     const int INITIAL_Y;

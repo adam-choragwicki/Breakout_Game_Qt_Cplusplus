@@ -20,7 +20,6 @@ namespace ConfigProd
         const int HEIGHT = 30 * Brick::HEIGHT;
 
         const int LEFT_EDGE = 0;
-        //is right edge ok?
         const int RIGHT_EDGE = COLUMNS_COUNT * Brick::WIDTH;
 
         const int TOP_EDGE = 0;
