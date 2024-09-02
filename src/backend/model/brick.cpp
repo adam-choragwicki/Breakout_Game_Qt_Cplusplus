@@ -5,8 +5,6 @@
 Brick::Brick(int x, int y, QColor color) : CustomGraphicsItem(QRectF(0, 0, ConfigProd::Brick::WIDTH, ConfigProd::Brick::HEIGHT)), coordinates_(Coordinates{x, y}), color_(color)
 {
     setPos(x, y);
-    //    qDebug() << "Creating brick at " << coordinates_.toString();
-    //    rect_.setSize(QSize(ConfigProd::Brick::WIDTH, ConfigProd::Brick::HEIGHT));
 }
 
 Brick::~Brick()

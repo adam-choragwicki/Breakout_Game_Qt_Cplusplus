@@ -5,13 +5,11 @@
 Paddle::Paddle(int x, int y) : CustomGraphicsItem(QRectF(0, 0, ConfigProd::Paddle::WIDTH, ConfigProd::Paddle::HEIGHT)), INITIAL_X(x), INITIAL_Y(y)
 {
     setPos(x, y);
-    //    rect_.setSize(QSize(ConfigProd::Paddle::WIDTH, ConfigProd::Paddle::HEIGHT));
 }
 
 void Paddle::reset()
 {
     setPos(INITIAL_X, INITIAL_Y);
-    //    rect_.moveTo(INITIAL_X, INITIAL_Y);
 }
 
 void Paddle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
@@ -26,9 +24,5 @@ void Paddle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QW
 
 void Paddle::setHorizontalPosition(int x)
 {
-    setPos(QPointF(x - rect_.width() / 2, ConfigProd::Paddle::POSITION_Y));
-
-//    setPos(QPointF(x, ConfigProd::Paddle::POSITION_Y));
-
-    //    rect_.moveCenter(QPointF(x, ConfigProd::Paddle::POSITION_Y));
+    setPos(x - rect_.width() / 2, INITIAL_Y);
 }

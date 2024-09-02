@@ -19,10 +19,6 @@ public:
     [[nodiscard]] uint getId() const
     { return id_; }
 
-    //TODO should it be here?
-//    [[nodiscard]] const QRectF& getRect() const
-//    { return rect_; }
-
 protected:
     bool drawRect_{};
 
