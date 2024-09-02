@@ -12,6 +12,7 @@ class GraphicsView : public QGraphicsView
 Q_OBJECT
 signals:
     void mouseMovedEvent(int mousePositionX);
+    void fpsCountUpdateEvent(int fpsCount);
 
 public:
     explicit GraphicsView(GraphicsScene* scene, QWidget* parent = nullptr);

@@ -67,6 +67,12 @@ void Controller::processMouseMovedEvent(int mousePositionX)
 
 void Controller::processKeyPressedEvent(QKeyEvent* keyEvent)
 {
+    if(keyEvent->key() == Qt::Key::Key_Escape)
+    {
+        qDebug() << "Escape clicked";
+        processApplicationTerminationRequest();
+    }
+
     //    if(keyEvent->key() == Qt::Key_P)
     //    {
     //        model_.getGameStateManager().togglePause();

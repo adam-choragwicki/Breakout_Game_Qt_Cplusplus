@@ -31,22 +31,17 @@ void GraphicsView::mouseMoveEvent(QMouseEvent* event)
 
 void GraphicsView::drawForeground(QPainter* painter, const QRectF& rect)
 {
-    /* Ensure FPS counter is drawn on top of scene and always visible */
     QGraphicsView::drawForeground(painter, rect);
-
     ++frameCount_;
-
-    painter->setPen(fpsCounterPen_);
-    painter->setFont(fpsCounterFont_);
-
-    const QPointF topLeft = mapToScene(viewport()->rect().topLeft());
-    painter->drawText(topLeft + QPointF(10, 20), QString("FPS: %1").arg(qRound(currentFPS_)));
 }
 
 void GraphicsView::updateFPS()
 {
     qint64 elapsed = frameTimeTimer_.elapsed();
     currentFPS_ = (frameCount_ * 1000.0) / elapsed;
+
+    emit fpsCountUpdateEvent(qRound(currentFPS_));
+
     frameCount_ = 0;
     frameTimeTimer_.restart();
 }

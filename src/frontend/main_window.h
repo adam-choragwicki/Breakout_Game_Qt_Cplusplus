@@ -22,6 +22,9 @@ public:
     void startRendering();
     void updateViewport();
 
+private slots:
+    void updateFPSDisplay(int fpsCount);
+
 private:
     void closeEvent(QCloseEvent*) override;
     void mousePressEvent(QMouseEvent* event) override;
@@ -29,8 +32,6 @@ private:
     void keyPressEvent(QKeyEvent* event) override;
     void centerOnScreen(QScreen* screen);
     void centerOnPrimaryScreen();
-
-    //    void displayResult(QPainter& painter);
 
     const Model& model_;
 

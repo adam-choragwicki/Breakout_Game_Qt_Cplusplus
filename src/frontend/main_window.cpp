@@ -32,6 +32,7 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     viewportUpdateTimer_->setInterval(VIEWPORT_UPDATE_INTERVAL);
 
     connect(viewportUpdateTimer_.get(), &QTimer::timeout, this, &MainWindow::updateViewport);
+    connect(graphicsView_.get(), &GraphicsView::fpsCountUpdateEvent, this, &MainWindow::updateFPSDisplay);
 }
 
 void MainWindow::centerOnPrimaryScreen()
@@ -53,23 +54,6 @@ void MainWindow::closeEvent(QCloseEvent* event)
     event->ignore();
     emit applicationTerminationRequest();
 }
-
-//void MainWindow::paintEvent(QPaintEvent* e)
-//{
-//    QPainter painter(this);
-//    painter.setRenderHint(QPainter::Antialiasing);
-//
-//    //    if(model_.getGameStateManager().isGameFinished())
-//    //    {
-//    //        displayResult(painter);
-//    //    }
-//    //    else
-//    //    {
-//    //        drawBricks(painter);
-//    //        drawPaddle(painter);
-//    //        drawBall(painter);
-//    //    }
-//}
 
 //void MainWindow::displayResult(QPainter& painter)
 //{
@@ -113,4 +97,9 @@ void MainWindow::updateViewport()
 void MainWindow::startRendering()
 {
     viewportUpdateTimer_->start();
+}
+
+void MainWindow::updateFPSDisplay(int fpsCount)
+{
+    setWindowTitle(QString("Breakout (%1 FPS)").arg(fpsCount));
 }
