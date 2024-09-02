@@ -1,6 +1,7 @@
 #pragma once
 
 #include "custom_graphics_item.h"
+#include "coordinates.h"
 #include <QColor>
 
 class Brick : public CustomGraphicsItem
@@ -11,12 +12,7 @@ public:
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
 
-    bool operator<(const Brick& other) const
-    {
-        return id_ < other.id_;
-    }
-
 private:
     const QColor color_;
-    const unsigned int id_;
+    const Coordinates coordinates_;
 };

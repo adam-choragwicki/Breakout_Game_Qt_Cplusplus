@@ -2,15 +2,15 @@
 #include "config_prod.h"
 #include <QPainter>
 
-Brick::Brick(int x, int y, unsigned int id, QColor color) : CustomGraphicsItem(x, y), id_(id), color_(color)
+Brick::Brick(int x, int y, unsigned int id, QColor color) : CustomGraphicsItem(x, y), coordinates_(Coordinates{x, y}), color_(color)
 {
-//    qDebug() << "Creating brick " << id_ << ":" << x << "," << y;;
+    qDebug() << "Creating brick at " << coordinates_.toString();
     rect_.setSize(QSize(ConfigProd::Brick::WIDTH, ConfigProd::Brick::HEIGHT));
 }
 
 Brick::~Brick()
 {
-//    qDebug() << "Destroying brick " << id_;
+    qDebug() << "Destroying brick at " << coordinates_.toString();
 }
 
 void Brick::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
