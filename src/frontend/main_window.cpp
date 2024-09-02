@@ -101,3 +101,9 @@ void MainWindow::updateFPSDisplay(int fpsCount)
 {
     setWindowTitle(QString("Breakout (%1 FPS)").arg(fpsCount));
 }
+
+void MainWindow::setMousePositionAtScreenCenter()
+{
+    QPoint screenCenter = screen()->geometry().center();
+    QCursor::setPos(screenCenter);
+}

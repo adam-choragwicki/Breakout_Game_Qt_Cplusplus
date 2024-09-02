@@ -21,6 +21,7 @@ public:
 
     void startRendering();
     void updateViewport();
+    void setMousePositionAtScreenCenter();
 
 private slots:
     void updateFPSDisplay(int fpsCount);

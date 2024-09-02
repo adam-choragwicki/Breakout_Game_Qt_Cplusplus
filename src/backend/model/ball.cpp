@@ -2,9 +2,15 @@
 #include "config_prod.h"
 #include <QPainter>
 
-Ball::Ball(int x, int y) : CustomGraphicsItem(x, y), direction_(HorizontalDirection::EAST, VerticalDirection::NORTH)
+Ball::Ball(int x, int y) : CustomGraphicsItem(x, y), INITIAL_X(x), INITIAL_Y(y), INITIAL_DIRECTION(HorizontalDirection::EAST, VerticalDirection::NORTH), direction_(INITIAL_DIRECTION)
 {
     rect_.setSize(QSize(ConfigProd::Ball::RADIUS, ConfigProd::Ball::RADIUS));
+}
+
+void Ball::reset()
+{
+    rect_.moveTo(INITIAL_X, INITIAL_Y);
+    direction_ = INITIAL_DIRECTION;
 }
 
 void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

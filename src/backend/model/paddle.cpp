@@ -2,9 +2,14 @@
 #include "config_prod.h"
 #include <QPainter>
 
-Paddle::Paddle(int x, int y) : CustomGraphicsItem(x, y)
+Paddle::Paddle(int x, int y) : CustomGraphicsItem(x, y), INITIAL_X(x), INITIAL_Y(y)
 {
     rect_.setSize(QSize(ConfigProd::Paddle::WIDTH, ConfigProd::Paddle::HEIGHT));
+}
+
+void Paddle::reset()
+{
+    rect_.moveTo(INITIAL_X, INITIAL_Y);
 }
 
 void Paddle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

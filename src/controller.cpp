@@ -43,6 +43,7 @@ void Controller::processMouseClickedEvent()
     else if(gameManager_->isStopped())
     {
         gameManager_->prepareGameToStart();
+        view_.setMousePositionAtScreenCenter();
     }
     else
     {

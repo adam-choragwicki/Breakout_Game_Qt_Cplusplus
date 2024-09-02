@@ -7,6 +7,7 @@ class Ball : public CustomGraphicsItem
 {
 public:
     Ball(int x, int y);
+    void reset();
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
 
@@ -20,6 +21,10 @@ public:
 
 private:
     inline static const QColor COLOR = {Qt::white};
+
+    const int INITIAL_X;
+    const int INITIAL_Y;
+    const Direction INITIAL_DIRECTION;
 
     Direction direction_;
 };
