@@ -4,13 +4,13 @@
 
 Brick::Brick(int x, int y, QColor color) : CustomGraphicsItem(x, y), coordinates_(Coordinates{x, y}), color_(color)
 {
-    qDebug() << "Creating brick at " << coordinates_.toString();
+//    qDebug() << "Creating brick at " << coordinates_.toString();
     rect_.setSize(QSize(ConfigProd::Brick::WIDTH, ConfigProd::Brick::HEIGHT));
 }
 
 Brick::~Brick()
 {
-    qDebug() << "Destroying brick at " << coordinates_.toString();
+//    qDebug() << "Destroying brick at " << coordinates_.toString();
 }
 
 void Brick::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

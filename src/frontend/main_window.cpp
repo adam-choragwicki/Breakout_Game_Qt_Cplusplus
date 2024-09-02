@@ -23,6 +23,7 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     connect(graphicsView_.get(), &GraphicsView::mouseMovedEvent, this, &MainWindow::mouseMovedEvent);
 
     centerOnPrimaryScreen();
+    setMousePositionAtScreenCenter();
 
     viewportUpdateTimer_ = std::make_unique<QTimer>(this);
     viewportUpdateTimer_->setTimerType(Qt::PreciseTimer);
@@ -89,4 +90,6 @@ void MainWindow::setMousePositionAtScreenCenter()
 {
     QPoint screenCenter = screen()->geometry().center();
     QCursor::setPos(screenCenter);
+
+    qDebug() << "Placing cursor initially on " << screenCenter;
 }

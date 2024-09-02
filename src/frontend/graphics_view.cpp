@@ -19,21 +19,15 @@ GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsVie
 
     viewport()->installEventFilter(this);
 
-    QPoint screenCenter = screen()->geometry().center();
-    QCursor::setPos(screenCenter);
-
     lastMousePositionOnScreen_ = QCursor::pos();
-
-    qDebug() << "Placing cursor initially on " << screenCenter;
 }
 
 void GraphicsView::mouseMoveEvent(QMouseEvent* event)
 {
-    //    QPoint mousePosition = event->pos();
     QPoint mousePosition = event->pos();
-    QPoint mouseGlobalPosition = QCursor::pos();// event->globalPosition();
+    QPoint mouseGlobalPosition = QCursor::pos();
 
-//    qDebug() << "Mouse position: " << mousePosition;
+    //    qDebug() << "Mouse position: " << mousePosition;
 
     lastMousePositionOnScreen_ = mouseGlobalPosition;
 
