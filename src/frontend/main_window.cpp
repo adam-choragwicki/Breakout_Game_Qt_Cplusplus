@@ -21,11 +21,16 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     setCentralWidget(graphicsView_.get());
 
     setPalette(QPalette(Qt::black));
-    setCursor(QCursor{Qt::BlankCursor});
 
     connect(graphicsView_.get(), &GraphicsView::mouseMovedEvent, this, &MainWindow::mouseMovedEvent);
 
     centerOnPrimaryScreen();
+
+    QCursor cursor(Qt::BlankCursor);
+    setCursor(cursor);
+
+    QPoint screenCenter = screen()->geometry().center();
+    QCursor::setPos(screenCenter);
 
     viewportUpdateTimer_ = std::make_unique<QTimer>(this);
     viewportUpdateTimer_->setTimerType(Qt::PreciseTimer);
