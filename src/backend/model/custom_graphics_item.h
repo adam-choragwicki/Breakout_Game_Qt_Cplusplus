@@ -9,7 +9,6 @@ class CustomGraphicsItem : public QGraphicsItem
 {
 public:
     explicit CustomGraphicsItem(const QRectF& rect);
-    CustomGraphicsItem(int x, int y);
 
     [[nodiscard]] QRectF boundingRect() const override;
 

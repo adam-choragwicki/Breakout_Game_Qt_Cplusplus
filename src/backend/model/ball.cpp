@@ -27,17 +27,14 @@ void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 
 void Ball::move()
 {
-//    qDebug() << "Move by: " << static_cast<int>(movementVector_.getHorizontalDirection()) << "," << static_cast<int>(movementVector_.getVerticalDirection());
-
+    //    qDebug() << "Move by: " << static_cast<int>(movementVector_.getHorizontalDirection()) << "," << static_cast<int>(movementVector_.getVerticalDirection());
     moveBy(static_cast<int>(movementVector_.getHorizontalDirection()), static_cast<int>(movementVector_.getVerticalDirection()));
-    //    rect_.translate(static_cast<int>(movementVector_.getHorizontalDirection()), static_cast<int>(movementVector_.getVerticalDirection()));
 }
 
 void Ball::setHorizontalPosition(int x)
 {
     setPos(QPointF(x - rect_.width() / 2, ConfigProd::Ball::POSITION_Y));
-
-//    setPos(QPointF(x + rect_.width() / 2, ConfigProd::Ball::POSITION_Y));
+    //setPos(QPointF(x + rect_.width() / 2, ConfigProd::Ball::POSITION_Y));
 
     //    rect_.moveCenter(QPointF(x, ConfigProd::Ball::POSITION_Y));
     //    rect_.moveCenter(QPointF(x, ConfigProd::Ball::POSITION_Y));

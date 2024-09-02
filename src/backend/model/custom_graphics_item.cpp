@@ -16,11 +16,6 @@ CustomGraphicsItem::CustomGraphicsItem(const QRectF& rect) : rect_(rect), id_(Id
 //
 //}
 
-CustomGraphicsItem::CustomGraphicsItem(int x, int y) : id_(IdGenerator::generateId())
-{
-//    rect_.translate(x, y);
-}
-
 QRectF CustomGraphicsItem::boundingRect() const
 {
     return rect_;
