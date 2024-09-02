@@ -22,6 +22,8 @@ GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsVie
     initializePainterData();
 
     viewport()->installEventFilter(this);
+
+    setFocus();
 }
 
 void GraphicsView::mouseMoveEvent(QMouseEvent* event)

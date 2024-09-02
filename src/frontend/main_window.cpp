@@ -11,7 +11,7 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     spdlog::debug("Initializing view");
 
     setWindowTitle("Breakout");
-    setFocus(Qt::ActiveWindowFocusReason);
+//    setFocus(Qt::ActiveWindowFocusReason);
 
     graphicsView_ = std::make_unique<GraphicsView>(model_.getScene(), this);
 
@@ -54,12 +54,6 @@ void MainWindow::centerOnScreen(QScreen* screen)
     move(screenRect.center() - widgetRect.center());
 }
 
-void MainWindow::closeEvent(QCloseEvent* event)
-{
-    event->ignore();
-    emit applicationTerminationRequest();
-}
-
 //void MainWindow::displayResult(QPainter& painter)
 //{
 //    QFont font("Console", 20, QFont::Bold);
@@ -84,6 +78,12 @@ void MainWindow::mousePressEvent(QMouseEvent* event)
 void MainWindow::keyPressEvent(QKeyEvent* event)
 {
     emit keyPressedEvent(event);
+}
+
+void MainWindow::closeEvent(QCloseEvent* event)
+{
+    event->ignore();
+    emit applicationTerminationRequest();
 }
 
 void MainWindow::updateViewport()
