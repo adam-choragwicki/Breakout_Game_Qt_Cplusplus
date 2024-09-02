@@ -19,10 +19,8 @@ signals:
 public:
     explicit MainWindow(const Model& model);
 
+    void startRendering();
     void updateViewport();
-
-    [[nodiscard]] QTimer* getViewportUpdateTimer() const
-    { return viewportUpdateTimer_.get(); }
 
 private:
     void closeEvent(QCloseEvent*) override;

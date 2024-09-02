@@ -30,6 +30,8 @@ MainWindow::MainWindow(const Model& model) : model_(model)
     viewportUpdateTimer_ = std::make_unique<QTimer>(this);
     viewportUpdateTimer_->setTimerType(Qt::PreciseTimer);
     viewportUpdateTimer_->setInterval(VIEWPORT_UPDATE_INTERVAL);
+
+    connect(viewportUpdateTimer_.get(), &QTimer::timeout, this, &MainWindow::updateViewport);
 }
 
 void MainWindow::centerOnPrimaryScreen()
@@ -97,5 +99,18 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 
 void MainWindow::updateViewport()
 {
+    //    QList<QRectF>& dirtyRegions = model_.getScene()->getDirtyRegions();
+    //
+    //    if(!dirtyRegions.isEmpty())
+    //    {
+    //        view_.updateViewport(dirtyRegions);
+    //        dirtyRegions.clear();
+    //    }
+
     graphicsView_->updateViewport();
+}
+
+void MainWindow::startRendering()
+{
+    viewportUpdateTimer_->start();
 }

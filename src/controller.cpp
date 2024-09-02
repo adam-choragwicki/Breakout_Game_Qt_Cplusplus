@@ -16,13 +16,12 @@ Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(vi
     //    connect(gameLoop_.get(), &GameLoop::endGame, gameManager_.get(), &GameManager::endGame);
 
     subscribeToFrontendEvents();
-    initializeFrontendEvents();
 
     //    connect(&model_.getGameTickTimer(), &QTimer::timeout, this, &Controller::processGameTickEvent);
 
     gameManager_->prepareGameToStart();
 
-    view_.getViewportUpdateTimer()->start();
+    view_.startRendering();
 }
 
 void Controller::subscribeToFrontendEvents()
@@ -31,24 +30,6 @@ void Controller::subscribeToFrontendEvents()
     connect(&view_, &MainWindow::mouseMovedEvent, this, &Controller::processMouseMovedEvent);
     connect(&view_, &MainWindow::keyPressedEvent, this, &Controller::processKeyPressedEvent);
     connect(&view_, &MainWindow::applicationTerminationRequest, this, &Controller::processApplicationTerminationRequest);
-}
-
-void Controller::initializeFrontendEvents()
-{
-    connect(view_.getViewportUpdateTimer(), &QTimer::timeout, this, &Controller::viewportUpdateHandler);
-}
-
-void Controller::viewportUpdateHandler()
-{
-    view_.updateViewport();
-
-    //    QList<QRectF>& dirtyRegions = model_.getScene()->getDirtyRegions();
-    //
-    //    if(!dirtyRegions.isEmpty())
-    //    {
-    //        view_.updateViewport(dirtyRegions);
-    //        dirtyRegions.clear();
-    //    }
 }
 
 void Controller::endGame(GameResult gameResult)

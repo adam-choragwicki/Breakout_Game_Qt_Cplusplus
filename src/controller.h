@@ -14,8 +14,6 @@ public:
     Controller(Model& model, MainWindow& view);
 
 private slots:
-    void viewportUpdateHandler();
-
     //    void processGameTickEvent();
     void processMouseClickedEvent();
     void processMouseMovedEvent(int mousePositionX);
@@ -24,7 +22,6 @@ private slots:
 
 private:
     void subscribeToFrontendEvents();
-    void initializeFrontendEvents();
 
     void endGame(GameResult gameResult);
 
