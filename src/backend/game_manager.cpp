@@ -45,8 +45,6 @@ void GameManager::endGame(GameResult gameResult)
 {
     qDebug() << "GameManager received endGame signal";
 
-    //    gameTickTimer_.stop();
-
     gameState_ = GameState::STOPPED;
     gameLoop_->stop();
 

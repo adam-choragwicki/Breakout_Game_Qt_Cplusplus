@@ -15,6 +15,7 @@ set(SOURCE_FILES
         model/brick_factory.cpp model/brick_factory.h
         collision_detectors.cpp collision_detectors.h
         screen_text_display.cpp screen_text_display.h
+        movement_vector.cpp movement_vector.h
         id_generator.h)
 
 # Create the backend library
