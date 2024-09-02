@@ -72,8 +72,6 @@ bool GraphicsView::eventFilter(QObject* obj, QEvent* event)
 
 void GraphicsView::updateViewport(const QList<QRectF>& dirtyRegions)
 {
-    //    qDebug() << "Dirty regions count: " << dirtyRegions.size();
-
     if(ConfigProd::GPU_OPTIMIZATION)
     {
         for(const QRectF& rect : dirtyRegions)
