@@ -42,7 +42,6 @@ public:
 private:
     enum class GameState
     {
-        //        STOPPED, PAUSED, RUNNING
         READY_TO_START, RUNNING, STOPPED
     } gameState_;
 

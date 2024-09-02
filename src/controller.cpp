@@ -7,7 +7,6 @@ Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(vi
 {
     spdlog::debug("Initializing controller");
 
-    //    inputHandler_ = std::make_unique<InputHandler>(model_);
     gameLoop_ = std::make_unique<GameLoop>(model_);
     gameManager_ = std::make_unique<GameManager>(model_);
 
