@@ -29,7 +29,7 @@ void BricksManager::createBricks()
         {
             BrickFactory::Parameters parameters = brickFactory.generateBrickConstructorParameters(column, row);
 
-            const auto&[_, inserted] = coordinatesToBricksMapping_.insert_or_assign(Coordinates(row, column), std::make_unique<Brick>(parameters.x_, parameters.y_, parameters.id_, parameters.color_));
+            const auto&[_, inserted] = coordinatesToBricksMapping_.insert_or_assign(Coordinates(row, column), std::make_unique<Brick>(parameters.x_, parameters.y_, parameters.color_));
 
             if(!inserted)
             {

@@ -1,7 +1,6 @@
 #include "model.h"
 #include "spdlog/spdlog.h"
 #include "config_prod.h"
-#include "coordinates.h"
 
 Model::Model()
 {

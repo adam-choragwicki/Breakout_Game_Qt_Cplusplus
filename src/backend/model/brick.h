@@ -7,7 +7,7 @@
 class Brick : public CustomGraphicsItem
 {
 public:
-    Brick(int x, int y, unsigned int id, QColor color);
+    Brick(int x, int y, QColor color);
     ~Brick() override;
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;

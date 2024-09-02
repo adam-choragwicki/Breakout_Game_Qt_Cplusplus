@@ -9,7 +9,6 @@ public:
     {
         int x_{};
         int y_{};
-        unsigned int id_{};
         QColor color_;
     };
 
@@ -17,6 +16,4 @@ public:
 
 private:
     const std::vector<QColor> COLORS = {Qt::red, QColor{"orange"}, Qt::green, Qt::yellow, Qt::cyan};
-
-    unsigned int count_ = 0;
 };

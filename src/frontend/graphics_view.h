@@ -23,7 +23,7 @@ public:
     //    void updateViewport(const QList<QRectF>& dirtyRegions);
     void updateViewport();
 
-    void leaveEvent(QEvent* event);
+    void leaveEvent(QEvent* event) override;
 
 private slots:
     void updateFPS();
