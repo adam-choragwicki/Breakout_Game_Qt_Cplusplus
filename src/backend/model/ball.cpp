@@ -2,7 +2,7 @@
 #include "config_prod.h"
 #include <QPainter>
 
-Ball::Ball(int x, int y) : CustomGraphicsItem(x, y), INITIAL_X(x), INITIAL_Y(y), INITIAL_DIRECTION(HorizontalDirection::EAST, VerticalDirection::NORTH), direction_(INITIAL_DIRECTION)
+Ball::Ball(int x, int y) : CustomGraphicsItem(x, y), INITIAL_X(x), INITIAL_Y(y), INITIAL_MOVEMENT_VECTOR(HorizontalDirection::EAST, VerticalDirection::NORTH), movementVector_(INITIAL_MOVEMENT_VECTOR)
 {
     rect_.setSize(QSize(ConfigProd::Ball::RADIUS, ConfigProd::Ball::RADIUS));
 }
@@ -10,7 +10,7 @@ Ball::Ball(int x, int y) : CustomGraphicsItem(x, y), INITIAL_X(x), INITIAL_Y(y),
 void Ball::reset()
 {
     rect_.moveTo(INITIAL_X, INITIAL_Y);
-    direction_ = INITIAL_DIRECTION;
+    movementVector_ = INITIAL_MOVEMENT_VECTOR;
 }
 
 void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
@@ -24,7 +24,7 @@ void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 
 void Ball::move()
 {
-    rect_.translate(static_cast<int>(direction_.getHorizontalDirection()), static_cast<int>(direction_.getVerticalDirection()));
+    rect_.translate(static_cast<int>(movementVector_.getHorizontalDirection()), static_cast<int>(movementVector_.getVerticalDirection()));
 }
 
 void Ball::setHorizontalPosition(int x)
@@ -34,29 +34,29 @@ void Ball::setHorizontalPosition(int x)
 
 void Ball::bounceHorizontally()
 {
-    if(direction_.getVerticalDirection() == VerticalDirection::NORTH)
+    if(movementVector_.getVerticalDirection() == VerticalDirection::NORTH)
     {
-        direction_.setVerticalDirection(VerticalDirection::SOUTH);
+        movementVector_.setVerticalDirection(VerticalDirection::SOUTH);
     }
     else
     {
-        direction_.setVerticalDirection(VerticalDirection::NORTH);
+        movementVector_.setVerticalDirection(VerticalDirection::NORTH);
     }
 }
 
 void Ball::bounceVertically()
 {
-    if(direction_.getHorizontalDirection() == HorizontalDirection::EAST)
+    if(movementVector_.getHorizontalDirection() == HorizontalDirection::EAST)
     {
-        direction_.setHorizontalDirection(HorizontalDirection::WEST);
+        movementVector_.setHorizontalDirection(HorizontalDirection::WEST);
     }
     else
     {
-        direction_.setHorizontalDirection(HorizontalDirection::EAST);
+        movementVector_.setHorizontalDirection(HorizontalDirection::EAST);
     }
 }
 
 bool Ball::isFallingDown()
 {
-    return direction_.getVerticalDirection() == VerticalDirection::SOUTH;
+    return movementVector_.getVerticalDirection() == VerticalDirection::SOUTH;
 }

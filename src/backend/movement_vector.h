@@ -1,53 +1,39 @@
-//#pragma once
-//
-//#include "direction.h"
-//
-//class QString;
-//class QPointF;
-//
-//class MovementVector
-//{
-//public:
-//    MovementVector() = default;
-//    MovementVector(double horizontalSpeed, double verticalSpeed);
-//
-//    [[nodiscard]] double getHorizontalSpeed() const
-//    { return horizontalSpeed_; }
-//
-//    [[nodiscard]] double getVerticalSpeed() const
-//    { return verticalSpeed_; }
-//
-//    void setHorizontalSpeed(double horizontalSpeed)
-//    { horizontalSpeed_ = horizontalSpeed; }
-//
-//    void setVerticalSpeed(double verticalSpeed)
-//    { verticalSpeed_ = verticalSpeed; }
-//
-//    [[nodiscard]] Direction getHorizontalDirection() const;
-//
-//    void increaseX();
-//
-//    void decreaseX();
-//
-//    void increaseY();
-//
-//    void decreaseY();
-//
-//    void jump();
-//
-//    void applyAirFriction();
-//
-//    void applyRopeFriction();
-//
-//    void applyGravity();
-//
-//    [[nodiscard]] bool isZero() const;
-//
-//    [[nodiscard]] QString toString() const;
-//
-//    [[nodiscard]] QPointF toQPointF() const;
-//
-//private:
-//    double horizontalSpeed_{};
-//    double verticalSpeed_{};
-//};
+#pragma once
+
+class QString;
+class QPointF;
+
+enum class HorizontalDirection
+{
+    WEST = -1, EAST = +1
+};
+
+enum class VerticalDirection
+{
+    NORTH = -1, SOUTH = +1
+};
+
+class MovementVector
+{
+public:
+    MovementVector(HorizontalDirection horizontalDirection, VerticalDirection verticalDirection);
+
+    [[nodiscard]] HorizontalDirection getHorizontalDirection() const
+    { return horizontalDirection_; }
+
+    [[nodiscard]] VerticalDirection getVerticalDirection() const
+    { return verticalDirection_; }
+
+    void setHorizontalDirection(HorizontalDirection horizontalDirection)
+    { horizontalDirection_ = horizontalDirection; }
+
+    void setVerticalDirection(VerticalDirection verticalDirection)
+    { verticalDirection_ = verticalDirection; }
+
+    //    [[nodiscard]] QString toString() const;
+    //    [[nodiscard]] QPointF toQPointF() const;
+
+private:
+    HorizontalDirection horizontalDirection_{};
+    VerticalDirection verticalDirection_{};
+};

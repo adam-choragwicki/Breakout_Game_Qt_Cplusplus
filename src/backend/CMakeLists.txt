@@ -10,7 +10,6 @@ set(SOURCE_FILES
         model/paddle.h model/paddle.cpp
         model/ball.h model/ball.cpp
         model/brick.h model/brick.cpp
-        model/direction.h model/direction.cpp
         model/bricks_manager.cpp model/bricks_manager.h
         model/brick_factory.cpp model/brick_factory.h
         collision_detectors.cpp collision_detectors.h

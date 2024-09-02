@@ -1,7 +1,7 @@
 #pragma once
 
 #include "custom_graphics_item.h"
-#include "direction.h"
+#include "movement_vector.h"
 
 class Ball : public CustomGraphicsItem
 {
@@ -24,7 +24,7 @@ private:
 
     const int INITIAL_X;
     const int INITIAL_Y;
-    const Direction INITIAL_DIRECTION;
 
-    Direction direction_;
+    const MovementVector INITIAL_MOVEMENT_VECTOR;
+    MovementVector movementVector_;
 };
