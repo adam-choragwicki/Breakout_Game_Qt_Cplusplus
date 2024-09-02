@@ -7,6 +7,7 @@
 
 GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsView(scene, parent)
 {
+    setMouseTracking(true);
     setViewportUpdateMode(QGraphicsView::NoViewportUpdate);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -71,7 +72,7 @@ bool GraphicsView::eventFilter(QObject* obj, QEvent* event)
 
 void GraphicsView::updateViewport(const QList<QRectF>& dirtyRegions)
 {
-//    qDebug() << "Dirty regions count: " << dirtyRegions.size();
+    //    qDebug() << "Dirty regions count: " << dirtyRegions.size();
 
     if(ConfigProd::GPU_OPTIMIZATION)
     {

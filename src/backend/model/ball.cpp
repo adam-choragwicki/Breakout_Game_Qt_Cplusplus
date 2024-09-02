@@ -2,14 +2,17 @@
 #include "config_prod.h"
 #include <QPainter>
 
-Ball::Ball(int x, int y) : CustomGraphicsItem(x, y), INITIAL_X(x), INITIAL_Y(y), INITIAL_MOVEMENT_VECTOR(HorizontalDirection::EAST, VerticalDirection::NORTH), movementVector_(INITIAL_MOVEMENT_VECTOR)
+Ball::Ball(int x, int y) :
+        CustomGraphicsItem(QRectF(0, 0, ConfigProd::Ball::RADIUS, ConfigProd::Ball::RADIUS)), INITIAL_X(x), INITIAL_Y(y), INITIAL_MOVEMENT_VECTOR(HorizontalDirection::EAST, VerticalDirection::NORTH), movementVector_(INITIAL_MOVEMENT_VECTOR)
 {
-    rect_.setSize(QSize(ConfigProd::Ball::RADIUS, ConfigProd::Ball::RADIUS));
+    setPos(x, y);
 }
 
 void Ball::reset()
 {
-    rect_.moveTo(INITIAL_X, INITIAL_Y);
+    setPos(INITIAL_X, INITIAL_Y);
+
+    //    rect_.moveTo(INITIAL_X, INITIAL_Y);
     movementVector_ = INITIAL_MOVEMENT_VECTOR;
 }
 
@@ -24,12 +27,20 @@ void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 
 void Ball::move()
 {
-    rect_.translate(static_cast<int>(movementVector_.getHorizontalDirection()), static_cast<int>(movementVector_.getVerticalDirection()));
+    qDebug() << "Move by: " << static_cast<int>(movementVector_.getHorizontalDirection()) << "," << static_cast<int>(movementVector_.getVerticalDirection());
+
+    moveBy(static_cast<int>(movementVector_.getHorizontalDirection()), static_cast<int>(movementVector_.getVerticalDirection()));
+    //    rect_.translate(static_cast<int>(movementVector_.getHorizontalDirection()), static_cast<int>(movementVector_.getVerticalDirection()));
 }
 
 void Ball::setHorizontalPosition(int x)
 {
-    rect_.moveCenter(QPointF(x, ConfigProd::Ball::POSITION_Y));
+    setPos(QPointF(x - rect_.width() / 2, ConfigProd::Ball::POSITION_Y));
+
+//    setPos(QPointF(x + rect_.width() / 2, ConfigProd::Ball::POSITION_Y));
+
+    //    rect_.moveCenter(QPointF(x, ConfigProd::Ball::POSITION_Y));
+    //    rect_.moveCenter(QPointF(x, ConfigProd::Ball::POSITION_Y));
 }
 
 void Ball::bounceHorizontally()
