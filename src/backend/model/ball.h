@@ -10,10 +10,9 @@ public:
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
 
-    bool isFallingDown()
-    {
-        return direction_.getVerticalDirection() == VerticalDirection::SOUTH;
-    }
+    void setHorizontalPosition(int x);
+
+    bool isFallingDown();
 
     void move();
     void bounceHorizontally();

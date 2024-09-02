@@ -21,6 +21,11 @@ void Ball::move()
     rect_.translate(static_cast<int>(direction_.getHorizontalDirection()), static_cast<int>(direction_.getVerticalDirection()));
 }
 
+void Ball::setHorizontalPosition(int x)
+{
+    rect_.moveCenter(QPointF(x, ConfigProd::Ball::POSITION_Y));
+}
+
 void Ball::bounceHorizontally()
 {
     if(direction_.getVerticalDirection() == VerticalDirection::NORTH)
@@ -43,4 +48,9 @@ void Ball::bounceVertically()
     {
         direction_.setHorizontalDirection(HorizontalDirection::EAST);
     }
+}
+
+bool Ball::isFallingDown()
+{
+    return direction_.getVerticalDirection() == VerticalDirection::SOUTH;
 }

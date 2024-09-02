@@ -25,7 +25,6 @@ void Model::reset()
 
     paddle_ = std::make_unique<Paddle>(ConfigProd::Paddle::POSITION_X, ConfigProd::Paddle::POSITION_Y);
     ball_ = std::make_unique<Ball>(ConfigProd::Ball::POSITION_X, ConfigProd::Ball::POSITION_Y);
-    //    gameStateManager_ = std::make_unique<GameStateManager>(gameTickTimer_);
 
     scene_->addItem(paddle_.get());
     scene_->addItem(ball_.get());

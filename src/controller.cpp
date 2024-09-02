@@ -57,6 +57,11 @@ void Controller::processMouseMovedEvent(int mousePositionX)
     if(mousePositionX > ConfigProd::Paddle::WIDTH / 2 && mousePositionX < ConfigProd::Arena::WIDTH - ConfigProd::Paddle::WIDTH / 2)
     {
         model_.getPaddle().setHorizontalPosition(mousePositionX);
+
+        if(!gameManager_->isRunning())
+        {
+            model_.getBall().setHorizontalPosition(mousePositionX);
+        }
     }
 }
 

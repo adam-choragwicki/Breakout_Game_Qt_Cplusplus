@@ -25,12 +25,12 @@ public:
 private:
     void closeEvent(QCloseEvent*) override;
     void mousePressEvent(QMouseEvent* event) override;
-//    void mouseMoveEvent(QMouseEvent* event) override;
+    //    void mouseMoveEvent(QMouseEvent* event) override;
     void keyPressEvent(QKeyEvent* event) override;
     void centerOnScreen(QScreen* screen);
     void centerOnPrimaryScreen();
 
-//    void displayResult(QPainter& painter);
+    //    void displayResult(QPainter& painter);
 
     const Model& model_;
 
