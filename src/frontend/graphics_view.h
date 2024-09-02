@@ -29,17 +29,12 @@ private slots:
     void updateFPS();
 
 private:
-    void initializePainterData();
-
     void mouseMoveEvent(QMouseEvent* event) override;
 
     QTimer fpsTimer_;
     QElapsedTimer frameTimeTimer_;
     int frameCount_{};
     double currentFPS_{};
-
-    QFont fpsCounterFont_;
-    QPen fpsCounterPen_;
 
     QPoint lastMousePositionOnScreen_;
 };

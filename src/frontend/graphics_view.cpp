@@ -17,8 +17,6 @@ GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsVie
     fpsTimer_.start(500);
     frameTimeTimer_.start();
 
-    initializePainterData();
-
     viewport()->installEventFilter(this);
 
     QPoint screenCenter = screen()->geometry().center();
@@ -74,15 +72,6 @@ bool GraphicsView::eventFilter(QObject* obj, QEvent* event)
     }
 
     return QGraphicsView::eventFilter(obj, event);
-}
-
-void GraphicsView::initializePainterData()
-{
-    fpsCounterFont_.setFamily("Arial");
-    fpsCounterFont_.setPointSize(20);
-    fpsCounterFont_.setBold(true);
-
-    fpsCounterPen_.setColor(Qt::red);
 }
 
 void GraphicsView::updateViewport()

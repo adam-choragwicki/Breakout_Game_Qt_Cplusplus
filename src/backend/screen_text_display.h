@@ -14,9 +14,9 @@ public:
     { gameManager_ = gameManager; }
 
 private:
+    void initializePainterData();
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
 
-private:
     GameManager* gameManager_{};
 
     const QPen penRed_{Qt::red};

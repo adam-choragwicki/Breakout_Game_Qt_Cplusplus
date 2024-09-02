@@ -16,7 +16,7 @@ BricksManager::~BricksManager()
 void BricksManager::reset()
 {
     coordinatesToBricksMapping_.clear();
-//    createBricks();
+    createBricks();
 }
 
 void BricksManager::createBricks()
