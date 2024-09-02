@@ -64,7 +64,7 @@ void GameLoop::checkAndProcessBallCollisionWithArenaEdges(const QRect& ballRect)
 
 void GameLoop::checkAndProcessBallCollisionWithBrick(const QRect& ballRect)
 {
-    for(const auto& brick : model_.getBricksContainer())
+    for(const auto& brick : model_.getBricksManager())
     {
         const QRect brickRect = brick.getRect().toRect();
 
@@ -86,9 +86,9 @@ void GameLoop::checkAndProcessBallCollisionWithBrick(const QRect& ballRect)
                 throw std::runtime_error("Error, ball collision with brick detected, but collision details processed incorrectly");
             }
 
-            model_.getBricksContainer().removeBrick(brick);
+            model_.getBricksManager().removeBrick(brick);
 
-            if(model_.getBricksContainer().isEmpty())
+            if(model_.getBricksManager().isEmpty())
             {
                 emit endGame(GameResult::WIN);
                 return;

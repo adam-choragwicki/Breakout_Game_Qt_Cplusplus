@@ -10,7 +10,7 @@ Model::Model()
 
     paddle_ = std::make_unique<Paddle>(ConfigProd::Paddle::POSITION_X, ConfigProd::Paddle::POSITION_Y);
     ball_ = std::make_unique<Ball>(ConfigProd::Ball::POSITION_X, ConfigProd::Ball::POSITION_Y);
-    bricksContainer_ = std::make_unique<BricksContainer>();
+    bricksManager_ = std::make_unique<BricksManager>();
 
     screenTextDisplay_ = std::make_unique<ScreenTextDisplay>();
 
@@ -25,7 +25,7 @@ void Model::reset()
 
     paddle_->reset();
     ball_->reset();
-    bricksContainer_->reset();
+    bricksManager_->reset();
 
     addBricksToScene();
 }
@@ -42,7 +42,7 @@ void Model::addItemsToScene()
 
 void Model::addBricksToScene()
 {
-    for(const Brick& brick : *bricksContainer_)
+    for(const Brick& brick : *bricksManager_)
     {
         scene_->addItem(&(const_cast<Brick&>(brick)));
     }

@@ -1,24 +1,24 @@
-#include "bricks_container.h"
+#include "bricks_manager.h"
 #include "brick_factory.h"
 #include "config_prod.h"
 
-BricksContainer::BricksContainer()
+BricksManager::BricksManager()
 {
     qDebug() << "Creating bricks container";
 }
 
-BricksContainer::~BricksContainer()
+BricksManager::~BricksManager()
 {
     qDebug() << "Destroying bricks container";
 }
 
-void BricksContainer::reset()
+void BricksManager::reset()
 {
     bricks_.clear();
     createBricks();
 }
 
-void BricksContainer::createBricks()
+void BricksManager::createBricks()
 {
     BrickFactory brickFactory;
 
@@ -38,22 +38,22 @@ void BricksContainer::createBricks()
     }
 }
 
-bool BricksContainer::isEmpty()
+bool BricksManager::isEmpty()
 {
     return bricks_.empty();
 }
 
-std::set<Brick>::const_iterator BricksContainer::begin() const
+std::set<Brick>::const_iterator BricksManager::begin() const
 {
     return bricks_.begin();
 }
 
-std::set<Brick>::const_iterator BricksContainer::end() const
+std::set<Brick>::const_iterator BricksManager::end() const
 {
     return bricks_.end();
 }
 
-void BricksContainer::removeBrick(const Brick& brick)
+void BricksManager::removeBrick(const Brick& brick)
 {
     unsigned int elementsErased = bricks_.erase(brick);
 
@@ -63,7 +63,7 @@ void BricksContainer::removeBrick(const Brick& brick)
     }
 }
 
-void BricksContainer::hideAllBricks()
+void BricksManager::hideAllBricks()
 {
     for(const Brick& brick : bricks_)
     {
@@ -71,7 +71,7 @@ void BricksContainer::hideAllBricks()
     }
 }
 
-void BricksContainer::showAllBricks()
+void BricksManager::showAllBricks()
 {
     for(const Brick& brick : bricks_)
     {

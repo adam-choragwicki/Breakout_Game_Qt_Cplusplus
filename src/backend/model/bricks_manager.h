@@ -4,11 +4,11 @@
 #include <memory>
 #include "brick.h"
 
-class BricksContainer
+class BricksManager
 {
 public:
-    BricksContainer();
-    ~BricksContainer();
+    BricksManager();
+    ~BricksManager();
 
     void reset();
 

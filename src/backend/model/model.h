@@ -4,9 +4,8 @@
 #include "brick.h"
 #include "paddle.h"
 #include "ball.h"
-#include "bricks_container.h"
+#include "bricks_manager.h"
 #include "screen_text_display.h"
-
 #include <memory>
 #include <QTimer>
 
@@ -19,14 +18,11 @@ public:
     [[nodiscard]] GraphicsScene* getScene() const
     { return scene_.get(); }
 
-    //    [[nodiscard]] const QTimer& getGameTickTimer() const
-    //    { return gameTickTimer_; }
+    [[nodiscard]] const BricksManager& getBricksManager() const
+    { return *bricksManager_; }
 
-    [[nodiscard]] const BricksContainer& getBricksContainer() const
-    { return *bricksContainer_; }
-
-    [[nodiscard]] BricksContainer& getBricksContainer()
-    { return *bricksContainer_; }
+    [[nodiscard]] BricksManager& getBricksManager()
+    { return *bricksManager_; }
 
     [[nodiscard]] const Paddle& getPaddle() const
     { return *paddle_; }
@@ -46,24 +42,15 @@ public:
     [[nodiscard]] ScreenTextDisplay& getScreenTextDisplay()
     { return *screenTextDisplay_; }
 
-    //    [[nodiscard]] const GameStateManager& getGameStateManager() const
-    //    { return *gameStateManager_; }
-    //
-    //    [[nodiscard]] GameStateManager& getGameStateManager()
-    //    { return *gameStateManager_; }
-
 private:
     void addItemsToScene();
     void addBricksToScene();
 
-    //    QTimer gameTickTimer_;
-
     std::unique_ptr<GraphicsScene> scene_;
 
-    std::unique_ptr<BricksContainer> bricksContainer_;
+    std::unique_ptr<BricksManager> bricksManager_;
     std::unique_ptr<Paddle> paddle_;
     std::unique_ptr<Ball> ball_;
 
     std::unique_ptr<ScreenTextDisplay> screenTextDisplay_;
-    //    std::unique_ptr<GameStateManager> gameStateManager_;
 };

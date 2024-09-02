@@ -34,7 +34,7 @@ void GameManager::prepareGameToStart()
     model_.getPaddle().show();
     model_.getBall().show();
 
-    model_.getBricksContainer().showAllBricks();
+    model_.getBricksManager().showAllBricks();
 
     gameState_ = GameState::READY_TO_START;
 
@@ -53,7 +53,7 @@ void GameManager::endGame(GameResult gameResult)
     model_.getPaddle().hide();
     model_.getBall().hide();
 
-    model_.getBricksContainer().hideAllBricks();
+    model_.getBricksManager().hideAllBricks();
 
     gameResult_ = gameResult;
 

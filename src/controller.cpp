@@ -73,11 +73,6 @@ void Controller::processKeyPressedEvent(QKeyEvent* keyEvent)
         qDebug() << "Escape clicked";
         processApplicationTerminationRequest();
     }
-
-    //    if(keyEvent->key() == Qt::Key_P)
-    //    {
-    //        model_.getGameStateManager().togglePause();
-    //    }
 }
 
 void Controller::processApplicationTerminationRequest()
