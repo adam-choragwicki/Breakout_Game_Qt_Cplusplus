@@ -26,7 +26,6 @@ private:
     void subscribeToFrontendEvents();
     void initializeFrontendEvents();
 
-    void startGame();
     void endGame(GameResult gameResult);
 
     Model& model_;

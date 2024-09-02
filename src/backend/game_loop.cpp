@@ -24,7 +24,7 @@ void GameLoop::stop()
 
 void GameLoop::execute()
 {
-//    spdlog::debug("Loop {}: ", loopCounter_);
+    //    spdlog::debug("Loop {}: ", loopCounter_);
 
     model_.getBall().move();
     checkAndProcessBallCollisions();
@@ -45,8 +45,8 @@ void GameLoop::checkAndProcessBallCollisionWithArenaEdges(const QRect& ballRect)
 {
     if(ArenaEdgeCollisionDetector::checkCollisionWithArenaBottomEdge(ballRect))
     {
-        model_.getBall().bounceHorizontally();
-        //        endGame(GameResult::LOST);
+//        model_.getBall().bounceHorizontally();
+        endGame(GameResult::LOST);
     }
 
     if(ArenaEdgeCollisionDetector::checkCollisionWithArenaTopEdge(ballRect))

@@ -23,8 +23,6 @@ Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(vi
     gameManager_->prepareGameToStart();
 
     view_.getViewportUpdateTimer()->start();
-
-    gameManager_->startGame();
 }
 
 void Controller::subscribeToFrontendEvents()
@@ -53,12 +51,6 @@ void Controller::viewportUpdateHandler()
     //    }
 }
 
-void Controller::startGame()
-{
-    //    model_.reset();
-    //    model_.getGameStateManager().startGame();
-}
-
 void Controller::endGame(GameResult gameResult)
 {
     //    model_.getGameStateManager().endGame(gameResult);
@@ -74,15 +66,21 @@ void Controller::endGame(GameResult gameResult)
 
 void Controller::processMouseClickedEvent()
 {
-    //    if(model_.getGameStateManager().isStopped())
-    //    {
-    //        startGame();
-    //    }
+    //    qDebug() << "Mouse clicked";
+
+    if(gameManager_->isReadyToStart())
+    {
+        gameManager_->startGame();
+    }
+    else
+    {
+        spdlog::warn("Mouse clicked but game is not in READY_TO_START state");
+    }
 }
 
 void Controller::processMouseMovedEvent(int mousePositionX)
 {
-//    qDebug() << "Mouse moved event";
+    //    qDebug() << "Mouse moved event";
 
     if(mousePositionX > ConfigProd::Paddle::WIDTH / 2 && mousePositionX < ConfigProd::Arena::WIDTH - ConfigProd::Paddle::WIDTH / 2)
     {
