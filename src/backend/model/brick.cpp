@@ -9,7 +9,7 @@ Brick::Brick(int x, int y, QColor color) : CustomGraphicsItem(QRectF(0, 0, Confi
 
 Brick::~Brick()
 {
-    //    qDebug() << "Destroying brick at " << coordinates_.toString();
+    //qDebug() << "Destroying brick at " << coordinates_.toString();
 }
 
 void Brick::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

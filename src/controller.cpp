@@ -33,7 +33,7 @@ void Controller::subscribeToFrontendEvents()
 
 void Controller::processMouseClickedEvent()
 {
-    //    qDebug() << "Mouse clicked";
+    //qDebug() << "Mouse clicked";
 
     if(gameManager_->isReadyToStart())
     {
@@ -52,7 +52,7 @@ void Controller::processMouseClickedEvent()
 
 void Controller::processMouseMovedEvent(int mousePositionX)
 {
-    //    qDebug() << "Mouse moved event";
+    //qDebug() << "Mouse moved event";
 
     if(mousePositionX > ConfigProd::Paddle::WIDTH / 2 && mousePositionX < ConfigProd::Arena::WIDTH - ConfigProd::Paddle::WIDTH / 2)
     {
@@ -69,7 +69,6 @@ void Controller::processKeyPressedEvent(QKeyEvent* keyEvent)
 {
     if(keyEvent->key() == Qt::Key::Key_Escape)
     {
-        qDebug() << "Escape clicked";
         processApplicationTerminationRequest();
     }
 }

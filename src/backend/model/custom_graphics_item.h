@@ -14,11 +14,6 @@ public:
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override = 0;
 
-//    void setPositionOnSceneAtCoordinates(Coordinates& coordinates);
-
-    [[nodiscard]] uint getId() const
-    { return id_; }
-
 protected:
     bool drawRect_{};
 

@@ -98,5 +98,5 @@ void MainWindow::setMousePositionAtScreenCenter()
     QPoint screenCenter = screen()->geometry().center();
     QCursor::setPos(screenCenter);
 
-    qDebug() << "Placing cursor initially on " << screenCenter;
+    //qDebug() << "Placing cursor initially on " << screenCenter;
 }

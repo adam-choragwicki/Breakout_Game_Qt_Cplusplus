@@ -3,26 +3,6 @@
 #include "model/ball.h"
 #include "config_prod.h"
 
-//bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaBottomEdge(const QRect& ballRect)
-//{
-//    return ballRect.bottom() == ConfigProd::Arena::BOTTOM_EDGE;
-//}
-//
-//bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaTopEdge(const QRect& ballRect)
-//{
-//    return ballRect.top() == ConfigProd::Arena::TOP_EDGE;
-//}
-//
-//bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaLeftEdge(const QRect& ballRect)
-//{
-//    return ballRect.left() == ConfigProd::Arena::LEFT_EDGE;
-//}
-//
-//bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaRightEdge(const QRect& ballRect)
-//{
-//    return ballRect.right() == ConfigProd::Arena::RIGHT_EDGE;
-//}
-
 bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaBoundary(const Ball& ball, ArenaBoundary* arenaBoundary)
 {
     const MovementVector& originalMovementVector = ball.getMovementVector();

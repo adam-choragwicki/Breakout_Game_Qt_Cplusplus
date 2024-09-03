@@ -17,7 +17,6 @@ int main(int argc, char* argv[])
 //TODO implement custom speed vectors
 //TODO lock cursor inside window
 //TODO add angle-based bounces
-//TODO add tests
-//TODO cleanup in Config.h and adjust to full-screen
+//TODO adjust to full-screen
 //TODO add score
 //TODO add additional graphic effects when breaking brick

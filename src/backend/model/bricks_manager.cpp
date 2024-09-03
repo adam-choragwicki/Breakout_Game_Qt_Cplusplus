@@ -2,27 +2,29 @@
 #include "brick_factory.h"
 #include "config_prod.h"
 #include "coordinates.h"
+#include "spdlog/spdlog.h"
 
 BricksManager::BricksManager()
 {
-    qDebug() << "Creating bricks container";
+    //qDebug() << "Creating bricks container";
     createBricks();
 }
 
 BricksManager::~BricksManager()
 {
-    qDebug() << "Destroying bricks container";
+    //qDebug() << "Destroying bricks container";
 }
 
 void BricksManager::reset()
 {
+    spdlog::debug("Destroying bricks");
     coordinatesToBricksMapping_.clear();
     createBricks();
 }
 
 void BricksManager::createBricks()
 {
-    qDebug() << "Creating bricks";
+    spdlog::debug("Creating bricks");
 
     BrickFactory brickFactory;
 

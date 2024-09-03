@@ -30,7 +30,7 @@ void GraphicsView::mouseMoveEvent(QMouseEvent* event)
     QPoint mousePosition = event->pos();
     QPoint mouseGlobalPosition = QCursor::pos();
 
-    //    qDebug() << "Mouse position: " << mousePosition;
+    //qDebug() << "Mouse position: " << mousePosition;
 
     lastMousePositionOnScreen_ = mouseGlobalPosition;
 

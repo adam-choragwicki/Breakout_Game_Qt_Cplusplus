@@ -8,16 +8,6 @@ class Ball;
 class ArenaBoundaryCollisionDetector
 {
 public:
-    //    static bool checkCollisionWithArenaBottomEdge(const QRect& ballRect);
-    //    static bool checkCollisionWithArenaTopEdge(const QRect& ballRect);
-    //    static bool checkCollisionWithArenaLeftEdge(const QRect& ballRect);
-    //    static bool checkCollisionWithArenaRightEdge(const QRect& ballRect);
-
-    //    static bool checkCollisionWithArenaBottomBoundary(const QRect& ballRect, const std::vector<ArenaBoundary*>& arenaBoundaries);
-    //    static bool checkCollisionWithArenaTopBoundary(const QRect& ballRect, const std::vector<ArenaBoundary*>& arenaBoundaries);
-    //    static bool checkCollisionWithArenaLeftBoundary(const QRect& ballRect, const std::vector<ArenaBoundary*>& arenaBoundaries);
-    //    static bool checkCollisionWithArenaRightBoundary(const QRect& ballRect, const std::vector<ArenaBoundary*>& arenaBoundaries);
-
     static bool checkCollisionWithArenaBottomBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary);
     static bool checkCollisionWithArenaTopBoundary(const Ball& ball, ArenaBoundary* topArenaBoundary);
     static bool checkCollisionWithArenaLeftBoundary(const Ball& ball, ArenaBoundary* leftArenaBoundary);

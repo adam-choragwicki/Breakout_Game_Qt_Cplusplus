@@ -25,11 +25,6 @@ public:
         {
             qDebug() << "Logging to console only";
         }
-        //else
-        //{
-        //    qDebug() << "Logging disabled";
-        //    spdlog::set_level(spdlog::level::off);
-        //}
     }
 
 private:
