@@ -7,6 +7,7 @@
 
 GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsView(scene, parent)
 {
+    setCacheMode(QGraphicsView::CacheBackground);
     setMouseTracking(true);
     setViewportUpdateMode(QGraphicsView::NoViewportUpdate);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

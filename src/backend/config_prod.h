@@ -31,7 +31,7 @@ namespace ConfigProd
 
     namespace Ball
     {
-        const int RADIUS = 10;
+        const int RADIUS = 20;
         const int POSITION_X = Paddle::POSITION_X + Paddle::WIDTH / 2;
         const int POSITION_Y = Paddle::POSITION_Y - 14;
         extern const int SPEED_MULTIPLIER;

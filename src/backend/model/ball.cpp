@@ -7,6 +7,10 @@ Ball::Ball(int x, int y) :
 {
     setPos(x, y);
     movementVector_ = INITIAL_MOVEMENT_VECTOR;
+
+    setFlag(QGraphicsItem::ItemIsMovable, true);
+    setFlag(QGraphicsItem::ItemClipsToShape, false);
+    setFlag(QGraphicsItem::ItemClipsChildrenToShape, false);
 }
 
 void Ball::reset()
@@ -19,6 +23,7 @@ void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 {
     CustomGraphicsItem::paint(painter, option, widget);
 
+    painter->setRenderHint(QPainter::Antialiasing);
     painter->setPen(Qt::NoPen);
     painter->setBrush(COLOR);
     painter->drawEllipse(rect_);

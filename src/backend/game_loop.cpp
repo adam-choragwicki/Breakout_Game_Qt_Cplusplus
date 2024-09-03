@@ -71,7 +71,7 @@ void GameLoop::checkAndProcessBallCollisionWithBrick(const QRect& ballRect)
 
         if(ballRect.intersects(brickRect))
         {
-            qDebug() << "Collision with brick";
+            //qDebug() << "Collision with brick";
 
             const QPoint ballRectCenter = ballRect.center();
             const QPoint brickRectCenter = brickRect.center();

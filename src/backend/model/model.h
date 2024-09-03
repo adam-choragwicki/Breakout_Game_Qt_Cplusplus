@@ -19,44 +19,29 @@ public:
     [[nodiscard]] GraphicsScene* getScene() const
     { return scene_.get(); }
 
-    [[nodiscard]] const BricksManager& getBricksManager() const
-    { return *bricksManager_; }
-
     [[nodiscard]] BricksManager& getBricksManager()
     { return *bricksManager_; }
-
-    [[nodiscard]] const Paddle& getPaddle() const
-    { return *paddle_; }
 
     [[nodiscard]] Paddle& getPaddle()
     { return *paddle_; }
 
-    [[nodiscard]] const Ball& getBall() const
-    { return *ball_; }
-
     [[nodiscard]] Ball& getBall()
     { return *ball_; }
 
-    [[nodiscard]] const ScreenTextDisplay& getScreenTextDisplay() const
-    { return *screenTextDisplay_; }
-
     [[nodiscard]] ScreenTextDisplay& getScreenTextDisplay()
     { return *screenTextDisplay_; }
-
-//    [[nodiscard]] const std::vector<ArenaBoundary*>& getWorldBoundaries() const
-//    { return worldBoundaries_; }
 
     [[nodiscard]] ArenaBoundary* getLeftArenaBoundary() const
     { return leftArenaBoundary_; }
 
     [[nodiscard]] ArenaBoundary* getRightArenaBoundary() const
-    {return rightArenaBoundary_;}
+    { return rightArenaBoundary_; }
 
     [[nodiscard]] ArenaBoundary* getTopArenaBoundary() const
-    {return topArenaBoundary_;}
+    { return topArenaBoundary_; }
 
     [[nodiscard]] ArenaBoundary* getBottomArenaBoundary() const
-    {return bottomArenaBoundary_;}
+    { return bottomArenaBoundary_; }
 
 private:
     void addItemsToScene();
@@ -65,8 +50,6 @@ private:
     void initWorldBoundaries();
 
     std::unique_ptr<GraphicsScene> scene_;
-
-    //    std::vector<ArenaBoundary*> worldBoundaries_{};
 
     ArenaBoundary* leftArenaBoundary_{};
     ArenaBoundary* rightArenaBoundary_{};
