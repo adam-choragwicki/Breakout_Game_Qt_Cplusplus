@@ -4,13 +4,14 @@
 #include "spdlog/spdlog.h"
 #include "common.h"
 #include "coordinates.h"
+#include "config_prod.h"
 #include <QTimer>
 
 GameLoop::GameLoop(Model& model) : model_(model)
 {
     gameLoopTimer_ = std::make_unique<QTimer>();
     gameLoopTimer_->setTimerType(Qt::PreciseTimer);
-    gameLoopTimer_->setInterval(GAME_LOOP_INTERVAL);
+    gameLoopTimer_->setInterval(ConfigProd::GAME_LOOP_INTERVAL_MS);
     connect(gameLoopTimer_.get(), &QTimer::timeout, this, &GameLoop::execute);
 }
 

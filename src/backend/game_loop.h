@@ -34,7 +34,5 @@ private:
 
     std::unique_ptr<QTimer> gameLoopTimer_;
 
-    static constexpr auto GAME_LOOP_INTERVAL = std::chrono::milliseconds(2);
-
     long long loopCounter_{};
 };

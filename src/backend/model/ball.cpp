@@ -6,6 +6,7 @@ Ball::Ball(int x, int y) :
         CustomGraphicsItem(QRectF(0, 0, ConfigProd::Ball::RADIUS, ConfigProd::Ball::RADIUS)), INITIAL_X(x), INITIAL_Y(y), INITIAL_MOVEMENT_VECTOR(HorizontalDirection::EAST, VerticalDirection::NORTH), movementVector_(INITIAL_MOVEMENT_VECTOR)
 {
     setPos(x, y);
+    movementVector_ = INITIAL_MOVEMENT_VECTOR;
 }
 
 void Ball::reset()
@@ -26,7 +27,7 @@ void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 void Ball::move()
 {
     //qDebug() << "Move by: " << static_cast<int>(movementVector_.getHorizontalDirection()) << "," << static_cast<int>(movementVector_.getVerticalDirection());
-    moveBy(static_cast<int>(movementVector_.getHorizontalDirection()), static_cast<int>(movementVector_.getVerticalDirection()));
+    moveBy(ConfigProd::Ball::SPEED_MULTIPLIER * static_cast<int>(movementVector_.getHorizontalDirection()), ConfigProd::Ball::SPEED_MULTIPLIER * static_cast<int>(movementVector_.getVerticalDirection()));
 }
 
 void Ball::setHorizontalPosition(int x)

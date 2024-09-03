@@ -18,12 +18,6 @@ namespace ConfigProd
 
         const int WIDTH = COLUMNS_COUNT * Brick::WIDTH;
         const int HEIGHT = 30 * Brick::HEIGHT;
-
-        const int LEFT_EDGE = 0;
-        const int RIGHT_EDGE = COLUMNS_COUNT * Brick::WIDTH;
-
-        const int TOP_EDGE = 0;
-        const int BOTTOM_EDGE = HEIGHT;
     }
 
     namespace Paddle
@@ -40,7 +34,9 @@ namespace ConfigProd
         const int RADIUS = 10;
         const int POSITION_X = Paddle::POSITION_X + Paddle::WIDTH / 2;
         const int POSITION_Y = Paddle::POSITION_Y - 14;
+        extern const int SPEED_MULTIPLIER;
     }
 
+    extern const int GAME_LOOP_INTERVAL_MS;
     extern const bool GPU_OPTIMIZATION;
 }
