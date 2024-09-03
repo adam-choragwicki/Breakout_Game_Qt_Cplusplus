@@ -6,7 +6,7 @@
 BricksManager::BricksManager()
 {
     qDebug() << "Creating bricks container";
-    createBricks();
+//    createBricks();
 }
 
 BricksManager::~BricksManager()

@@ -8,6 +8,8 @@ Model::Model()
 
     scene_ = std::make_unique<GraphicsScene>();
 
+    initWorldBoundaries();
+
     paddle_ = std::make_unique<Paddle>(ConfigProd::Paddle::POSITION_X, ConfigProd::Paddle::POSITION_Y);
     ball_ = std::make_unique<Ball>(ConfigProd::Ball::POSITION_X, ConfigProd::Ball::POSITION_Y);
     bricksManager_ = std::make_unique<BricksManager>();
@@ -30,8 +32,24 @@ void Model::reset()
     addBricksToScene();
 }
 
+void Model::initWorldBoundaries()
+{
+    const int sceneWidth = ConfigProd::Arena::WIDTH;
+    const int sceneHeight = ConfigProd::Arena::HEIGHT;
+
+    worldBoundaries_.emplace_back(new WorldBoundary(-1, 0, 1, sceneHeight)); // Left boundary
+    worldBoundaries_.emplace_back(new WorldBoundary(sceneWidth, 0, 1, sceneHeight)); // Right boundary
+    worldBoundaries_.emplace_back(new WorldBoundary(0, -1, sceneWidth, 1)); // Top boundary
+    worldBoundaries_.emplace_back(new WorldBoundary(0, sceneHeight, sceneWidth, 1)); // Bottom boundary
+}
+
 void Model::addItemsToScene()
 {
+    for(QGraphicsItem* worldBoundary : worldBoundaries_)
+    {
+        scene_->addItem(worldBoundary);
+    }
+
     scene_->addItem(paddle_.get());
     scene_->addItem(ball_.get());
 

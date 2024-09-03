@@ -6,6 +6,7 @@
 #include "ball.h"
 #include "bricks_manager.h"
 #include "screen_text_display.h"
+#include "world_boundary.h"
 #include <memory>
 #include <QTimer>
 
@@ -42,12 +43,18 @@ public:
     [[nodiscard]] ScreenTextDisplay& getScreenTextDisplay()
     { return *screenTextDisplay_; }
 
+    [[nodiscard]] const std::vector<WorldBoundary*>& getWorldBoundaries() const
+    { return worldBoundaries_; }
+
 private:
     void addItemsToScene();
     void addBricksToScene();
 
+    void initWorldBoundaries();
+
     std::unique_ptr<GraphicsScene> scene_;
 
+    std::vector<WorldBoundary*> worldBoundaries_{};
     std::unique_ptr<BricksManager> bricksManager_;
     std::unique_ptr<Paddle> paddle_;
     std::unique_ptr<Ball> ball_;
