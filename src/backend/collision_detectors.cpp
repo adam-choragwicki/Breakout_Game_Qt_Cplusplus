@@ -23,52 +23,36 @@
 //    return ballRect.right() == ConfigProd::Arena::RIGHT_EDGE;
 //}
 
-bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaBottomBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaBoundary(const Ball& ball, ArenaBoundary* arenaBoundary)
 {
     const MovementVector& originalMovementVector = ball.getMovementVector();
 
     MovementVector adjustedMovementVector = originalMovementVector;
     const QRectF newBoundingRectAfterMove = ball.sceneBoundingRect().translated(adjustedMovementVector.toQPointF());
 
-    const QRectF worldBoundaryRect = bottomArenaBoundary->sceneBoundingRect();
+    const QRectF worldBoundaryRect = arenaBoundary->sceneBoundingRect();
 
     return newBoundingRectAfterMove.intersects(worldBoundaryRect);
+}
+
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaBottomBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
+{
+    return checkCollisionWithArenaBoundary(ball, bottomArenaBoundary);
 }
 
 bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaTopBoundary(const Ball& ball, ArenaBoundary* topArenaBoundary)
 {
-    const MovementVector& originalMovementVector = ball.getMovementVector();
-
-    MovementVector adjustedMovementVector = originalMovementVector;
-    const QRectF newBoundingRectAfterMove = ball.sceneBoundingRect().translated(adjustedMovementVector.toQPointF());
-
-    const QRectF worldBoundaryRect = topArenaBoundary->sceneBoundingRect();
-
-    return newBoundingRectAfterMove.intersects(worldBoundaryRect);
+    return checkCollisionWithArenaBoundary(ball, topArenaBoundary);
 }
 
 bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaLeftBoundary(const Ball& ball, ArenaBoundary* leftArenaBoundary)
 {
-    const MovementVector& originalMovementVector = ball.getMovementVector();
-
-    MovementVector adjustedMovementVector = originalMovementVector;
-    const QRectF newBoundingRectAfterMove = ball.sceneBoundingRect().translated(adjustedMovementVector.toQPointF());
-
-    const QRectF worldBoundaryRect = leftArenaBoundary->sceneBoundingRect();
-
-    return newBoundingRectAfterMove.intersects(worldBoundaryRect);
+    return checkCollisionWithArenaBoundary(ball, leftArenaBoundary);
 }
 
 bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaRightBoundary(const Ball& ball, ArenaBoundary* rightArenaBoundary)
 {
-    const MovementVector& originalMovementVector = ball.getMovementVector();
-
-    MovementVector adjustedMovementVector = originalMovementVector;
-    const QRectF newBoundingRectAfterMove = ball.sceneBoundingRect().translated(adjustedMovementVector.toQPointF());
-
-    const QRectF worldBoundaryRect = rightArenaBoundary->sceneBoundingRect();
-
-    return newBoundingRectAfterMove.intersects(worldBoundaryRect);
+    return checkCollisionWithArenaBoundary(ball, rightArenaBoundary);
 }
 
 bool BrickCollisionDetector::checkBallCollisionWithBrickFromBrickBottomSide(const QPoint& ballRectCenter, const QPoint& brickRectCenter)
