@@ -24,26 +24,6 @@ public:
     static bool checkCollisionWithArenaRightBoundary(const Ball& ball, ArenaBoundary* rightArenaBoundary);
 };
 
-//bool CollisionDetector::checkProjectileCollisionWithWorldBoundary(const AbstractProjectile& projectile, const std::vector<WorldBoundary*>& worldBoundaries)
-//{
-//    const MovementVector& originalMovementVector = projectile.getMovementVector();
-//
-//    MovementVector adjustedMovementVector = projectile.getMovementVector();
-//    const QRectF newBoundingRectAfterMove = projectile.sceneBoundingRect().translated(adjustedMovementVector.toQPointF());
-//
-//    for(const WorldBoundary* worldBoundary : worldBoundaries)
-//    {
-//        const QRectF worldBoundaryRect = worldBoundary->sceneBoundingRect();
-//
-//        if(newBoundingRectAfterMove.intersects(worldBoundaryRect))
-//        {
-//            return true;
-//        }
-//    }
-//
-//    return false;
-//}
-
 class BrickCollisionDetector
 {
 public:

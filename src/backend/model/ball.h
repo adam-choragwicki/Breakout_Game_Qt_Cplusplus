@@ -19,6 +19,9 @@ public:
     void bounceHorizontally();
     void bounceVertically();
 
+    [[nodiscard]] const MovementVector& getMovementVector() const
+    { return movementVector_; }
+
 private:
     inline static const QColor COLOR = {Qt::yellow};
 

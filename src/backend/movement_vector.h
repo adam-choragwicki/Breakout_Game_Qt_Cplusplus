@@ -31,7 +31,7 @@ public:
     { verticalDirection_ = verticalDirection; }
 
     //    [[nodiscard]] QString toString() const;
-    //    [[nodiscard]] QPointF toQPointF() const;
+        [[nodiscard]] QPointF toQPointF() const;
 
 private:
     HorizontalDirection horizontalDirection_{};

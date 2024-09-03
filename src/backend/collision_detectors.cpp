@@ -24,32 +24,73 @@ bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaRightEdge(const QRec
 }
 
 
-
-
 bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaBottomBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
 {
-//    const MovementVector& originalMovementVector = projectile.getMovementVector();
+    const MovementVector& originalMovementVector = ball.getMovementVector();
 
+    MovementVector adjustedMovementVector = ball.getMovementVector();
+    const QRectF newBoundingRectAfterMove = ball.sceneBoundingRect().translated(adjustedMovementVector.toQPointF());
 
+    const QRectF worldBoundaryRect = bottomArenaBoundary->sceneBoundingRect();
+
+    if(newBoundingRectAfterMove.intersects(worldBoundaryRect))
+    {
+        return true;
+    }
+
+    return false;
 }
 
-bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaTopBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaTopBoundary(const Ball& ball, ArenaBoundary* topArenaBoundary)
 {
+    const MovementVector& originalMovementVector = ball.getMovementVector();
 
+    MovementVector adjustedMovementVector = ball.getMovementVector();
+    const QRectF newBoundingRectAfterMove = ball.sceneBoundingRect().translated(adjustedMovementVector.toQPointF());
+
+    const QRectF worldBoundaryRect = topArenaBoundary->sceneBoundingRect();
+
+    if(newBoundingRectAfterMove.intersects(worldBoundaryRect))
+    {
+        return true;
+    }
+
+    return false;
 }
 
-bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaLeftBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaLeftBoundary(const Ball& ball, ArenaBoundary* leftArenaBoundary)
 {
+    const MovementVector& originalMovementVector = ball.getMovementVector();
 
+    MovementVector adjustedMovementVector = ball.getMovementVector();
+    const QRectF newBoundingRectAfterMove = ball.sceneBoundingRect().translated(adjustedMovementVector.toQPointF());
+
+    const QRectF worldBoundaryRect = leftArenaBoundary->sceneBoundingRect();
+
+    if(newBoundingRectAfterMove.intersects(worldBoundaryRect))
+    {
+        return true;
+    }
+
+    return false;
 }
 
-bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaRightBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaRightBoundary(const Ball& ball, ArenaBoundary* rightArenaBoundary)
 {
+    const MovementVector& originalMovementVector = ball.getMovementVector();
 
+    MovementVector adjustedMovementVector = ball.getMovementVector();
+    const QRectF newBoundingRectAfterMove = ball.sceneBoundingRect().translated(adjustedMovementVector.toQPointF());
+
+    const QRectF worldBoundaryRect = rightArenaBoundary->sceneBoundingRect();
+
+    if(newBoundingRectAfterMove.intersects(worldBoundaryRect))
+    {
+        return true;
+    }
+
+    return false;
 }
-
-
-
 
 
 bool BrickCollisionDetector::checkBallCollisionWithBrickFromBrickBottomSide(const QPoint& ballRectCenter, const QPoint& brickRectCenter)
