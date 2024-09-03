@@ -7,7 +7,7 @@ ArenaBoundary::ArenaBoundary(int x, int y, int width, int height) : CustomGraphi
 
     if(displayArenaBoundary_)
     {
-        pen_ = QPen(Qt::red, 20);
+        pen_ = QPen(Qt::red, 5);
     }
 
     //drawRect_ = true;

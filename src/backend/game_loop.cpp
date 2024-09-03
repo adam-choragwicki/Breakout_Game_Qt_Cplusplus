@@ -45,18 +45,18 @@ void GameLoop::checkAndProcessBallCollisions()
 
 void GameLoop::checkAndProcessBallCollisionWithArenaEdges(const QRect& ballRect)
 {
-    if(ArenaBoundaryCollisionDetector::checkCollisionWithArenaBottomEdge(ballRect))
+    if(ArenaBoundaryCollisionDetector::checkCollisionWithArenaBottomBoundary(model_.getBall(), model_.getBottomArenaBoundary()))
     {
         emit endGame(GameResult::LOST);
         return;
     }
 
-    if(ArenaBoundaryCollisionDetector::checkCollisionWithArenaTopEdge(ballRect))
+    if(ArenaBoundaryCollisionDetector::checkCollisionWithArenaTopBoundary(model_.getBall(), model_.getTopArenaBoundary()))
     {
         model_.getBall().bounceHorizontally();
     }
 
-    if(ArenaBoundaryCollisionDetector::checkCollisionWithArenaLeftEdge(ballRect) || ArenaBoundaryCollisionDetector::checkCollisionWithArenaRightEdge(ballRect))
+    if(ArenaBoundaryCollisionDetector::checkCollisionWithArenaLeftBoundary(model_.getBall(), model_.getLeftArenaBoundary()) || ArenaBoundaryCollisionDetector::checkCollisionWithArenaRightBoundary(model_.getBall(), model_.getRightArenaBoundary()))
     {
         model_.getBall().bounceVertically();
     }
