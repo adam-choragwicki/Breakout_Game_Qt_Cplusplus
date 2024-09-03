@@ -1,25 +1,56 @@
 #include "collision_detectors.h"
+#include "arena_boundary.h"
+#include "model/ball.h"
 #include "config_prod.h"
 
-bool ArenaEdgeCollisionDetector::checkCollisionWithArenaBottomEdge(const QRect& ballRect)
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaBottomEdge(const QRect& ballRect)
 {
     return ballRect.bottom() == ConfigProd::Arena::BOTTOM_EDGE;
 }
 
-bool ArenaEdgeCollisionDetector::checkCollisionWithArenaTopEdge(const QRect& ballRect)
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaTopEdge(const QRect& ballRect)
 {
     return ballRect.top() == ConfigProd::Arena::TOP_EDGE;
 }
 
-bool ArenaEdgeCollisionDetector::checkCollisionWithArenaLeftEdge(const QRect& ballRect)
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaLeftEdge(const QRect& ballRect)
 {
     return ballRect.left() == ConfigProd::Arena::LEFT_EDGE;
 }
 
-bool ArenaEdgeCollisionDetector::checkCollisionWithArenaRightEdge(const QRect& ballRect)
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaRightEdge(const QRect& ballRect)
 {
     return ballRect.right() == ConfigProd::Arena::RIGHT_EDGE;
 }
+
+
+
+
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaBottomBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
+{
+//    const MovementVector& originalMovementVector = projectile.getMovementVector();
+
+
+}
+
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaTopBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
+{
+
+}
+
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaLeftBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
+{
+
+}
+
+bool ArenaBoundaryCollisionDetector::checkCollisionWithArenaRightBoundary(const Ball& ball, ArenaBoundary* bottomArenaBoundary)
+{
+
+}
+
+
+
+
 
 bool BrickCollisionDetector::checkBallCollisionWithBrickFromBrickBottomSide(const QPoint& ballRectCenter, const QPoint& brickRectCenter)
 {

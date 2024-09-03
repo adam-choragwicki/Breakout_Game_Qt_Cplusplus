@@ -37,18 +37,29 @@ void Model::initWorldBoundaries()
     const int sceneWidth = ConfigProd::Arena::WIDTH;
     const int sceneHeight = ConfigProd::Arena::HEIGHT;
 
-    worldBoundaries_.emplace_back(new ArenaBoundary(-1, 0, 1, sceneHeight)); // Left boundary
-    worldBoundaries_.emplace_back(new ArenaBoundary(sceneWidth, 0, 1, sceneHeight)); // Right boundary
-    worldBoundaries_.emplace_back(new ArenaBoundary(0, -1, sceneWidth, 1)); // Top boundary
-    worldBoundaries_.emplace_back(new ArenaBoundary(0, sceneHeight, sceneWidth, 1)); // Bottom boundary
+    //    worldBoundaries_.emplace_back(new ArenaBoundary(-1, 0, 1, sceneHeight)); // Left boundary
+    //    worldBoundaries_.emplace_back(new ArenaBoundary(sceneWidth, 0, 1, sceneHeight)); // Right boundary
+    //    worldBoundaries_.emplace_back(new ArenaBoundary(0, -1, sceneWidth, 1)); // Top boundary
+    //    worldBoundaries_.emplace_back(new ArenaBoundary(0, sceneHeight, sceneWidth, 1)); // Bottom boundary
+
+    leftArenaBoundary_ = new ArenaBoundary(-1, 0, 1, sceneHeight); // Left boundary
+    rightArenaBoundary_ = new ArenaBoundary(sceneWidth, 0, 1, sceneHeight); // Right boundary
+    topArenaBoundary_ = new ArenaBoundary(0, -1, sceneWidth, 1); // Top boundary
+    bottomArenaBoundary_ = new ArenaBoundary(0, sceneHeight, sceneWidth, 1); // Bottom boundary
 }
 
 void Model::addItemsToScene()
 {
-    for(QGraphicsItem* worldBoundary : worldBoundaries_)
-    {
-        scene_->addItem(worldBoundary);
-    }
+    //    for(QGraphicsItem* worldBoundary : worldBoundaries_)
+    //    {
+    //        scene_->addItem(worldBoundary);
+    //    }
+
+    scene_->addItem(leftArenaBoundary_);
+    scene_->addItem(rightArenaBoundary_);
+    scene_->addItem(topArenaBoundary_);
+    scene_->addItem(bottomArenaBoundary_);
+
 
     scene_->addItem(paddle_.get());
     scene_->addItem(ball_.get());
