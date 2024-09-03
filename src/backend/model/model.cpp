@@ -37,10 +37,10 @@ void Model::initWorldBoundaries()
     const int sceneWidth = ConfigProd::Arena::WIDTH;
     const int sceneHeight = ConfigProd::Arena::HEIGHT;
 
-    worldBoundaries_.emplace_back(new WorldBoundary(-1, 0, 1, sceneHeight)); // Left boundary
-    worldBoundaries_.emplace_back(new WorldBoundary(sceneWidth, 0, 1, sceneHeight)); // Right boundary
-    worldBoundaries_.emplace_back(new WorldBoundary(0, -1, sceneWidth, 1)); // Top boundary
-    worldBoundaries_.emplace_back(new WorldBoundary(0, sceneHeight, sceneWidth, 1)); // Bottom boundary
+    worldBoundaries_.emplace_back(new ArenaBoundary(-1, 0, 1, sceneHeight)); // Left boundary
+    worldBoundaries_.emplace_back(new ArenaBoundary(sceneWidth, 0, 1, sceneHeight)); // Right boundary
+    worldBoundaries_.emplace_back(new ArenaBoundary(0, -1, sceneWidth, 1)); // Top boundary
+    worldBoundaries_.emplace_back(new ArenaBoundary(0, sceneHeight, sceneWidth, 1)); // Bottom boundary
 }
 
 void Model::addItemsToScene()

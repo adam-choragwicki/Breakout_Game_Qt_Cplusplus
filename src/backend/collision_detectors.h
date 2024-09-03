@@ -9,6 +9,11 @@ public:
     static bool checkCollisionWithArenaTopEdge(const QRect& ballRect);
     static bool checkCollisionWithArenaLeftEdge(const QRect& ballRect);
     static bool checkCollisionWithArenaRightEdge(const QRect& ballRect);
+
+    static bool checkCollisionWithArenaBottomBoundary(const QRect& ballRect);
+    static bool checkCollisionWithArenaTopBoundary(const QRect& ballRect);
+    static bool checkCollisionWithArenaLeftBoundary(const QRect& ballRect);
+    static bool checkCollisionWithArenaRightBoundary(const QRect& ballRect);
 };
 
 class BrickCollisionDetector

@@ -15,7 +15,7 @@ set(SOURCE_FILES
         collision_detectors.cpp collision_detectors.h
         screen_text_display.cpp screen_text_display.h
         movement_vector.cpp movement_vector.h
-        world_boundary.cpp world_boundary.h
+        arena_boundary.cpp arena_boundary.h
         id_generator.h)
 
 # Create the backend library
