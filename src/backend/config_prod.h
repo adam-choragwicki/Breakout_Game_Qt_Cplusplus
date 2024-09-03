@@ -38,5 +38,6 @@ namespace ConfigProd
     }
 
     extern const int GAME_LOOP_INTERVAL_MS;
+    extern const int VIEWPORT_UPDATE_INTERVAL_MS;
     extern const bool GPU_OPTIMIZATION;
 }

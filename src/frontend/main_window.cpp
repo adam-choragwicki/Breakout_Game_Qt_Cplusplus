@@ -27,7 +27,7 @@ MainWindow::MainWindow(const Model& model) : model_(model)
 
     viewportUpdateTimer_ = std::make_unique<QTimer>(this);
     viewportUpdateTimer_->setTimerType(Qt::PreciseTimer);
-    viewportUpdateTimer_->setInterval(VIEWPORT_UPDATE_INTERVAL);
+    viewportUpdateTimer_->setInterval(ConfigProd::VIEWPORT_UPDATE_INTERVAL_MS);
 
     connect(viewportUpdateTimer_.get(), &QTimer::timeout, this, &MainWindow::updateViewport);
     connect(graphicsView_.get(), &GraphicsView::fpsCountUpdateEvent, this, &MainWindow::updateFPSDisplay);

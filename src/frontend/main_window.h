@@ -38,6 +38,4 @@ private:
     std::unique_ptr<GraphicsView> graphicsView_;
 
     std::unique_ptr<QTimer> viewportUpdateTimer_;
-
-    static constexpr auto VIEWPORT_UPDATE_INTERVAL = std::chrono::milliseconds(17);
 };
