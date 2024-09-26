@@ -7,12 +7,14 @@ Ball::Ball(int x, int y) :
 {
     const QString path("assets/ball.png");
 
-    pixmap_ = std::make_unique<QPixmap>();
+    pixmap_ = std::make_unique<QPixmap>(path);
 
-    if(!pixmap_->load(path))
+    if(pixmap_->isNull())
     {
         throw std::runtime_error("Cannot load PNG pixmap from " + path.toStdString());
     }
+
+    *pixmap_ = pixmap_->scaled(static_cast<int>(rect_.width()), static_cast<int>(rect_.height()), Qt::AspectRatioMode::IgnoreAspectRatio, Qt::TransformationMode::SmoothTransformation);
 
     setPos(x, y);
     movementVector_ = INITIAL_MOVEMENT_VECTOR;
