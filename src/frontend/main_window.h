@@ -19,8 +19,6 @@ signals:
 public:
     explicit MainWindow(const Model& model);
 
-    void startRendering();
-    void updateViewport();
     void setMousePositionAtScreenCenter();
 
 private slots:
@@ -36,6 +34,4 @@ private:
     const Model& model_;
 
     std::unique_ptr<GraphicsView> graphicsView_;
-
-    std::unique_ptr<QTimer> viewportUpdateTimer_;
 };

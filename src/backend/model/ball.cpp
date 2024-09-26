@@ -5,6 +5,15 @@
 Ball::Ball(int x, int y) :
         CustomGraphicsItem(QRectF(0, 0, ConfigProd::Ball::RADIUS, ConfigProd::Ball::RADIUS)), INITIAL_X(x), INITIAL_Y(y), INITIAL_MOVEMENT_VECTOR(HorizontalDirection::EAST, VerticalDirection::NORTH), movementVector_(INITIAL_MOVEMENT_VECTOR)
 {
+    const QString path("assets/ball.png");
+
+    pixmap_ = std::make_unique<QPixmap>();
+
+    if(!pixmap_->load(path))
+    {
+        throw std::runtime_error("Cannot load PNG pixmap from " + path.toStdString());
+    }
+
     setPos(x, y);
     movementVector_ = INITIAL_MOVEMENT_VECTOR;
 
@@ -25,8 +34,7 @@ void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setPen(Qt::NoPen);
-    painter->setBrush(COLOR);
-    painter->drawEllipse(rect_);
+    painter->drawPixmap(rect_.toRect(), *pixmap_);
 }
 
 void Ball::move()

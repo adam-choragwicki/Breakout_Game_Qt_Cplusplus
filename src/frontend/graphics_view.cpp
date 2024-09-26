@@ -4,15 +4,18 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QTimer>
+#include <QtOpenGLWidgets/QOpenGLWidget>
 
 GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsView(scene, parent)
 {
-    setCacheMode(QGraphicsView::CacheBackground);
-    setMouseTracking(true);
+    setViewport(new QOpenGLWidget);
+
     setViewportUpdateMode(QGraphicsView::NoViewportUpdate);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setRenderHint(QPainter::Antialiasing, true);
+
+    setMouseTracking(true);
 
     connect(&fpsTimer_, &QTimer::timeout, this, &GraphicsView::updateFPS);
 
@@ -23,6 +26,21 @@ GraphicsView::GraphicsView(GraphicsScene* scene, QWidget* parent) : QGraphicsVie
     viewport()->installEventFilter(this);
 
     lastMousePositionOnScreen_ = QCursor::pos();
+
+    refreshRateTimer_.setTimerType(Qt::PreciseTimer);
+    refreshRateTimer_.setInterval(16);
+
+    connect(&refreshRateTimer_, &QTimer::timeout, this, [this]()
+    {
+        this->viewport()->update();
+    });
+
+    auto startRendering = [this]()
+    {
+        refreshRateTimer_.start();
+    };
+
+    startRendering();
 }
 
 void GraphicsView::mouseMoveEvent(QMouseEvent* event)
@@ -69,19 +87,4 @@ bool GraphicsView::eventFilter(QObject* obj, QEvent* event)
     }
 
     return QGraphicsView::eventFilter(obj, event);
-}
-
-void GraphicsView::updateViewport(const QList<QRectF>& dirtyRegions)
-{
-    if(ConfigProd::GPU_OPTIMIZATION)
-    {
-        for(const QRectF& rect : dirtyRegions)
-        {
-            viewport()->update(rect.toRect());
-        }
-    }
-    else
-    {
-        viewport()->update();
-    }
 }

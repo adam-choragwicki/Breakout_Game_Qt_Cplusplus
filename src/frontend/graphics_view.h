@@ -20,8 +20,6 @@ public:
     void drawForeground(QPainter* painter, const QRectF& rect) override;
     bool eventFilter(QObject* obj, QEvent* event) override;
 
-    void updateViewport(const QList<QRectF>& dirtyRegions);
-
     void leaveEvent(QEvent* event) override;
 
 private slots:
@@ -29,6 +27,8 @@ private slots:
 
 private:
     void mouseMoveEvent(QMouseEvent* event) override;
+
+    QTimer refreshRateTimer_;
 
     QTimer fpsTimer_;
     QElapsedTimer frameTimeTimer_;

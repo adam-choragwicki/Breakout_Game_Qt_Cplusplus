@@ -30,4 +30,6 @@ private:
 
     const MovementVector INITIAL_MOVEMENT_VECTOR;
     MovementVector movementVector_;
+
+    std::unique_ptr<QPixmap> pixmap_;
 };

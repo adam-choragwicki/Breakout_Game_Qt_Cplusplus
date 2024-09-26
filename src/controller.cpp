@@ -19,8 +19,6 @@ Controller::Controller(Model& model, MainWindow& view) : model_(model), view_(vi
     subscribeToFrontendEvents();
 
     gameManager_->prepareGameToStart();
-
-    view_.startRendering();
 }
 
 void Controller::subscribeToFrontendEvents()
